@@ -47,19 +47,33 @@ export function Header({ alwaysShow = false }: HeaderProps) {
   if (!showFixedHeader) return null;
 
   return (
-    <div className="fixed top-0 left-0 w-full z-40">
-      <div className="relative flex items-center px-4 py-2 min-h-[120px]">
-        <div className="flex items-center h-full ml-8">
-          <Image
-            src="/yks.png"
-            alt="YKS Şekeri Ana Sayfa"
-            width={160}
-            height={110}
-            priority
-            className="rounded"
-          />
+    <>
+      {/* Masaüstü Header - Yukarıda sabit */}
+      <div className="hidden lg:block fixed top-0 left-0 w-full z-40">
+        <div className="relative flex items-center px-4 py-2 min-h-[120px]">
+          <div className="flex items-center h-full ml-8">
+            <Image
+              src="/yks.png"
+              alt="YKS Şekeri Ana Sayfa"
+              width={160}
+              height={110}
+              priority
+              className="rounded"
+            />
+          </div>
+          <div className="absolute inset-x-0 flex justify-center items-center h-full">
+            <NavBar 
+              items={navItems}
+              disableFixed={true}
+              className="mb-0 pt-0"
+            />
+          </div>
         </div>
-        <div className="absolute inset-x-0 flex justify-center items-center h-full">
+      </div>
+
+      {/* Mobil Navigation - Aşağıda sabit */}
+      <div className="lg:hidden fixed bottom-0 left-0 w-full z-40">
+        <div className="flex justify-center items-center py-2">
           <NavBar 
             items={navItems}
             disableFixed={true}
@@ -67,6 +81,6 @@ export function Header({ alwaysShow = false }: HeaderProps) {
           />
         </div>
       </div>
-    </div>
+    </>
   );
 } 

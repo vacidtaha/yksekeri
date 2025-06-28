@@ -22,6 +22,7 @@ export function NavBar({ items, className, disableFixed = false }: NavBarProps) 
   const pathname = usePathname()
   const [activeTab, setActiveTab] = useState("")
   const [showDropdown, setShowDropdown] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
 
   // Ders sayfası adını döndüren fonksiyon
   const getDersPageName = () => {
@@ -127,9 +128,21 @@ export function NavBar({ items, className, disableFixed = false }: NavBarProps) 
 
 
 
+  // Window size takibi için mobile detection
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024)
+    }
+    
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
   // Dropdown dışına tıklanırsa kapat
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
+    const handleClickOutside = (event: MouseEvent | TouchEvent) => {
       if (showDropdown) {
         const target = event.target as HTMLElement
         if (!target.closest('.dropdown-container') && !target.closest('.dropdown-menu')) {
@@ -139,10 +152,15 @@ export function NavBar({ items, className, disableFixed = false }: NavBarProps) 
     }
 
     document.addEventListener('mousedown', handleClickOutside)
-    return () => document.removeEventListener('mousedown', handleClickOutside)
+    document.addEventListener('touchstart', handleClickOutside)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+      document.removeEventListener('touchstart', handleClickOutside)
+    }
   }, [showDropdown])
 
   return (
+    <>
     <div
       className={cn(
         disableFixed ? "static" : "fixed bottom-0 sm:top-0 left-1/2 -translate-x-1/2 z-50 mb-6 sm:pt-6",
@@ -150,10 +168,11 @@ export function NavBar({ items, className, disableFixed = false }: NavBarProps) 
       )}
     >
       <div 
-        className="flex items-center gap-3 bg-black/20 py-1 px-1 rounded-full border border-white/10"
+        className="flex items-center gap-3 bg-black/20 py-1 px-1 rounded-full"
         style={{
           backdropFilter: 'blur(12px)',
-          WebkitBackdropFilter: 'blur(12px)'
+          WebkitBackdropFilter: 'blur(12px)',
+          border: '1px solid rgba(255, 255, 255, 0.1)'
         }}
       >
         {items.map((item) => {
@@ -187,131 +206,6 @@ export function NavBar({ items, className, disableFixed = false }: NavBarProps) 
 
                 </button>
 
-                {/* Dropdown Menu */}
-                {showDropdown && (
-                  <div 
-                    className="fixed top-24 left-1/2 transform -translate-x-1/2 w-[700px] rounded-2xl shadow-2xl dropdown-menu"
-                    style={{
-                      backgroundColor: 'rgba(248, 248, 248, 0.95)',
-                      backdropFilter: 'blur(20px)',
-                      WebkitBackdropFilter: 'blur(20px)',
-                      border: '1px solid rgba(0, 0, 0, 0.1)',
-                      zIndex: 9999
-                    }}
-                    onMouseLeave={() => setShowDropdown(false)}
-                  >
-                    <div className="p-6">
-                      <div className="grid grid-cols-2 gap-8">
-                        
-                        {/* TYT Bölümü */}
-                        <div>
-                          <h3 className="text-lg font-semibold mb-4 flex items-center gap-2" style={{color: '#1d1d1f'}}>
-                            <TestTube size={20} style={{color: '#007AFF'}} />
-                            TYT Dersleri
-                          </h3>
-                          <div className="space-y-2">
-                            {tytSubjects.map((subject) => {
-                              const SubjectIcon = subject.icon
-                              return (
-                                <Link
-                                  key={subject.name}
-                                  href={subject.href}
-                                  className="flex items-center gap-3 p-3 rounded-xl transition-all duration-200 group hover:shadow-md"
-                                  style={{
-                                    backgroundColor: 'rgba(255, 255, 255, 0.6)',
-                                    border: '1px solid rgba(0, 0, 0, 0.05)'
-                                  }}
-                                  onClick={() => setShowDropdown(false)}
-                                  onMouseEnter={(e) => {
-                                    const hex = subject.color.replace('#', '')
-                                    const r = parseInt(hex.substr(0, 2), 16)
-                                    const g = parseInt(hex.substr(2, 2), 16)
-                                    const b = parseInt(hex.substr(4, 2), 16)
-                                    e.currentTarget.style.backgroundColor = `rgba(${r}, ${g}, ${b}, 0.1)`
-                                    e.currentTarget.style.transform = 'translateY(-1px)'
-                                  }}
-                                  onMouseLeave={(e) => {
-                                    e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.6)'
-                                    e.currentTarget.style.transform = 'translateY(0px)'
-                                  }}
-                                >
-                                  <SubjectIcon size={16} style={{color: subject.color}} />
-                                  <span className="text-sm font-medium" style={{color: '#1d1d1f'}}>
-                                    {subject.name}
-                                  </span>
-                                </Link>
-                              )
-                            })}
-                          </div>
-                        </div>
-
-                        {/* AYT Bölümü */}
-                        <div>
-                          <h3 className="text-lg font-semibold mb-4 flex items-center gap-2" style={{color: '#1d1d1f'}}>
-                            <Calculator size={20} style={{color: '#34C759'}} />
-                            AYT Alan Dersleri
-                          </h3>
-                          <div className="space-y-3">
-                            {Object.entries(aytAreas).map(([areaKey, area]) => (
-                              <div 
-                                key={areaKey}
-                                className="relative rounded-xl transition-all duration-200"
-                                style={{
-                                  backgroundColor: 'rgba(255, 255, 255, 0.6)',
-                                  border: '1px solid rgba(0, 0, 0, 0.05)'
-                                }}
-                              >
-                                <div className="p-4">
-                                  <div className="mb-3">
-                                    <span className="text-sm font-semibold" style={{color: '#1d1d1f'}}>
-                                      {area.name}
-                                    </span>
-                                  </div>
-                                  <div className="grid grid-cols-2 gap-2">
-                                    {area.subjects.map((subject) => {
-                                      const SubjectIcon = subject.icon
-                                      return (
-                                        <Link
-                                          key={subject.name}
-                                          href={subject.href}
-                                          className="flex items-center gap-2 p-2 rounded-lg transition-all duration-200 text-xs font-medium"
-                                          style={{
-                                            backgroundColor: 'rgba(255, 255, 255, 0.8)',
-                                            border: '1px solid rgba(0, 0, 0, 0.03)',
-                                            color: '#1d1d1f'
-                                          }}
-                                          onClick={() => setShowDropdown(false)}
-                                          onMouseEnter={(e) => {
-                                            const hex = subject.color.replace('#', '')
-                                            const r = parseInt(hex.substr(0, 2), 16)
-                                            const g = parseInt(hex.substr(2, 2), 16)
-                                            const b = parseInt(hex.substr(4, 2), 16)
-                                            e.currentTarget.style.backgroundColor = `rgba(${r}, ${g}, ${b}, 0.1)`
-                                            e.currentTarget.style.transform = 'translateY(-1px)'
-                                          }}
-                                          onMouseLeave={(e) => {
-                                            e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.8)'
-                                            e.currentTarget.style.transform = 'translateY(0px)'
-                                          }}
-                                        >
-                                          <SubjectIcon size={14} style={{color: subject.color}} />
-                                          <span className="truncate">
-                                            {subject.name}
-                                          </span>
-                                        </Link>
-                                      )
-                                    })}
-                                  </div>
-                                </div>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-
-                      </div>
-                    </div>
-                  </div>
-                )}
               </div>
             )
           }
@@ -340,5 +234,171 @@ export function NavBar({ items, className, disableFixed = false }: NavBarProps) 
         })}
       </div>
     </div>
+
+    {/* Dropdown Menu - Navbar container dışında */}
+    {showDropdown && (
+      <>
+        {/* Mobile CSS Keyframes */}
+        {isMobile && (
+          <style>{`
+            @keyframes slideUpAndScale {
+              from {
+                opacity: 0;
+                transform: translateY(10px) scale(0.95);
+              }
+              to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+              }
+            }
+          `}</style>
+        )}
+        <div 
+          className={`fixed shadow-2xl dropdown-menu ${
+            isMobile 
+              ? 'left-0 right-0 rounded-2xl z-[10000]' 
+              : 'left-1/2 transform -translate-x-1/2 top-24 w-[700px] rounded-2xl'
+          }`}
+          style={{
+            backgroundColor: 'rgba(248, 248, 248, 0.95)',
+            backdropFilter: 'blur(20px)',
+            WebkitBackdropFilter: 'blur(20px)',
+            border: '1px solid rgba(0, 0, 0, 0.1)',
+            zIndex: 10000,
+            ...(isMobile ? {
+              bottom: '80px', // Navbar'ın üstünde
+              animation: 'slideUpAndScale 0.2s ease-out'
+            } : {
+              top: '96px'
+            })
+          }}
+          onMouseLeave={() => !isMobile && setShowDropdown(false)}
+        >
+        <div className={isMobile ? "p-3" : "p-6"}>
+          <div className="grid grid-cols-2 gap-4">
+            
+            {/* TYT Bölümü */}
+            <div>
+              <h3 className={`font-semibold flex items-center gap-2 ${isMobile ? 'text-sm mb-2' : 'text-lg mb-4'}`} style={{color: '#1d1d1f'}}>
+                <TestTube size={isMobile ? 16 : 20} style={{color: '#007AFF'}} />
+                TYT Dersleri
+              </h3>
+              <div className={isMobile ? "space-y-1" : "space-y-2"}>
+                {tytSubjects.map((subject) => {
+                  const SubjectIcon = subject.icon
+                  return (
+                    <Link
+                      key={subject.name}
+                      href={subject.href}
+                      className={`flex items-center rounded-xl transition-all duration-200 group hover:shadow-md ${
+                        isMobile ? 'gap-2 p-2' : 'gap-3 p-3'
+                      }`}
+                      style={{
+                        backgroundColor: 'rgba(255, 255, 255, 0.6)',
+                        border: '1px solid rgba(0, 0, 0, 0.05)'
+                      }}
+                      onClick={() => setShowDropdown(false)}
+                      onMouseEnter={(e) => {
+                        if (!isMobile) {
+                          const hex = subject.color.replace('#', '')
+                          const r = parseInt(hex.substr(0, 2), 16)
+                          const g = parseInt(hex.substr(2, 2), 16)
+                          const b = parseInt(hex.substr(4, 2), 16)
+                          e.currentTarget.style.backgroundColor = `rgba(${r}, ${g}, ${b}, 0.1)`
+                          e.currentTarget.style.transform = 'translateY(-1px)'
+                        }
+                      }}
+                      onMouseLeave={(e) => {
+                        if (!isMobile) {
+                          e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.6)'
+                          e.currentTarget.style.transform = 'translateY(0px)'
+                        }
+                      }}
+                    >
+                      <SubjectIcon size={isMobile ? 14 : 16} style={{color: subject.color}} />
+                      <span className={`font-medium ${isMobile ? 'text-xs' : 'text-sm'}`} style={{color: '#1d1d1f'}}>
+                        {subject.name}
+                      </span>
+                    </Link>
+                  )
+                })}
+              </div>
+            </div>
+
+            {/* AYT Bölümü */}
+            <div>
+              <h3 className={`font-semibold flex items-center gap-2 ${isMobile ? 'text-sm mb-2' : 'text-lg mb-4'}`} style={{color: '#1d1d1f'}}>
+                <Calculator size={isMobile ? 16 : 20} style={{color: '#34C759'}} />
+                AYT Alan Dersleri
+              </h3>
+              <div className={isMobile ? "space-y-2" : "space-y-3"}>
+                {Object.entries(aytAreas).map(([areaKey, area]) => (
+                  <div 
+                    key={areaKey}
+                    className="relative rounded-xl transition-all duration-200"
+                    style={{
+                      backgroundColor: 'rgba(255, 255, 255, 0.6)',
+                      border: '1px solid rgba(0, 0, 0, 0.05)'
+                    }}
+                  >
+                    <div className={isMobile ? "p-2" : "p-4"}>
+                      <div className={isMobile ? "mb-2" : "mb-3"}>
+                        <span className={`font-semibold ${isMobile ? 'text-xs' : 'text-sm'}`} style={{color: '#1d1d1f'}}>
+                          {area.name}
+                        </span>
+                      </div>
+                      <div className={`grid grid-cols-2 ${isMobile ? 'gap-1' : 'gap-2'}`}>
+                        {area.subjects.map((subject) => {
+                          const SubjectIcon = subject.icon
+                          return (
+                            <Link
+                              key={subject.name}
+                              href={subject.href}
+                              className={`flex items-center rounded-lg transition-all duration-200 font-medium ${
+                                isMobile ? 'gap-1 p-1.5 text-xs' : 'gap-2 p-2 text-xs'
+                              }`}
+                              style={{
+                                backgroundColor: 'rgba(255, 255, 255, 0.8)',
+                                border: '1px solid rgba(0, 0, 0, 0.03)',
+                                color: '#1d1d1f'
+                              }}
+                              onClick={() => setShowDropdown(false)}
+                              onMouseEnter={(e) => {
+                                if (!isMobile) {
+                                  const hex = subject.color.replace('#', '')
+                                  const r = parseInt(hex.substr(0, 2), 16)
+                                  const g = parseInt(hex.substr(2, 2), 16)
+                                  const b = parseInt(hex.substr(4, 2), 16)
+                                  e.currentTarget.style.backgroundColor = `rgba(${r}, ${g}, ${b}, 0.1)`
+                                  e.currentTarget.style.transform = 'translateY(-1px)'
+                                }
+                              }}
+                              onMouseLeave={(e) => {
+                                if (!isMobile) {
+                                  e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.8)'
+                                  e.currentTarget.style.transform = 'translateY(0px)'
+                                }
+                              }}
+                            >
+                              <SubjectIcon size={isMobile ? 12 : 14} style={{color: subject.color}} />
+                              <span className={`${isMobile ? 'text-xs' : 'text-xs'} truncate`}>
+                                {subject.name}
+                              </span>
+                            </Link>
+                          )
+                        })}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      </>
+    )}
+    </>
   )
 }

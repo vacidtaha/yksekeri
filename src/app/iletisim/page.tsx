@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
+import Image from "next/image";
 import { CheckCircle, AlertCircle, Send, User, Mail, MessageSquare, Phone } from "lucide-react";
 import { Header } from "@/components/ui/header";
 
@@ -159,16 +160,16 @@ export default function IletisimPage() {
       <div className="min-h-screen" style={{backgroundColor: '#1d1d1f'}}>
         <Header alwaysShow={true} />
         
-        <div className="min-h-screen flex items-center justify-center px-4 pt-20">
-          <div className="text-center max-w-md">
-            <CheckCircle className="w-16 h-16 mx-auto mb-6" style={{color: '#30d158'}} />
-            <h2 className="text-3xl font-light tracking-tight mb-4" style={{color: '#f5f5f7'}}>Mesaj Gönderildi!</h2>
-            <p className="mb-6" style={{color: '#86868b'}}>
+        <div className="min-h-screen flex items-center justify-center px-3 lg:px-4 pt-16 lg:pt-20">
+          <div className="text-center max-w-xs lg:max-w-md">
+            <CheckCircle className="w-12 h-12 lg:w-16 lg:h-16 mx-auto mb-4 lg:mb-6" style={{color: '#30d158'}} />
+            <h2 className="text-xl lg:text-3xl font-light tracking-tight mb-3 lg:mb-4" style={{color: '#f5f5f7'}}>Mesaj Gönderildi!</h2>
+            <p className="mb-4 lg:mb-6 text-sm lg:text-base" style={{color: '#86868b'}}>
               Mesajınız başarıyla alındı. 24 saat içinde size geri dönüş yapacağız.
             </p>
             <button 
               onClick={() => setIsSuccess(false)}
-              className="px-6 py-3 rounded-xl font-semibold transition-all duration-200"
+              className="px-4 lg:px-6 py-2.5 lg:py-3 rounded-xl font-semibold transition-all duration-200 text-sm lg:text-base"
               style={{
                 backgroundColor: '#007AFF',
                 color: '#ffffff'
@@ -188,15 +189,26 @@ export default function IletisimPage() {
       
       <Header alwaysShow={true} />
 
-      <div className="max-w-6xl mx-auto px-4 py-12 pt-32">
+      <div className="max-w-6xl mx-auto px-3 lg:px-4 py-6 lg:py-12 pt-20 lg:pt-32 pb-24 lg:pb-6">
+        {/* Mobile Logo */}
+        <div className="lg:hidden absolute top-4 left-4 z-10">
+          <Image
+            src="/yks.png"
+            alt="YKS Şekeri Logo"
+            width={60}
+            height={42}
+            priority
+            className="rounded-lg"
+          />
+        </div>
         
         {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-light tracking-tight mb-4" style={{color: '#f5f5f7'}}>
+        <div className="text-center mb-6 lg:mb-12">
+          <h1 className="text-2xl lg:text-4xl xl:text-5xl font-light tracking-tight mb-3 lg:mb-4" style={{color: '#f5f5f7'}}>
             İletişime Geçin
           </h1>
-          <p className="text-lg max-w-2xl mx-auto" style={{color: '#86868b'}}>
-            Sorularınız, önerileriniz teknik destek ihtiyaçlarınız veya içeriğiniz gösteriliyorsa ve bizi dava etmek üzereyseniz <span style={{color: '#ffffff', fontWeight: '600'}}>öncelikle sakin olun</span> ve bizimle iletişime geçin.
+          <p className="text-sm lg:text-lg max-w-xl lg:max-w-2xl mx-auto px-2 lg:px-0" style={{color: '#86868b'}}>
+            Sorularınız, önerileriniz teknik destek ihtiyaçlarınız veya içeriğiniz gösteriliyorsa ve bizi dava etmek üzereyseniz <span style={{background: 'linear-gradient(90deg, #7C3AED, #EAB308)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', fontWeight: '600'}}>öncelikle sakin olun</span> ✨ ve bizimle iletişime geçin.
           </p>
         </div>
 
@@ -204,7 +216,7 @@ export default function IletisimPage() {
           {/* Form */}
           <div>
             <div 
-              className="rounded-2xl p-8"
+              className="rounded-xl lg:rounded-2xl p-4 lg:p-8"
               style={{
                 backgroundColor: 'rgba(255,255,255,0.05)',
                 border: '1px solid rgba(255,255,255,0.1)',
@@ -213,17 +225,17 @@ export default function IletisimPage() {
             >
               
                              {/* Progress Bar */}
-               <div className="mb-8">
-                 <div className="flex justify-between items-center mb-3">
-                   <span className="text-sm font-medium" style={{color: '#86868b'}}>Form Tamamlanma</span>
-                   <span className="text-sm font-medium" style={{color: '#007AFF'}}>{getProgressPercentage()}%</span>
+               <div className="mb-4 lg:mb-8">
+                 <div className="flex justify-between items-center mb-2 lg:mb-3">
+                   <span className="text-xs lg:text-sm font-medium" style={{color: '#86868b'}}>Form Tamamlanma</span>
+                   <span className="text-xs lg:text-sm font-medium" style={{color: '#007AFF'}}>{getProgressPercentage()}%</span>
                  </div>
                  <div 
-                   className="w-full rounded-full h-1"
+                   className="w-full rounded-full h-0.5 lg:h-1"
                    style={{backgroundColor: 'rgba(255,255,255,0.1)'}}
                  >
                    <div 
-                     className="h-1 rounded-full transition-all duration-500 ease-out"
+                     className="h-0.5 lg:h-1 rounded-full transition-all duration-500 ease-out"
                      style={{ 
                        width: `${getProgressPercentage()}%`,
                        backgroundColor: '#007AFF'
@@ -232,13 +244,13 @@ export default function IletisimPage() {
                  </div>
                </div>
 
-              <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
+              <form ref={formRef} onSubmit={handleSubmit} className="space-y-4 lg:space-y-6">
                 
                 {/* İsim Soyisim */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
                   <div>
-                                         <label className="block text-sm font-medium mb-2" style={{color: '#86868b'}}>
-                       <User className="w-4 h-4 inline mr-2" style={{color: '#86868b'}} />
+                                         <label className="block text-xs lg:text-sm font-medium mb-1.5 lg:mb-2" style={{color: '#86868b'}}>
+                       <User className="w-3 h-3 lg:w-4 lg:h-4 inline mr-1 lg:mr-2" style={{color: '#86868b'}} />
                        Ad *
                      </label>
                                          <input
@@ -248,7 +260,7 @@ export default function IletisimPage() {
                        onChange={handleChange}
                        onFocus={() => setFocusedField('firstName')}
                        onBlur={() => setFocusedField('')}
-                       className="w-full px-4 py-3 rounded-xl font-medium transition-all duration-200 focus:outline-none"
+                       className="w-full px-3 lg:px-4 py-2.5 lg:py-3 rounded-lg lg:rounded-xl font-medium transition-all duration-200 focus:outline-none text-base"
                        style={{
                          backgroundColor: 'rgba(255,255,255,0.05)',
                          border: `1px solid ${
@@ -260,15 +272,15 @@ export default function IletisimPage() {
                        placeholder="Adınız"
                      />
                     {errors.firstName && (
-                      <p className="mt-1 text-sm text-red-400 flex items-center">
-                        <AlertCircle className="w-4 h-4 mr-1" />
+                      <p className="mt-1 text-xs lg:text-sm text-red-400 flex items-center">
+                        <AlertCircle className="w-3 h-3 lg:w-4 lg:h-4 mr-1" />
                         {errors.firstName}
                       </p>
                     )}
                   </div>
 
                   <div>
-                                         <label className="block text-sm font-medium mb-2" style={{color: '#86868b'}}>
+                                         <label className="block text-xs lg:text-sm font-medium mb-1.5 lg:mb-2" style={{color: '#86868b'}}>
                        Soyad *
                      </label>
                                          <input
@@ -278,7 +290,7 @@ export default function IletisimPage() {
                        onChange={handleChange}
                        onFocus={() => setFocusedField('lastName')}
                        onBlur={() => setFocusedField('')}
-                       className="w-full px-4 py-3 rounded-xl font-medium transition-all duration-200 focus:outline-none"
+                       className="w-full px-3 lg:px-4 py-2.5 lg:py-3 rounded-lg lg:rounded-xl font-medium transition-all duration-200 focus:outline-none text-base"
                        style={{
                          backgroundColor: 'rgba(255,255,255,0.05)',
                          border: `1px solid ${
@@ -290,8 +302,8 @@ export default function IletisimPage() {
                        placeholder="Soyadınız"
                      />
                     {errors.lastName && (
-                      <p className="mt-1 text-sm text-red-400 flex items-center">
-                        <AlertCircle className="w-4 h-4 mr-1" />
+                      <p className="mt-1 text-xs lg:text-sm text-red-400 flex items-center">
+                        <AlertCircle className="w-3 h-3 lg:w-4 lg:h-4 mr-1" />
                         {errors.lastName}
                       </p>
                     )}
@@ -299,10 +311,10 @@ export default function IletisimPage() {
                 </div>
 
                 {/* E-posta ve Telefon */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
                   <div>
-                                         <label className="block text-sm font-medium mb-2" style={{color: '#86868b'}}>
-                       <Mail className="w-4 h-4 inline mr-2" style={{color: '#86868b'}} />
+                                         <label className="block text-xs lg:text-sm font-medium mb-1.5 lg:mb-2" style={{color: '#86868b'}}>
+                       <Mail className="w-3 h-3 lg:w-4 lg:h-4 inline mr-1 lg:mr-2" style={{color: '#86868b'}} />
                        E-posta *
                      </label>
                     <input
@@ -312,7 +324,7 @@ export default function IletisimPage() {
                       onChange={handleChange}
                       onFocus={() => setFocusedField('email')}
                       onBlur={() => setFocusedField('')}
-                      className="w-full px-4 py-3 rounded-xl font-medium transition-all duration-200 focus:outline-none"
+                      className="w-full px-3 lg:px-4 py-2.5 lg:py-3 rounded-lg lg:rounded-xl font-medium transition-all duration-200 focus:outline-none text-base"
                       style={{
                         backgroundColor: 'rgba(255,255,255,0.05)',
                         border: `1px solid ${
@@ -324,16 +336,16 @@ export default function IletisimPage() {
                       placeholder="email@example.com"
                     />
                     {errors.email && (
-                      <p className="mt-1 text-sm text-red-400 flex items-center">
-                        <AlertCircle className="w-4 h-4 mr-1" />
+                      <p className="mt-1 text-xs lg:text-sm text-red-400 flex items-center">
+                        <AlertCircle className="w-3 h-3 lg:w-4 lg:h-4 mr-1" />
                         {errors.email}
                       </p>
                     )}
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium mb-2" style={{color: '#86868b'}}>
-                      <Phone className="w-4 h-4 inline mr-2" style={{color: '#86868b'}} />
+                    <label className="block text-xs lg:text-sm font-medium mb-1.5 lg:mb-2" style={{color: '#86868b'}}>
+                      <Phone className="w-3 h-3 lg:w-4 lg:h-4 inline mr-1 lg:mr-2" style={{color: '#86868b'}} />
                       Telefon (opsiyonel)
                     </label>
                     <input
@@ -343,7 +355,7 @@ export default function IletisimPage() {
                       onChange={handleChange}
                       onFocus={() => setFocusedField('phone')}
                       onBlur={() => setFocusedField('')}
-                      className="w-full px-4 py-3 rounded-xl font-medium transition-all duration-200 focus:outline-none"
+                      className="w-full px-3 lg:px-4 py-2.5 lg:py-3 rounded-lg lg:rounded-xl font-medium transition-all duration-200 focus:outline-none text-base"
                       style={{
                         backgroundColor: 'rgba(255,255,255,0.05)',
                         border: `1px solid ${
@@ -355,8 +367,8 @@ export default function IletisimPage() {
                       placeholder="+90 (555) 123-4567"
                     />
                     {errors.phone && (
-                      <p className="mt-1 text-sm text-red-400 flex items-center">
-                        <AlertCircle className="w-4 h-4 mr-1" />
+                      <p className="mt-1 text-xs lg:text-sm text-red-400 flex items-center">
+                        <AlertCircle className="w-3 h-3 lg:w-4 lg:h-4 mr-1" />
                         {errors.phone}
                       </p>
                     )}
@@ -365,7 +377,7 @@ export default function IletisimPage() {
 
                 {/* Konu */}
                 <div>
-                  <label className="block text-sm font-medium mb-2" style={{color: '#86868b'}}>
+                  <label className="block text-xs lg:text-sm font-medium mb-1.5 lg:mb-2" style={{color: '#86868b'}}>
                     Konu *
                   </label>
                   <input
@@ -375,7 +387,7 @@ export default function IletisimPage() {
                     onChange={handleChange}
                     onFocus={() => setFocusedField('subject')}
                     onBlur={() => setFocusedField('')}
-                    className="w-full px-4 py-3 rounded-xl font-medium transition-all duration-200 focus:outline-none"
+                    className="w-full px-3 lg:px-4 py-2.5 lg:py-3 rounded-lg lg:rounded-xl font-medium transition-all duration-200 focus:outline-none text-base"
                     style={{
                       backgroundColor: 'rgba(255,255,255,0.05)',
                       border: `1px solid ${
@@ -387,24 +399,24 @@ export default function IletisimPage() {
                     placeholder="Mesajınızın konusu"
                   />
                   {errors.subject && (
-                    <p className="mt-1 text-sm text-red-400 flex items-center">
-                      <AlertCircle className="w-4 h-4 mr-1" />
+                    <p className="mt-1 text-xs lg:text-sm text-red-400 flex items-center">
+                      <AlertCircle className="w-3 h-3 lg:w-4 lg:h-4 mr-1" />
                       {errors.subject}
                     </p>
                   )}
                 </div>
 
                 {/* Kategori ve Öncelik */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
                   <div>
-                    <label className="block text-sm font-medium mb-2" style={{color: '#86868b'}}>
+                    <label className="block text-xs lg:text-sm font-medium mb-1.5 lg:mb-2" style={{color: '#86868b'}}>
                       Kategori
                     </label>
                                          <select
                        name="category"
                        value={formData.category}
                        onChange={handleChange}
-                       className="w-full px-4 py-3 rounded-xl font-medium transition-all duration-200 focus:outline-none appearance-none cursor-pointer"
+                       className="w-full px-3 lg:px-4 py-2.5 lg:py-3 rounded-lg lg:rounded-xl font-medium transition-all duration-200 focus:outline-none appearance-none cursor-pointer text-base"
                        style={{
                          backgroundColor: 'rgba(255,255,255,0.05)',
                          border: `1px solid ${
@@ -414,9 +426,9 @@ export default function IletisimPage() {
                          fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif',
                          backgroundImage: `url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f5f5f7' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e")`,
                          backgroundRepeat: 'no-repeat',
-                         backgroundPosition: 'right 12px center',
-                         backgroundSize: '20px',
-                         paddingRight: '48px'
+                         backgroundPosition: 'right 8px center',
+                         backgroundSize: '16px',
+                         paddingRight: '32px'
                        }}
                      >
                        <option value="">Konuyu seç (zorunlu değil ama yapsan iyi)</option>
@@ -429,22 +441,22 @@ export default function IletisimPage() {
                        <option value="existential">Dert dinlemesi / Hayat sorgulaması</option>
                      </select>
                     {errors.category && (
-                      <p className="mt-1 text-sm text-red-400 flex items-center">
-                        <AlertCircle className="w-4 h-4 mr-1" />
+                      <p className="mt-1 text-xs lg:text-sm text-red-400 flex items-center">
+                        <AlertCircle className="w-3 h-3 lg:w-4 lg:h-4 mr-1" />
                         {errors.category}
                       </p>
                     )}
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium mb-2" style={{color: '#86868b'}}>
+                    <label className="block text-xs lg:text-sm font-medium mb-1.5 lg:mb-2" style={{color: '#86868b'}}>
                       Öncelik
                     </label>
                                          <select
                        name="priority"
                        value={formData.priority}
                        onChange={handleChange}
-                       className="w-full px-4 py-3 rounded-xl font-medium transition-all duration-200 focus:outline-none appearance-none cursor-pointer"
+                       className="w-full px-3 lg:px-4 py-2.5 lg:py-3 rounded-lg lg:rounded-xl font-medium transition-all duration-200 focus:outline-none appearance-none cursor-pointer text-base"
                        style={{
                          backgroundColor: 'rgba(255,255,255,0.05)',
                          border: '1px solid rgba(255,255,255,0.1)',
@@ -452,9 +464,9 @@ export default function IletisimPage() {
                          fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif',
                          backgroundImage: `url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f5f5f7' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e")`,
                          backgroundRepeat: 'no-repeat',
-                         backgroundPosition: 'right 12px center',
-                         backgroundSize: '20px',
-                         paddingRight: '48px'
+                         backgroundPosition: 'right 8px center',
+                         backgroundSize: '16px',
+                         paddingRight: '32px'
                        }}
                      >
                        <option value="low">Acele yok, kafanda bulunsun</option>
@@ -467,10 +479,10 @@ export default function IletisimPage() {
 
                 {/* Mesaj */}
                 <div>
-                  <label className="block text-sm font-medium mb-2" style={{color: '#86868b'}}>
-                    <MessageSquare className="w-4 h-4 inline mr-2" style={{color: '#86868b'}} />
+                  <label className="block text-xs lg:text-sm font-medium mb-1.5 lg:mb-2" style={{color: '#86868b'}}>
+                    <MessageSquare className="w-3 h-3 lg:w-4 lg:h-4 inline mr-1 lg:mr-2" style={{color: '#86868b'}} />
                     Mesaj * 
-                    <span className="text-xs ml-2" style={{color: '#515154'}}>
+                    <span className="text-xs ml-1 lg:ml-2" style={{color: '#515154'}}>
                       ({formData.message.length}/1000 karakter)
                     </span>
                   </label>
@@ -480,9 +492,9 @@ export default function IletisimPage() {
                     onChange={handleChange}
                     onFocus={() => setFocusedField('message')}
                     onBlur={() => setFocusedField('')}
-                    rows={6}
+                    rows={4}
                     maxLength={1000}
-                    className="w-full px-4 py-3 rounded-xl font-medium transition-all duration-200 resize-none focus:outline-none"
+                    className="w-full px-3 lg:px-4 py-2.5 lg:py-3 rounded-lg lg:rounded-xl font-medium transition-all duration-200 resize-none focus:outline-none text-base"
                     style={{
                       backgroundColor: 'rgba(255,255,255,0.05)',
                       border: `1px solid ${
@@ -494,8 +506,8 @@ export default function IletisimPage() {
                     placeholder="Mesajınızı detaylı bir şekilde yazın..."
                   />
                   {errors.message && (
-                    <p className="mt-1 text-sm text-red-400 flex items-center">
-                      <AlertCircle className="w-4 h-4 mr-1" />
+                    <p className="mt-1 text-xs lg:text-sm text-red-400 flex items-center">
+                      <AlertCircle className="w-3 h-3 lg:w-4 lg:h-4 mr-1" />
                       {errors.message}
                     </p>
                   )}
@@ -505,11 +517,11 @@ export default function IletisimPage() {
                 </div>
 
                 {/* Submit Button */}
-                <div className="pt-6">
+                <div className="pt-4 lg:pt-6">
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full font-semibold py-4 px-6 rounded-xl transition-all duration-200 flex items-center justify-center space-x-2"
+                    className="w-full font-semibold py-3 lg:py-4 px-4 lg:px-6 rounded-lg lg:rounded-xl transition-all duration-200 flex items-center justify-center space-x-2 text-sm lg:text-base"
                     style={{
                       backgroundColor: isSubmitting ? 'rgba(255,255,255,0.1)' : '#ffffff',
                       color: isSubmitting ? '#86868b' : '#000000',
@@ -518,12 +530,12 @@ export default function IletisimPage() {
                   >
                     {isSubmitting ? (
                       <>
-                        <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                        <div className="animate-spin rounded-full h-4 w-4 lg:h-5 lg:w-5 border-b-2 border-white"></div>
                         <span>Gönderiliyor...</span>
                       </>
                     ) : (
                       <>
-                        <Send className="w-5 h-5" />
+                        <Send className="w-4 h-4 lg:w-5 lg:h-5" />
                         <span>Mesajı Gönder</span>
                       </>
                     )}

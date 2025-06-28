@@ -29,8 +29,8 @@ export function NotFoundPage() {
                 </h3>
                 <p className="mb-6 text-gray-600 sm:mb-5 text-lg leading-relaxed max-w-2xl mx-auto"
                    style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif' }}>
-                  Umarım sen yanlış linke girmişsindir yoksa bizim site patlamış hoca. 
-                  Bi boka yaramayan ana sayfaya git, orada her şey normal (inşallah).
+                  Umarım sen yanlış linke girmişsindir yoksa bizim site patlamış. 
+                  Dert etme ve endişelenme bir iki saatte biz hallederiz.
                 </p>
 
                 <Button
@@ -39,14 +39,14 @@ export function NotFoundPage() {
                   className="my-5 bg-black text-white hover:bg-gray-800 text-lg px-8 py-4 rounded-xl font-medium transition-all duration-200"
                   style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif' }}
                 >
-                  Ana Sayfaya Dön
+                  Ana Sayfaya Dönmeyi dene
                 </Button>
 
                 {/* Ders Yönlendirmeleri */}
                 <div className="mt-12">
                   <p className="text-gray-600 mb-6"
                      style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif' }}>
-                    Ya da direkt istediğin derse git:
+                    Aşkta kaybettim kumarda kazanırım diyorsan şansını dene:
                   </p>
                   <div className="flex flex-wrap gap-3 justify-center">
                     <Button

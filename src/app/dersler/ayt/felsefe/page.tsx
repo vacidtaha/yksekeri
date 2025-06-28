@@ -6,6 +6,7 @@ import { Footer } from "@/components/ui/footer";
 import { ChevronDown, ChevronRight, ChevronLeft, BookOpen, Play, CheckCircle, Loader2 } from "lucide-react";
 import { YouTubeVideo, youtubeService } from "@/lib/youtube-api";
 import { YouTubePlayer, VideoCard } from "@/components/ui/youtube-player";
+import Image from "next/image";
 
 interface SubTopic {
   id: string;
@@ -127,6 +128,9 @@ export default function AytFelsefePage() {
     setSelectedTopic(topicId);
     setCurrentPage(1); // Yeni konu seçildiğinde sayfa 1'e dön
     
+    // Sayfanın en üstüne kaydır
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    
     // Seçilen konuya göre YouTube video arama
     const currentSubTopic = getCurrentSubTopicById(topicId);
     if (currentSubTopic) {
@@ -233,27 +237,39 @@ export default function AytFelsefePage() {
       `}</style>
       <Header alwaysShow={true} />
       
-      <div className="pt-32">
+      {/* Mobile Logo */}
+      <div className="lg:hidden absolute top-4 left-4 z-10">
+        <Image
+          src="/yks.png"
+          alt="YKS Şekeri Logo"
+          width={60}
+          height={42}
+          className="rounded-lg"
+          style={{ objectFit: 'contain' }}
+        />
+      </div>
+      
+      <div className="px-3 lg:px-4 py-6 lg:py-12 pt-20 lg:pt-32 pb-24 lg:pb-6">
         {/* Ana Header */}
-        <div className="text-center mb-12 px-4">
+        <div className="text-center mb-8 lg:mb-12">
           <div className="max-w-4xl mx-auto">
-            <h1 className="text-4xl md:text-5xl font-light tracking-tight mb-6 text-white"
+            <h1 className="text-2xl lg:text-4xl xl:text-5xl font-light tracking-tight mb-4 lg:mb-6 text-white"
                 style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif' }}>
               AYT Felsefe
             </h1>
             
             {/* Overall Progress Bar */}
-            <div className="max-w-md mx-auto mb-6">
-              <div className="flex justify-between items-center mb-3">
-                <span className="text-sm font-medium text-gray-400">Genel İlerleme</span>
-                <span className="text-sm font-semibold" style={{color: '#007AFF'}}>{getTotalProgress()}%</span>
+            <div className="max-w-sm lg:max-w-md mx-auto mb-4 lg:mb-6">
+              <div className="flex justify-between items-center mb-2 lg:mb-3">
+                <span className="text-xs lg:text-sm font-medium text-gray-400">Genel İlerleme</span>
+                <span className="text-xs lg:text-sm font-semibold" style={{color: '#007AFF'}}>{getTotalProgress()}%</span>
               </div>
               <div 
-                className="w-full rounded-full h-2"
+                className="w-full rounded-full h-1.5 lg:h-2"
                 style={{backgroundColor: 'rgba(255,255,255,0.1)'}}
               >
                 <div 
-                  className="h-2 rounded-full transition-all duration-700 ease-out"
+                  className="h-1.5 lg:h-2 rounded-full transition-all duration-700 ease-out"
                   style={{ 
                     width: `${getTotalProgress()}%`,
                     background: 'linear-gradient(90deg, #007AFF 0%, #34C759 100%)'
@@ -262,9 +278,10 @@ export default function AytFelsefePage() {
               </div>
             </div>
             
-            <p className="text-lg text-gray-400 max-w-3xl mx-auto"
+            <p className="text-sm lg:text-lg text-gray-400 max-w-3xl mx-auto px-2"
                style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif' }}>
-              Sağ panelden konu seçin, eğitici videolar izleyin, PDF materyallerini indirin ve pratik sorularla bilginizi pekiştirin. 
+              <span className="hidden lg:inline">Sağ panelden konu seçin, eğitici videolar izleyin, PDF materyallerini indirin ve pratik sorularla bilginizi pekiştirin.</span>
+              <span className="lg:hidden">Aşağıdan konu seçin, videolar izleyin ve bilginizi test edin.</span>
               <span style={{
                 background: 'linear-gradient(135deg, #32D74B 0%, #30D158 25%, #34C759 50%, #30D158 75%, #32D74B 100%)',
                 WebkitBackgroundClip: 'text',
@@ -274,15 +291,15 @@ export default function AytFelsefePage() {
                 backgroundSize: '200% 200%',
                 animation: 'gradient 3s ease infinite'
               }}>
-                Tamamladığınız konuları tıklayarak işaretleyin.
+                {' '}Tamamladığınız konuları işaretleyin.
               </span>
             </p>
             
             {/* İlerleme Uyarısı */}
             {showProgressWarning && (
-              <div className="max-w-2xl mx-auto mt-6">
+              <div className="max-w-sm lg:max-w-2xl mx-auto mt-4 lg:mt-6">
                 <div 
-                  className="rounded-xl p-4 border relative"
+                  className="rounded-xl p-1.5 lg:p-4 border relative"
                   style={{
                     backgroundColor: 'rgba(255, 149, 0, 0.1)',
                     borderColor: 'rgba(255, 149, 0, 0.3)',
@@ -291,16 +308,16 @@ export default function AytFelsefePage() {
                 >
                   <button
                     onClick={() => setShowProgressWarning(false)}
-                    className="absolute top-3 right-3 text-orange-400 hover:text-orange-300 transition-colors"
+                    className="absolute top-2 right-2 lg:top-3 lg:right-3 text-orange-400 hover:text-orange-300 transition-colors text-sm lg:text-base"
                   >
                     ✕
                   </button>
-                  <p className="text-sm text-center leading-relaxed pr-6"
+                  <p className="text-xs lg:text-sm text-center leading-relaxed pr-6"
                      style={{ 
                        color: '#FF9500',
                        fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif' 
                      }}>
-                    İlerleme durumunuz tarayıcıda önbelleği temizlemediğiniz sürece otomatik olarak kaydedilir. İstediğiniz zaman kaldığınız yerden devam edebilirsiniz.
+                                         İlerleme durumunuz tarayıcıda önbelleği temizlemediğiniz sürece otomatik olarak kaydedilir. İstediğiniz zaman kaldığınız yerden devam edebilirsiniz.
                   </p>
                 </div>
               </div>
@@ -308,12 +325,12 @@ export default function AytFelsefePage() {
           </div>
         </div>
 
-        {/* Ana İçerik - 3 Sütun */}
+        {/* Ana İçerik - Responsive Layout */}
         <div className="w-full">
-          <div className="flex min-h-[600px]">
+          <div className="lg:flex lg:min-h-[600px]">
             
-            {/* Sol Sütun - PDF ve Sorular (0-30%) */}
-            <div className="w-[30%] flex justify-center">
+            {/* Sol Sütun - PDF ve Sorular (Desktop Only) */}
+            <div className="hidden lg:flex lg:w-[30%] justify-center">
               <div className="sticky top-32 w-full max-w-xs">
                 {selectedTopic ? (
                   <div className="space-y-4">
@@ -352,7 +369,7 @@ export default function AytFelsefePage() {
                           e.currentTarget.style.backgroundColor = 'white';
                         }}
                       >
-                        PDF&apos;i Önizle
+                        PDF'i Önizle
                       </button>
                     </div>
 
@@ -373,7 +390,7 @@ export default function AytFelsefePage() {
                       </div>
                       
                       <p className="text-xs text-gray-400 mb-4 leading-relaxed">
-                        Geçmiş AYT sınavlarından yayınlanmış örnek sorulardan ve yapay zeka&apos;nın ürettiği sorulardan 
+                        Geçmiş AYT sınavlarından yayınlanmış örnek sorulardan ve yapay zeka'nın ürettiği sorulardan 
                         oluşan {getCurrentSubTopic()?.title.toLowerCase()} soruları. Adım adım çözümlerle interaktif deneyim.
                       </p>
                       
@@ -413,18 +430,18 @@ export default function AytFelsefePage() {
               </div>
             </div>
 
-            {/* Orta Sütun - YouTube Videoları (30-70%) */}
-            <div className="w-[40%] flex justify-center">
-              <div className="sticky top-40 w-full max-w-4xl">
+            {/* Orta Sütun - YouTube Videoları (Responsive) */}
+            <div className="w-full lg:w-[40%] flex justify-center px-3 lg:px-0 mb-8 lg:mb-0">
+              <div className="lg:sticky lg:top-40 w-full max-w-4xl">
                 {selectedTopic ? (
                   <div>
-                    <div className="mb-8">
-                      <div className="mb-4">
-                        <h2 className="text-2xl font-semibold text-white mb-1"
+                    <div className="mb-6 lg:mb-8">
+                      <div className="mb-3 lg:mb-4">
+                        <h2 className="text-lg lg:text-2xl font-semibold text-white mb-1"
                             style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif' }}>
                           {getCurrentSubTopic()?.title}
                         </h2>
-                        <p className="text-sm text-gray-400">
+                        <p className="text-xs lg:text-sm text-gray-400">
                           Seçilmiş eğitici videolar • {getCurrentTopic()?.title}
                           {videos.length > 0 && ` • Sayfa ${currentPage}/${totalPages}`}
                         </p>
@@ -432,20 +449,20 @@ export default function AytFelsefePage() {
                     </div>
                     
                     {/* YouTube Video Grid */}
-                    <div className="space-y-4">
+                    <div className="space-y-3 lg:space-y-4">
                       {videosLoading ? (
                         // Loading skeleton
                         Array.from({ length: 3 }).map((_, i) => (
-                          <div key={i} className="rounded-2xl p-5 border border-white/10" 
+                          <div key={i} className="rounded-xl lg:rounded-2xl p-3 lg:p-5 border border-white/10" 
                                style={{ backgroundColor: 'rgba(255,255,255,0.05)', backdropFilter: 'blur(20px)' }}>
-                            <div className="flex items-start gap-5">
-                              <div className="w-40 h-24 rounded-xl bg-gray-700 animate-pulse flex items-center justify-center">
-                                <Loader2 className="w-8 h-8 text-gray-500 animate-spin" />
+                            <div className="flex items-start gap-3 lg:gap-5">
+                              <div className="w-24 h-16 lg:w-40 lg:h-24 rounded-xl bg-gray-700 animate-pulse flex items-center justify-center">
+                                <Loader2 className="w-6 h-6 lg:w-8 lg:h-8 text-gray-500 animate-spin" />
                               </div>
-                              <div className="flex-1 space-y-3">
-                                <div className="h-4 bg-gray-700 rounded animate-pulse" />
-                                <div className="h-3 bg-gray-700 rounded w-2/3 animate-pulse" />
-                                <div className="h-3 bg-gray-700 rounded w-1/2 animate-pulse" />
+                              <div className="flex-1 space-y-2 lg:space-y-3">
+                                <div className="h-3 lg:h-4 bg-gray-700 rounded animate-pulse" />
+                                <div className="h-2 lg:h-3 bg-gray-700 rounded w-2/3 animate-pulse" />
+                                <div className="h-2 lg:h-3 bg-gray-700 rounded w-1/2 animate-pulse" />
                               </div>
                             </div>
                           </div>
@@ -463,12 +480,12 @@ export default function AytFelsefePage() {
                         ))
                       ) : (
                         // No results state
-                        <div className="text-center py-8">
-                          <div className="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center"
+                        <div className="text-center py-6 lg:py-8">
+                          <div className="w-12 h-12 lg:w-16 lg:h-16 rounded-full mx-auto mb-3 lg:mb-4 flex items-center justify-center"
                                style={{backgroundColor: 'rgba(255,255,255,0.05)'}}>
-                            <Play className="w-8 h-8 text-gray-500" />
+                            <Play className="w-6 h-6 lg:w-8 lg:h-8 text-gray-500" />
                           </div>
-                          <h3 className="text-lg font-medium text-gray-400 mb-2">
+                          <h3 className="text-base lg:text-lg font-medium text-gray-400 mb-2">
                             Videolar bulunamadı
                           </h3>
                           <p className="text-sm text-gray-500">
@@ -479,11 +496,11 @@ export default function AytFelsefePage() {
                       
                       {/* Pagination */}
                       {videos.length > videosPerPage && (
-                        <div className="flex justify-center items-center gap-2 mt-8">
+                        <div className="flex justify-center items-center gap-1.5 lg:gap-2 mt-6 lg:mt-8">
                           <button
                             onClick={() => goToPage(currentPage - 1)}
                             disabled={currentPage === 1}
-                            className="p-2 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                            className="w-8 h-8 lg:w-10 lg:h-10 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
                             style={{
                               backgroundColor: 'rgba(255,255,255,0.1)',
                               color: 'white'
@@ -496,9 +513,9 @@ export default function AytFelsefePage() {
                             <button
                               key={page}
                               onClick={() => goToPage(page)}
-                              className={`px-3 py-1 rounded-lg text-sm transition-colors ${
+                              className={`w-8 h-8 lg:w-10 lg:h-10 rounded-lg text-sm transition-colors ${
                                 currentPage === page 
-                                  ? 'bg-blue-600 text-white' 
+                                  ? 'bg-red-500 text-white' 
                                   : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
                               }`}
                             >
@@ -509,7 +526,7 @@ export default function AytFelsefePage() {
                           <button
                             onClick={() => goToPage(currentPage + 1)}
                             disabled={currentPage === Math.ceil(videos.length / videosPerPage)}
-                            className="p-2 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                            className="w-8 h-8 lg:w-10 lg:h-10 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
                             style={{
                               backgroundColor: 'rgba(255,255,255,0.1)',
                               color: 'white'
@@ -522,38 +539,39 @@ export default function AytFelsefePage() {
                     </div>
                   </div>
                 ) : (
-                  <div className="text-center py-32">
-                    <div className="w-20 h-20 rounded-full mx-auto mb-6 flex items-center justify-center"
+                  <div className="text-center py-16 lg:py-32">
+                    <div className="w-16 h-16 lg:w-20 lg:h-20 rounded-full mx-auto mb-4 lg:mb-6 flex items-center justify-center"
                          style={{backgroundColor: 'rgba(255,255,255,0.05)'}}>
-                      <Play className="w-10 h-10 text-gray-600" />
+                      <Play className="w-8 h-8 lg:w-10 lg:h-10 text-gray-600" />
                     </div>
-                    <h3 className="text-2xl font-medium text-gray-400 mb-4"
+                    <h3 className="text-xl lg:text-2xl font-medium text-gray-400 mb-3 lg:mb-4"
                         style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif' }}>
                       YouTube Eğitici Videolar
                     </h3>
-                    <p className="text-gray-500 max-w-lg mx-auto leading-relaxed text-lg"
+                    <p className="text-gray-500 max-w-lg mx-auto leading-relaxed text-sm lg:text-lg px-4"
                        style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif' }}>
-                      Sağ panelden bir konu seçtiğinizde, o konuyu anlatan popüler YouTube eğitmenlerinin videoları burada görünecek. İstediğinizi seçip izleyebilirsiniz.
+                                             <span className="lg:hidden">Aşağıdan bir konu seçtiğinizde videolar burada görünecek.</span>
+                       <span className="hidden lg:inline">Sağ panelden bir konu seçtiğinizde, o konuyu anlatan popüler YouTube eğitmenlerinin videoları burada görünecek. İstediğinizi seçip izleyebilirsiniz.</span>
                     </p>
                   </div>
                 )}
               </div>
             </div>
 
-            {/* Sağ Sütun - Konu Başlıkları (70-100%) */}
-            <div className="w-[30%] flex justify-center">
-              <div className="sticky top-40 w-full max-w-xs">
-                <div className="flex items-center justify-center mb-6">
-                  <div className="text-xs text-gray-500 mr-3">
+            {/* Sağ Sütun/Alt Kısım - Konu Başlıkları (Responsive) */}
+            <div className="w-full lg:w-[30%] flex justify-center px-3 lg:px-0">
+              <div className="lg:sticky lg:top-40 w-full max-w-xs lg:max-w-xs">
+                <div className="flex items-center justify-center mb-4 lg:mb-6">
+                  <div className="text-xs text-gray-500 mr-2 lg:mr-3">
                     {completedTopics.length}/{topics.reduce((acc, topic) => acc + topic.subTopics.length, 0)}
                   </div>
-                  <h3 className="text-lg font-semibold text-white"
+                  <h3 className="text-base lg:text-lg font-semibold text-white"
                       style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif' }}>
                     Konu Başlıkları
                   </h3>
                 </div>
                 
-                <div className="space-y-3">
+                <div className="space-y-2 lg:space-y-3">
                   {topics.map((topic) => {
                     const topicProgress = getTopicProgress(topic);
                     const isTopicCompleted = topicProgress === 100;
@@ -563,7 +581,7 @@ export default function AytFelsefePage() {
                         {/* Ana Başlık */}
                         <button
                           onClick={() => toggleSection(topic.id)}
-                          className="w-full text-left p-4 rounded-xl transition-all duration-200 border hover:border-white/20"
+                          className="w-full text-left p-3 lg:p-4 rounded-lg lg:rounded-xl transition-all duration-200 border hover:border-white/20 active:scale-[0.98]"
                           style={{
                             backgroundColor: 'rgba(255,255,255,0.05)',
                             backdropFilter: 'blur(20px)',
@@ -571,21 +589,23 @@ export default function AytFelsefePage() {
                           }}
                           onMouseEnter={(e) => {
                             e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.08)';
-                            e.currentTarget.style.transform = 'translateY(-1px)';
+                            if (window.innerWidth >= 1024) {
+                              e.currentTarget.style.transform = 'translateY(-1px)';
+                            }
                           }}
                           onMouseLeave={(e) => {
                             e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.05)';
                             e.currentTarget.style.transform = 'translateY(0px)';
                           }}
                         >
-                          <div className="flex items-center justify-between mb-3">
-                            <div className="flex items-center gap-3">
-                              <span className="text-sm font-semibold text-white"
+                          <div className="flex items-center justify-between mb-2 lg:mb-3">
+                            <div className="flex items-center gap-2 lg:gap-3">
+                              <span className="text-sm lg:text-sm font-semibold text-white"
                                     style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif' }}>
                                 {topic.title}
                               </span>
                               {isTopicCompleted && (
-                                <CheckCircle className="w-4 h-4" style={{color: '#34C759'}} />
+                                <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4" style={{color: '#34C759'}} />
                               )}
                             </div>
                             {openSections.includes(topic.id) ? (
@@ -595,29 +615,31 @@ export default function AytFelsefePage() {
                             )}
                           </div>
                           
-                          {/* İlerleme Çubuğu */}
-                          <div className="mb-2">
-                            <div 
-                              className="w-full rounded-full h-1.5"
-                              style={{backgroundColor: 'rgba(255,255,255,0.1)'}}
-                            >
+                          {/* Progress Bar */}
+                          <div className="flex items-center gap-2 lg:gap-3">
+                            <div className="flex-1">
                               <div 
-                                className="h-1.5 rounded-full transition-all duration-300"
-                                style={{ 
-                                  width: `${topicProgress}%`,
-                                  backgroundColor: topic.color
-                                }}
-                              ></div>
+                                className="w-full rounded-full h-1 lg:h-1.5"
+                                style={{backgroundColor: 'rgba(255,255,255,0.1)'}}
+                              >
+                                <div 
+                                  className="h-1 lg:h-1.5 rounded-full transition-all duration-500 ease-out"
+                                  style={{ 
+                                    width: `${topicProgress}%`,
+                                    backgroundColor: topic.color
+                                  }}
+                                ></div>
+                              </div>
                             </div>
-                            <p className="text-xs text-gray-500 mt-1">
-                              {topic.subTopics.filter(sub => completedTopics.includes(sub.id)).length}/{topic.subTopics.length} tamamlandı
-                            </p>
+                            <div className="text-xs font-medium text-gray-400">
+                              {topicProgress}%
+                            </div>
                           </div>
                         </button>
 
-                        {/* Alt Konular */}
+                        {/* Alt Başlıklar */}
                         {openSections.includes(topic.id) && (
-                          <div className="mt-2 space-y-1">
+                          <div className="mt-1.5 lg:mt-2 pl-1 lg:pl-2 space-y-1 lg:space-y-1.5">
                             {topic.subTopics.map((subTopic) => {
                               const isCompleted = completedTopics.includes(subTopic.id);
                               const isSelected = selectedTopic === subTopic.id;
@@ -626,46 +648,59 @@ export default function AytFelsefePage() {
                                 <button
                                   key={subTopic.id}
                                   onClick={() => selectTopic(subTopic.id)}
-                                  className={`w-full text-left p-3 rounded-lg transition-all duration-200 text-sm group hover:bg-white/5`}
+                                  className={`w-full text-left p-2.5 lg:p-3 rounded-lg text-xs transition-all duration-200 active:scale-[0.98] ${
+                                    isSelected
+                                      ? 'text-white'
+                                      : 'text-gray-300 hover:text-white'
+                                  }`}
                                   style={{
                                     backgroundColor: isSelected 
-                                      ? topic.color + '15' 
-                                      : 'rgba(255,255,255,0.03)',
-                                    border: isSelected ? `2px solid ${topic.color}` : '2px solid transparent',
-                                    fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif'
+                                      ? 'rgba(0, 122, 255, 0.15)' 
+                                      : isCompleted 
+                                        ? 'rgba(52, 199, 89, 0.1)' 
+                                        : 'rgba(255,255,255,0.03)',
+                                    border: isSelected 
+                                      ? '1px solid rgba(0, 122, 255, 0.3)' 
+                                      : isCompleted 
+                                        ? '1px solid rgba(52, 199, 89, 0.2)' 
+                                        : '1px solid rgba(255,255,255,0.06)',
+                                    fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif',
+                                    minHeight: '44px' // Touch-friendly minimum
+                                  }}
+                                  onMouseEnter={(e) => {
+                                    if (!isSelected && window.innerWidth >= 1024) {
+                                      e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.08)';
+                                    }
+                                  }}
+                                  onMouseLeave={(e) => {
+                                    if (!isSelected) {
+                                      e.currentTarget.style.backgroundColor = isCompleted 
+                                        ? 'rgba(52, 199, 89, 0.1)' 
+                                        : 'rgba(255,255,255,0.03)';
+                                    }
                                   }}
                                 >
                                   <div className="flex items-center justify-between">
-                                    <span className={`${isSelected ? 'font-medium' : ''}`}
-                                          style={{ 
-                                            color: isSelected ? topic.color : 'white'
-                                          }}>
-                                      {subTopic.title}
-                                    </span>
+                                    <div className="flex items-center gap-1.5 lg:gap-2 flex-1 min-w-0">
+                                      <span className="leading-relaxed truncate">{subTopic.title}</span>
+                                    </div>
                                     
-                                    <div className="flex items-center gap-2">
-                                      {subTopic.hasVideo && (
-                                        <div className="w-5 h-5 rounded-full flex items-center justify-center"
-                                             style={{backgroundColor: '#FF000020'}}>
-                                          <Play className="w-2.5 h-2.5 text-red-500" />
-                                        </div>
+                                    {/* Completion Button */}
+                                    <div
+                                      onClick={(e) => {
+                                        e.stopPropagation();
+                                        e.preventDefault();
+                                        markTopicComplete(subTopic.id);
+                                      }}
+                                      className={`w-6 h-6 lg:w-5 lg:h-5 rounded-full border-2 flex items-center justify-center transition-all duration-200 flex-shrink-0 cursor-pointer ${
+                                        isCompleted
+                                          ? 'border-green-500 bg-green-500'
+                                          : 'border-gray-500 hover:border-green-400'
+                                      }`}
+                                    >
+                                      {isCompleted && (
+                                        <CheckCircle className="w-3 h-3 lg:w-3 lg:h-3 text-white" />
                                       )}
-                                      
-                                      <div
-                                        onClick={(e) => {
-                                          e.stopPropagation();
-                                          markTopicComplete(subTopic.id);
-                                        }}
-                                        className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all duration-200 cursor-pointer ${
-                                          isCompleted 
-                                            ? 'border-green-500 bg-green-500' 
-                                            : 'border-gray-500 hover:border-green-400'
-                                        }`}
-                                      >
-                                        {isCompleted && (
-                                          <CheckCircle className="w-3 h-3 text-white" />
-                                        )}
-                                      </div>
                                     </div>
                                   </div>
                                 </button>

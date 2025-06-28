@@ -78,47 +78,47 @@ export function YouTubePlayer({ video, isOpen, onClose }: YouTubePlayerProps) {
       {/* Player Container */}
       <div 
         ref={playerRef}
-        className={`relative bg-black rounded-2xl overflow-hidden shadow-2xl transition-all duration-300 ${
+        className={`relative bg-black rounded-lg lg:rounded-2xl overflow-hidden shadow-2xl transition-all duration-300 ${
           isFullscreen 
             ? 'w-full h-full rounded-none' 
-            : 'w-[90vw] max-w-5xl h-[80vh] max-h-[600px]'
+            : 'w-[92vw] lg:w-[90vw] max-w-5xl h-[50vh] lg:h-[80vh] max-h-[350px] lg:max-h-[600px]'
         }`}
         style={{
           aspectRatio: isFullscreen ? 'unset' : '16/9'
         }}
       >
         {/* Header Bar */}
-        <div className="absolute top-0 left-0 right-0 z-20 bg-gradient-to-b from-black/70 to-transparent p-4">
+        <div className="absolute top-0 left-0 right-0 z-20 bg-gradient-to-b from-black/80 to-transparent p-1.5 lg:p-4">
           <div className="flex items-center justify-between">
             <div className="flex-1 min-w-0">
-              <h3 className="text-white font-semibold text-lg leading-tight truncate pr-4"
+              <h3 className="text-white font-semibold text-xs lg:text-lg leading-tight truncate pr-1 lg:pr-4"
                   style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif' }}>
                 {video.title}
               </h3>
-              <div className="flex items-center gap-4 mt-1 text-sm text-gray-300">
-                <span>{video.channelTitle}</span>
-                <span>•</span>
-                <span>{video.duration}</span>
-                <span>•</span>
-                <span>{video.viewCount} görüntülenme</span>
+              <div className="flex items-center gap-1.5 lg:gap-4 mt-0.5 lg:mt-1 text-xs lg:text-sm text-gray-300">
+                <span className="truncate max-w-24 lg:max-w-none">{video.channelTitle}</span>
+                <span className="hidden lg:inline">•</span>
+                <span className="text-xs">{video.duration}</span>
+                <span className="hidden lg:inline">•</span>
+                <span className="hidden lg:inline">{video.viewCount} görüntülenme</span>
               </div>
             </div>
             
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-0.5 lg:gap-2">
               <button
                 onClick={toggleFullscreen}
-                className="p-2 rounded-lg bg-white/10 hover:bg-white/20 transition-colors"
+                className="p-1 lg:p-2 rounded bg-white/10 hover:bg-white/20 transition-colors"
                 title={isFullscreen ? 'Fullscreen\'dan çık' : 'Fullscreen'}
               >
-                <Maximize2 className="w-5 h-5 text-white" />
+                <Maximize2 className="w-3.5 h-3.5 lg:w-5 lg:h-5 text-white" />
               </button>
               
               <button
                 onClick={onClose}
-                className="p-2 rounded-lg bg-white/10 hover:bg-white/20 transition-colors"
+                className="p-1 lg:p-2 rounded bg-white/10 hover:bg-white/20 transition-colors"
                 title="Kapat"
               >
-                <X className="w-5 h-5 text-white" />
+                <X className="w-3.5 h-3.5 lg:w-5 lg:h-5 text-white" />
               </button>
             </div>
           </div>
@@ -127,9 +127,9 @@ export function YouTubePlayer({ video, isOpen, onClose }: YouTubePlayerProps) {
         {/* Loading Spinner */}
         {isLoading && (
           <div className="absolute inset-0 flex items-center justify-center bg-black z-10">
-            <div className="flex flex-col items-center gap-4">
-              <div className="w-16 h-16 border-4 border-white/20 border-t-white rounded-full animate-spin" />
-              <p className="text-white text-lg font-medium">Video yükleniyor...</p>
+            <div className="flex flex-col items-center gap-1.5 lg:gap-4">
+              <div className="w-8 h-8 lg:w-16 lg:h-16 border-2 lg:border-4 border-white/20 border-t-white rounded-full animate-spin" />
+              <p className="text-white text-xs lg:text-lg font-medium">Yükleniyor...</p>
             </div>
           </div>
         )}
@@ -147,15 +147,18 @@ export function YouTubePlayer({ video, isOpen, onClose }: YouTubePlayerProps) {
         />
 
         {/* Bottom Gradient */}
-        <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-black/50 to-transparent pointer-events-none" />
+        <div className="absolute bottom-0 left-0 right-0 h-12 lg:h-20 bg-gradient-to-t from-black/50 to-transparent pointer-events-none" />
       </div>
 
       {/* Close Button (Mobile) */}
       <button
         onClick={onClose}
-        className="absolute top-4 right-4 p-3 rounded-full bg-black/50 backdrop-blur-sm md:hidden z-50"
+        className="absolute top-1 right-1 p-1.5 rounded-full bg-black/70 backdrop-blur-sm lg:hidden z-50 border border-white/20"
+        style={{
+          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.3)'
+        }}
       >
-        <X className="w-6 h-6 text-white" />
+        <X className="w-4 h-4 text-white" />
       </button>
     </div>
   );
@@ -205,9 +208,9 @@ export function VideoCard({ video, onClick, isLoading = false, currentQuery, onC
 
   return (
     <div 
-      className={`rounded-2xl border border-white/10 hover:border-white/15 transition-all duration-300 group ${
+      className={`rounded-xl lg:rounded-2xl border border-white/10 hover:border-white/15 transition-all duration-300 group ${
         isLoading ? 'opacity-50' : 'hover:bg-white/5 hover:-translate-y-1 cursor-pointer'
-      } ${showMoreVideos ? 'pb-2' : 'p-5'}`}
+      } ${showMoreVideos ? 'pb-1 lg:pb-2' : 'p-3 lg:p-5'}`}
       style={{
         backgroundColor: 'rgba(255,255,255,0.05)',
         backdropFilter: 'blur(20px)'
@@ -215,10 +218,24 @@ export function VideoCard({ video, onClick, isLoading = false, currentQuery, onC
       onClick={!isLoading ? onClick : undefined}
     >
       {/* Ana Video Kartı */}
-      <div className={showMoreVideos ? 'p-5 border-b border-white/10' : 'p-5'}>
-        <div className="flex items-start gap-5">
+      <div className={`${showMoreVideos ? 'p-3 lg:p-5 border-b border-white/10' : 'p-3 lg:p-5'} relative`}>
+        {/* Mobile Diğer Button - Top Right */}
+        <button 
+          onClick={handleShowMoreVideos}
+          disabled={isLoading}
+          className="lg:hidden absolute top-2 right-2 px-2 py-1 rounded-md transition-all duration-200 text-xs font-medium border border-gray-600 hover:border-red-400 hover:bg-red-400/10 disabled:opacity-50 z-10"
+          style={{
+            backgroundColor: 'rgba(255,255,255,0.05)',
+            color: 'white',
+            fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif'
+          }}
+        >
+          {loadingMore ? '...' : showMoreVideos ? '−' : '+'}
+        </button>
+
+        <div className="flex items-start gap-3 lg:gap-5">
           {/* Thumbnail */}
-          <div className="w-40 h-24 rounded-xl overflow-hidden flex-shrink-0 relative group-hover:scale-105 transition-transform duration-300">
+          <div className="w-24 h-16 lg:w-40 lg:h-24 rounded-lg lg:rounded-xl overflow-hidden flex-shrink-0 relative group-hover:scale-105 transition-transform duration-300">
             {!imageLoaded && (
               <div className="absolute inset-0 bg-gray-700 animate-pulse" />
             )}
@@ -236,39 +253,39 @@ export function VideoCard({ video, onClick, isLoading = false, currentQuery, onC
             
             {/* Play Icon Overlay */}
             <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-colors duration-300">
-              <div className="w-12 h-12 rounded-full bg-red-600/80 backdrop-blur-sm flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
-                <Play className="w-6 h-6 text-white ml-1" />
+              <div className="w-8 h-8 lg:w-12 lg:h-12 rounded-full bg-red-600/80 backdrop-blur-sm flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
+                <Play className="w-4 h-4 lg:w-6 lg:h-6 text-white ml-0.5 lg:ml-1" />
               </div>
             </div>
             
             {/* Duration Badge */}
-            <div className="absolute bottom-2 right-2 bg-black/80 text-white text-xs px-2 py-1 rounded font-medium">
+            <div className="absolute bottom-1 right-1 lg:bottom-2 lg:right-2 bg-black/80 text-white text-xs px-1.5 lg:px-2 py-0.5 lg:py-1 rounded font-medium">
               {video.duration}
             </div>
           </div>
           
           {/* Video Info */}
-          <div className="flex-1 min-w-0 flex flex-col justify-between h-24">
+          <div className="flex-1 min-w-0 flex flex-col justify-between h-16 lg:h-24 pr-8 lg:pr-0">
             <div>
-              <h3 className="font-semibold text-white mb-2 text-base leading-tight line-clamp-2"
+              <h3 className="font-semibold text-white mb-1 lg:mb-2 text-sm lg:text-base leading-tight line-clamp-2"
                   style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif' }}>
                 {video.title}
               </h3>
               
               {/* Channel Name - More Prominent */}
-              <div className="flex items-center gap-2 mb-3">
-                <span className="text-sm font-medium text-red-400">{video.channelTitle}</span>
-                <span className="text-gray-600">•</span>
-                <span className="text-xs text-gray-500">{video.viewCount} görüntülenme</span>
+              <div className="flex items-center gap-1.5 lg:gap-2 mb-2 lg:mb-3">
+                <span className="text-xs lg:text-sm font-medium text-red-400 truncate">{video.channelTitle}</span>
+                <span className="text-gray-600 hidden lg:inline">•</span>
+                <span className="text-xs text-gray-500 hidden lg:inline">{video.viewCount} görüntülenme</span>
               </div>
             </div>
             
             {/* Action Buttons */}
-            <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2 lg:justify-between">
               <button 
                 onClick={(e) => { e.stopPropagation(); onClick(); }}
                 disabled={isLoading}
-                className="flex items-center gap-1 px-3 py-1.5 rounded-lg transition-all duration-200 text-xs font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                className="hidden lg:flex items-center gap-1 px-2 lg:px-3 py-1 lg:py-1.5 rounded-md lg:rounded-lg transition-all duration-200 text-xs font-medium disabled:opacity-50 disabled:cursor-not-allowed"
                 style={{
                   backgroundColor: '#EF4444',
                   color: 'white',
@@ -289,17 +306,18 @@ export function VideoCard({ video, onClick, isLoading = false, currentQuery, onC
                 İzle
               </button>
               
+              {/* Desktop Diğer Button */}
               <button 
                 onClick={handleShowMoreVideos}
                 disabled={isLoading}
-                className="px-3 py-1.5 rounded-lg transition-all duration-200 text-xs font-medium border border-gray-600 hover:border-red-400 hover:bg-red-400/10 disabled:opacity-50"
+                className="hidden lg:block px-2 lg:px-3 py-1 lg:py-1.5 rounded-md lg:rounded-lg transition-all duration-200 text-xs font-medium border border-gray-600 hover:border-red-400 hover:bg-red-400/10 disabled:opacity-50"
                 style={{
                   backgroundColor: 'rgba(255,255,255,0.05)',
                   color: 'white',
                   fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif'
                 }}
                 onMouseEnter={(e) => {
-                  if (!isLoading) {
+                  if (!isLoading && window.innerWidth >= 1024) {
                     e.currentTarget.style.color = '#EF4444';
                   }
                 }}
@@ -309,7 +327,7 @@ export function VideoCard({ video, onClick, isLoading = false, currentQuery, onC
                   }
                 }}
               >
-                {loadingMore ? 'Yükleniyor...' : showMoreVideos ? 'Daha Az Göster' : 'Kanalın Bu Konudaki Diğer Videoları'}
+                {loadingMore ? 'Yükleniyor...' : showMoreVideos ? 'Daha Az' : 'Diğer Videoları'}
               </button>
             </div>
           </div>
@@ -318,17 +336,17 @@ export function VideoCard({ video, onClick, isLoading = false, currentQuery, onC
 
       {/* Expanded Channel Videos */}
       {showMoreVideos && (
-        <div className="px-5 pb-3">
+        <div className="px-3 lg:px-5 pb-2 lg:pb-3">
           {loadingMore ? (
-            <div className="flex justify-center py-4">
-              <div className="w-6 h-6 border-2 border-red-500 border-t-transparent rounded-full animate-spin"></div>
+            <div className="flex justify-center py-2 lg:py-4">
+              <div className="w-4 h-4 lg:w-6 lg:h-6 border-2 border-red-500 border-t-transparent rounded-full animate-spin"></div>
             </div>
                      ) : channelVideos.length > 0 ? (
-             <div className="space-y-2">
+             <div className="space-y-1.5 lg:space-y-2">
                {channelVideos.map((channelVideo) => (
                                  <div 
                    key={channelVideo.id} 
-                   className="flex items-center gap-3 p-2 rounded-lg hover:bg-white/5 transition-colors duration-200 cursor-pointer"
+                   className="flex items-center gap-2 lg:gap-3 p-1.5 lg:p-2 rounded-md lg:rounded-lg hover:bg-white/5 transition-colors duration-200 cursor-pointer"
                    onClick={(e) => { 
                      e.stopPropagation(); 
                      if (onChannelVideoClick) {
@@ -344,23 +362,23 @@ export function VideoCard({ video, onClick, isLoading = false, currentQuery, onC
                     alt={channelVideo.title}
                     width={64}
                     height={48}
-                    className="w-16 h-12 rounded object-cover flex-shrink-0"
+                    className="w-12 h-9 lg:w-16 lg:h-12 rounded object-cover flex-shrink-0"
                   />
                   <div className="flex-1 min-w-0">
-                    <h4 className="text-sm text-white font-medium line-clamp-1 mb-1">
+                    <h4 className="text-xs lg:text-sm text-white font-medium line-clamp-1 mb-0.5 lg:mb-1">
                       {channelVideo.title}
                     </h4>
-                    <div className="flex items-center gap-2 text-xs text-gray-500">
+                    <div className="flex items-center gap-1.5 lg:gap-2 text-xs text-gray-500">
                       <span>{channelVideo.duration}</span>
-                      <span>•</span>
-                      <span>{channelVideo.viewCount} görüntülenme</span>
+                      <span className="hidden lg:inline">•</span>
+                      <span className="hidden lg:inline">{channelVideo.viewCount} görüntülenme</span>
                     </div>
                   </div>
                 </div>
               ))}
             </div>
           ) : (
-            <p className="text-xs text-gray-500 py-3 text-center">
+            <p className="text-xs text-gray-500 py-2 lg:py-3 text-center">
               Bu kanaldan bu konu hakkında başka video bulunamadı.
             </p>
           )}
