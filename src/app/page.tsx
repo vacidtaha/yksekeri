@@ -91,6 +91,140 @@ export default function Home() {
       {/* Beta Notification Modal */}
       <BetaNotification isOpen={showBetaModal} onClose={handleCloseBetaModal} />
 
+      {/* Sevgili Fotoğrafı ve Mesaj Bölümü - Tatlı Tasarım */}
+      <div className="relative py-20 lg:py-32 px-4 overflow-hidden" style={{
+        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
+      }}>
+        {/* Kawaii Bulutlar */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-10 left-10 text-6xl opacity-20 animate-float">☁️</div>
+          <div className="absolute top-20 right-20 text-4xl opacity-30 animate-float delay-1000">☁️</div>
+          <div className="absolute bottom-20 left-20 text-5xl opacity-25 animate-float delay-500">☁️</div>
+          <div className="absolute bottom-10 right-10 text-3xl opacity-35 animate-float delay-1500">☁️</div>
+        </div>
+
+        {/* Twinkling Stars */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-16 left-1/4 text-2xl animate-pulse delay-300">⭐</div>
+          <div className="absolute top-32 right-1/3 text-xl animate-pulse delay-700">✨</div>
+          <div className="absolute bottom-40 left-1/3 text-2xl animate-pulse delay-1100">🌟</div>
+          <div className="absolute bottom-24 right-1/4 text-xl animate-pulse delay-1500">⭐</div>
+        </div>
+        
+        <div className="relative max-w-6xl mx-auto">
+          {/* Başlık */}
+          <div className="text-center mb-12 lg:mb-16">
+            <div className="inline-block relative">
+              <h2 className="text-2xl lg:text-4xl font-bold text-white mb-4 px-8 py-4 rounded-full"
+                  style={{ 
+                    background: 'rgba(255,255,255,0.15)',
+                    backdropFilter: 'blur(20px)',
+                    border: '2px solid rgba(255,255,255,0.2)',
+                    fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif'
+                  }}>
+                                 🌸 Yavru Ceylanım 🌸
+              </h2>
+              <div className="absolute -top-3 -left-3 text-3xl animate-bounce">🎀</div>
+              <div className="absolute -top-3 -right-3 text-3xl animate-bounce delay-300">🎀</div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            
+            {/* Fotoğraf Bölümü - Kawaii Style */}
+            <div className="relative flex justify-center">
+              <div className="relative group">
+                {/* Kawaii Çerçeve */}
+                <div className="relative">
+                  <div className="relative overflow-hidden rounded-[2rem] shadow-2xl border-4 border-white/30 backdrop-blur-sm transform group-hover:rotate-1 transition-all duration-500">
+                    <Image
+                      src="/rana.jpg"
+                      alt="Taha ve sevgilisi Rana'nın fotoğrafı"
+                      width={300}
+                      height={380}
+                      className="object-cover w-72 h-96 lg:w-80 lg:h-[26rem] group-hover:scale-105 transition-all duration-500"
+                      priority
+                    />
+                    {/* Sparkle Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-pink-200/20 via-transparent to-purple-200/20"></div>
+                  </div>
+                  
+                  {/* Kawaii Stickers */}
+                  <div className="absolute -top-6 -left-6 w-12 h-12 bg-pink-300 rounded-full flex items-center justify-center text-2xl border-4 border-white shadow-lg rotate-12 animate-bounce">
+                    🥰
+                  </div>
+                  <div className="absolute -top-4 -right-8 w-10 h-10 bg-purple-300 rounded-full flex items-center justify-center text-xl border-3 border-white shadow-lg -rotate-12 animate-pulse">
+                    💖
+                  </div>
+                  <div className="absolute -bottom-6 -left-8 w-14 h-14 bg-yellow-300 rounded-full flex items-center justify-center text-2xl border-4 border-white shadow-lg rotate-45 animate-bounce delay-500">
+                    😊
+                  </div>
+                  <div className="absolute -bottom-4 -right-6 w-12 h-12 bg-green-300 rounded-full flex items-center justify-center text-xl border-3 border-white shadow-lg -rotate-45 animate-pulse delay-700">
+                    🌺
+                  </div>
+                </div>
+                
+                {/* Floating Kawaii Elements */}
+                <div className="absolute top-0 left-0 -translate-x-16 -translate-y-8 text-4xl animate-float">🎈</div>
+                <div className="absolute top-20 right-0 translate-x-16 text-3xl animate-float delay-1000">🧸</div>
+                <div className="absolute bottom-0 left-0 -translate-x-12 translate-y-8 text-3xl animate-float delay-500">🌈</div>
+              </div>
+            </div>
+            
+            {/* Mesaj Bölümü - Super Kawaii */}
+            <div className="relative flex justify-center lg:justify-start">
+              <div className="max-w-lg">
+                {/* Ana Mesaj Bubble */}
+                <div className="relative">
+                  <div className="bg-white/90 backdrop-blur-xl rounded-3xl p-8 lg:p-10 shadow-2xl border-4 border-white/50 transform hover:scale-105 transition-all duration-300">
+                    <div className="space-y-6">
+                      
+                      {/* Ana Mesaj */}
+                      <div className="text-center">
+                        <p className="text-lg lg:text-xl font-medium text-gray-800 leading-relaxed mb-6" 
+                           style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif' }}>
+                          Siz ders çalışırken ben destek ekibimle çalışıyorum 📚✨
+                        </p>
+                        
+                        {/* Destek Ekibi - Ok Tasarımı */}
+                        <div className="relative">
+                                                     <div className="bg-gradient-to-r from-pink-100 to-purple-100 rounded-2xl p-6 border-3 border-pink-200 shadow-lg">
+                             {/* Rana ❤️ Taha Animasyonu */}
+                             <div className="flex justify-center items-center gap-2 text-2xl lg:text-3xl">
+                               <span className="animate-bounce text-pink-500 font-bold">Rana</span>
+                               <span className="animate-pulse text-red-500 text-4xl lg:text-5xl delay-200">❤️</span>
+                               <span className="animate-bounce text-black font-bold delay-400">Taha</span>
+                             </div>
+                           </div>
+                        </div>
+                      </div>
+                      
+                      {/* Kawaii Dekoratif Elementler */}
+                      <div className="flex justify-center gap-3 pt-4">
+                        <div className="w-8 h-8 bg-pink-200 rounded-full flex items-center justify-center text-lg animate-bounce">🌸</div>
+                        <div className="w-8 h-8 bg-purple-200 rounded-full flex items-center justify-center text-lg animate-pulse delay-300">🦋</div>
+                        <div className="w-8 h-8 bg-blue-200 rounded-full flex items-center justify-center text-lg animate-bounce delay-500">🎀</div>
+                        <div className="w-8 h-8 bg-green-200 rounded-full flex items-center justify-center text-lg animate-pulse delay-700">🌺</div>
+                        <div className="w-8 h-8 bg-yellow-200 rounded-full flex items-center justify-center text-lg animate-bounce delay-900">🌻</div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Kawaii Konuşma Balonu Kuyruğu */}
+                  <div className="absolute -bottom-4 left-12 w-8 h-8 bg-white/90 transform rotate-45 border-r-4 border-b-4 border-white/50"></div>
+                </div>
+                
+                {/* Etraf Süslemeler */}
+                <div className="absolute -top-8 -right-8 text-4xl animate-spin-slow">🎪</div>
+                <div className="absolute -bottom-8 -left-8 text-3xl animate-float delay-1000">🎨</div>
+                <div className="absolute top-1/2 -right-12 text-2xl animate-pulse delay-1500">🎭</div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+
       {/* Hero Section - İki Kolon */}
       <div className="min-h-screen flex flex-col py-12 px-2" style={{backgroundColor: '#420042'}}>
         
