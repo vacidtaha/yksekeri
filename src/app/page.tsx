@@ -138,7 +138,7 @@ export default function Home() {
                 <div className="relative">
                   <div className="relative overflow-hidden rounded-[2rem] shadow-2xl border-4 border-white/30 backdrop-blur-sm transform group-hover:rotate-1 transition-all duration-500">
                     <Image
-                      src="/rana.jpg"
+                      src="/rana.JPG"
                       alt="Taha ve sevgilisi Rana'nın fotoğrafı"
                       width={300}
                       height={380}
