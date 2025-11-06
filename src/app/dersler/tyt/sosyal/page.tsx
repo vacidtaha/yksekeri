@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { Header } from "@/components/ui/header";
 import { Footer } from "@/components/ui/footer";
+import { FeedbackButton } from "@/components/ui/feedback-button";
 import { ChevronDown, ChevronRight, ChevronLeft, BookOpen, Play, CheckCircle, Loader2, BarChart3 } from "lucide-react";
 import Link from "next/link";
 import { YouTubeVideo, youtubeService } from "@/lib/youtube-api";
@@ -840,6 +841,9 @@ export default function TytSosyalPage() {
           </div>
         </div>
       </div>
+
+      {/* Feedback Button - Desktop Only */}
+      <FeedbackButton />
 
       <Footer />
 

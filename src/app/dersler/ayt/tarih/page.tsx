@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { BookOpen, Play, ChevronLeft, ChevronRight, ChevronDown, CheckCircle, Loader2, BarChart3 } from "lucide-react";
 import Link from "next/link";
 import { Footer } from "@/components/ui/footer";
+import { FeedbackButton } from "@/components/ui/feedback-button";
 import { Header } from "@/components/ui/header";
 import { YouTubeVideo, youtubeService } from "@/lib/youtube-api";
 import { YouTubePlayer, VideoCard } from "@/components/ui/youtube-player";
@@ -781,6 +782,9 @@ export default function AytTarihPage() {
         isOpen={isPlayerOpen}
         onClose={closePlayer}
       />
+
+      {/* Feedback Button - Desktop Only */}
+      <FeedbackButton />
 
       <Footer />
     </div>
