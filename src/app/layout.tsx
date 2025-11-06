@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
 
 export const metadata: Metadata = {
   title: "YKS Şekeri - YKS Hazırlığının Tatlı Hali",
@@ -159,6 +160,7 @@ export default function RootLayout({
         className="antialiased"
         style={{ fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif" }}
       >
+        <GoogleAnalytics />
         {children}
       </body>
     </html>
