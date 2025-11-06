@@ -8,6 +8,7 @@ import Link from "next/link";
 import { YouTubeVideo, youtubeService } from "@/lib/youtube-api";
 import { YouTubePlayer, VideoCard } from "@/components/ui/youtube-player";
 import Image from "next/image";
+import * as gtag from "@/lib/gtag";
 
 interface SubTopic {
   id: string;
@@ -140,6 +141,7 @@ export default function AytEdebiyatPage() {
     // Seçilen konuya göre YouTube video arama
     const currentSubTopic = getCurrentSubTopicById(topicId);
     if (currentSubTopic) {
+      gtag.trackTopicSelect(currentSubTopic.title, "AYT Edebiyat");
       setVideosLoading(true);
       setVideos([]);
       
@@ -173,11 +175,18 @@ export default function AytEdebiyatPage() {
   };
 
   const markTopicComplete = (topicId: string) => {
+    const isAlreadyCompleted = completedTopics.includes(topicId);
     setCompletedTopics(prev => 
       prev.includes(topicId) 
         ? prev.filter(id => id !== topicId)
         : [...prev, topicId]
     );
+    if (!isAlreadyCompleted) {
+      const currentSubTopic = getCurrentSubTopicById(topicId);
+      if (currentSubTopic) {
+        gtag.trackTopicComplete(currentSubTopic.title, "AYT Edebiyat");
+      }
+    }
   };
 
   const getCurrentTopic = () => {
@@ -210,6 +219,7 @@ export default function AytEdebiyatPage() {
 
   // Video player functions
   const playVideo = (video: YouTubeVideo) => {
+    gtag.trackVideoPlay(video.title, video.id);
     setSelectedVideo(video);
     setIsPlayerOpen(true);
   };
