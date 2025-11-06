@@ -4,6 +4,7 @@ import { useState, useRef } from "react";
 import Image from "next/image";
 import { CheckCircle, AlertCircle, Send, User, Mail, MessageSquare, Phone } from "lucide-react";
 import { Header } from "@/components/ui/header";
+import * as gtag from "@/lib/gtag";
 
 export default function IletisimPage() {
   // Apple-style select dropdown CSS
@@ -135,6 +136,13 @@ export default function IletisimPage() {
     }
 
     setIsSubmitting(true);
+    
+    // Google Analytics tracking - Form gönderimi
+    gtag.event({
+      action: 'form_submit',
+      category: 'Contact',
+      label: `${formData.category || 'No Category'} - ${formData.priority}`,
+    });
     
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 2000));

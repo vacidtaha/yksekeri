@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { Header } from "@/components/ui/header";
 import { Download, FileText, Calendar, ExternalLink } from "lucide-react";
+import * as gtag from "@/lib/gtag";
 
 export default function KaynaklarPage() {
   // TYT ve AYT yılları
@@ -106,6 +107,11 @@ export default function KaynaklarPage() {
                 href={tytLinks[year]}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => gtag.event({
+                  action: 'pdf_download',
+                  category: 'Resources',
+                  label: `TYT ${year} PDF`,
+                })}
                 className="group block p-3 lg:p-6 rounded-lg lg:rounded-2xl transition-all duration-200 hover:shadow-lg"
                 style={{
                   backgroundColor: 'rgba(139, 92, 246, 0.08)',
@@ -177,6 +183,11 @@ export default function KaynaklarPage() {
                 href={aytLinks[year]}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => gtag.event({
+                  action: 'pdf_download',
+                  category: 'Resources',
+                  label: `AYT ${year} PDF`,
+                })}
                 className="group block p-3 lg:p-6 rounded-lg lg:rounded-2xl transition-all duration-200 hover:shadow-lg"
                 style={{
                   backgroundColor: 'rgba(167, 139, 250, 0.08)',
