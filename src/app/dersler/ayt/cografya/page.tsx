@@ -104,7 +104,7 @@ export default function AytCografyaPage() {
     }
     // Tüm konu başlıklarını açık başlat
     setOpenSections(topics.map(topic => topic.id));
-  }, []);
+  }, [topics]);
 
   // Save completed topics to localStorage
   useEffect(() => {

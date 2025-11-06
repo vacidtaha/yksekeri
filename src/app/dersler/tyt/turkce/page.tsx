@@ -75,7 +75,7 @@ export default function TytTurkcePage() {
     }
     // Tüm konu başlıklarını açık başlat
     setOpenSections(topics.map(topic => topic.id));
-  }, []);
+  }, [topics]);
 
   useEffect(() => {
     if (completedTopics.length > 0) {

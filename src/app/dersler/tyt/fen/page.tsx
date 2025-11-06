@@ -111,7 +111,7 @@ export default function TytFenPage() {
     }
     // Tüm konu başlıklarını açık başlat
     setOpenSections(topics.map(topic => topic.id));
-  }, []);
+  }, [topics]);
 
   useEffect(() => {
     if (completedTopics.length > 0) {

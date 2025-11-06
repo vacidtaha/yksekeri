@@ -3,7 +3,8 @@
 import { useState, useEffect } from "react";
 import { Header } from "@/components/ui/header";
 import { Footer } from "@/components/ui/footer";
-import { BookOpen, Calculator, TestTube, Globe, Brain, MapPin, TrendingUp } from "lucide-react";
+import { BookOpen, Calculator, TestTube, Globe, Brain, MapPin } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
 interface QuestionData {
   [year: string]: number;
@@ -21,7 +22,7 @@ interface AYTData {
   [subject: string]: TopicData;
 }
 
-const tytSubjectIcons: Record<string, any> = {
+const tytSubjectIcons: Record<string, LucideIcon> = {
   "TYT Matematik": Calculator,
   "TYT Geometri": Calculator,
   "TYT Türkçe": BookOpen,
@@ -34,7 +35,7 @@ const tytSubjectIcons: Record<string, any> = {
   "TYT Din Kültürü": Brain,
 };
 
-const aytSubjectIcons: Record<string, any> = {
+const aytSubjectIcons: Record<string, LucideIcon> = {
   "AYT Matematik": Calculator,
   "AYT Geometri": Calculator,
   "AYT Fizik": TestTube,
@@ -47,19 +48,6 @@ const aytSubjectIcons: Record<string, any> = {
   "AYT Coğrafya 2": MapPin,
   "AYT Felsefe": Brain,
   "AYT Din Kültürü": Brain,
-};
-
-const subjectColors: Record<string, string> = {
-  "TYT Matematik": "#3b82f6",
-  "TYT Geometri": "#3b82f6",
-  "TYT Türkçe": "#3b82f6",
-  "TYT Fizik": "#3b82f6",
-  "TYT Kimya": "#3b82f6",
-  "TYT Biyoloji": "#3b82f6",
-  "TYT Tarih": "#3b82f6",
-  "TYT Coğrafya": "#3b82f6",
-  "TYT Felsefe": "#3b82f6",
-  "TYT Din Kültürü": "#3b82f6",
 };
 
 export default function TYTIstatistiklerPage() {

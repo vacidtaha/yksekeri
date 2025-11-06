@@ -217,8 +217,6 @@ Haddimize değil, inanın umurumuzda da değil — ama şunu unutmayın: **Sına
                 }
                 
                 // Her kelime için kademeli delay - akıcı geçiş için
-                // 7 kelime önceden başlayacak şekilde ayarla
-                const overlapCount = 7; // Aynı anda animasyonda olacak kelime sayısı
                 const delayPerWord = 20; // Her kelime arası delay (ms) - çok hızlı
                 // Her kelime bir öncekinden 20ms sonra başlar, böylece 7 kelime aynı anda animasyonda olur
                 // Animasyon süresi 1.4s olduğu için (20ms * 7 = 140ms < 1400ms) 7 kelime overlap olur
