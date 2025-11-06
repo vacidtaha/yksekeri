@@ -5,6 +5,7 @@ import { Header } from "@/components/ui/header";
 import { Footer } from "@/components/ui/footer";
 import { BookOpen, Calculator, TestTube, Globe, Brain, MapPin } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import * as gtag from "@/lib/gtag";
 
 interface QuestionData {
   [year: string]: number;
@@ -198,7 +199,14 @@ export default function TYTIstatistiklerPage() {
                 return (
                   <button
                     key={subject}
-                    onClick={() => setSelectedTytSubject(subject)}
+                    onClick={() => {
+                      setSelectedTytSubject(subject);
+                      gtag.event({
+                        action: 'statistics_subject_select',
+                        category: 'Statistics',
+                        label: subject,
+                      });
+                    }}
                     className={`px-3 lg:px-4 py-2 lg:py-2.5 rounded text-xs lg:text-sm font-medium transition-all duration-200 flex items-center gap-1.5 ${
                       isSelected 
                         ? 'text-white' 
@@ -343,7 +351,14 @@ export default function TYTIstatistiklerPage() {
                   return (
                     <button
                       key={subject}
-                      onClick={() => setSelectedAytSubject(subject)}
+                      onClick={() => {
+                        setSelectedAytSubject(subject);
+                        gtag.event({
+                          action: 'statistics_subject_select',
+                          category: 'Statistics',
+                          label: subject,
+                        });
+                      }}
                       className={`px-3 lg:px-4 py-2 lg:py-2.5 rounded text-xs lg:text-sm font-medium transition-all duration-200 flex items-center gap-1.5 ${
                         isSelected 
                           ? 'text-white' 
