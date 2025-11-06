@@ -8,6 +8,7 @@ import { ChevronDown, ChevronRight, ChevronLeft, BookOpen, Play, CheckCircle, Lo
 import Link from "next/link";
 import { YouTubeVideo, youtubeService } from "@/lib/youtube-api";
 import { YouTubePlayer, VideoCard } from "@/components/ui/youtube-player";
+import * as gtag from "@/lib/gtag";
 
 interface SubTopic {
   id: string;
@@ -218,6 +219,7 @@ export default function TytSosyalPage() {
     // Seçilen konuya göre YouTube video arama
     const currentSubTopic = getCurrentSubTopicById(topicId);
     if (currentSubTopic) {
+      gtag.trackTopicSelect(currentSubTopic.title, "TYT Sosyal Bilimler");
       setVideosLoading(true);
       setVideos([]);
       
@@ -251,11 +253,18 @@ export default function TytSosyalPage() {
   };
 
   const markTopicComplete = (topicId: string) => {
+    const isAlreadyCompleted = completedTopics.includes(topicId);
     setCompletedTopics(prev => 
       prev.includes(topicId) 
         ? prev.filter(id => id !== topicId)
         : [...prev, topicId]
     );
+    if (!isAlreadyCompleted) {
+      const currentSubTopic = getCurrentSubTopicById(topicId);
+      if (currentSubTopic) {
+        gtag.trackTopicComplete(currentSubTopic.title, "TYT Sosyal Bilimler");
+      }
+    }
   };
 
   const getCurrentTopic = () => {
@@ -288,6 +297,7 @@ export default function TytSosyalPage() {
 
   // Video player functions
   const playVideo = (video: YouTubeVideo) => {
+    gtag.trackVideoPlay(video.title, video.id);
     setSelectedVideo(video);
     setIsPlayerOpen(true);
   };

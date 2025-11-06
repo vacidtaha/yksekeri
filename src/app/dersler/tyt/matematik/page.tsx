@@ -8,6 +8,7 @@ import { ChevronDown, ChevronRight, ChevronLeft, BookOpen, Play, CheckCircle, Lo
 import Link from "next/link";
 import { YouTubeVideo, youtubeService } from "@/lib/youtube-api";
 import { YouTubePlayer, VideoCard } from "@/components/ui/youtube-player";
+import * as gtag from "@/lib/gtag";
 
 interface SubTopic {
   id: string;
@@ -172,6 +173,9 @@ export default function TytMatematikPage() {
     // Seçilen konuya göre YouTube video arama
     const currentSubTopic = getCurrentSubTopicById(topicId);
     if (currentSubTopic) {
+      // Google Analytics tracking - Konu seçimi
+      gtag.trackTopicSelect(currentSubTopic.title, 'TYT Matematik');
+      
       setVideosLoading(true);
       setVideos([]);
       
@@ -205,11 +209,21 @@ export default function TytMatematikPage() {
   };
 
   const markTopicComplete = (topicId: string) => {
+    const isAlreadyCompleted = completedTopics.includes(topicId);
+    
     setCompletedTopics(prev => 
       prev.includes(topicId) 
         ? prev.filter(id => id !== topicId)
         : [...prev, topicId]
     );
+    
+    // Google Analytics tracking - Konu tamamlama (sadece işaretlendiğinde)
+    if (!isAlreadyCompleted) {
+      const currentSubTopic = getCurrentSubTopicById(topicId);
+      if (currentSubTopic) {
+        gtag.trackTopicComplete(currentSubTopic.title, 'TYT Matematik');
+      }
+    }
   };
 
   const getCurrentTopic = () => {
@@ -242,6 +256,9 @@ export default function TytMatematikPage() {
 
   // Video player functions
   const playVideo = (video: YouTubeVideo) => {
+    // Google Analytics tracking - Video oynatma
+    gtag.trackVideoPlay(video.title, video.id);
+    
     setSelectedVideo(video);
     setIsPlayerOpen(true);
   };
