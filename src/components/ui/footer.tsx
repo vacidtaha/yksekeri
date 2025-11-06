@@ -4,12 +4,20 @@ import React, { useRef, useState } from 'react';
 import Image from 'next/image';
 import { Balloons, BalloonsRef } from '@/components/ui/balloons';
 import { Countdown } from '@/components/ui/countdown';
+import * as gtag from '@/lib/gtag';
 
 export function Footer() {
   const balloonsRef = useRef<BalloonsRef>(null);
   const [showCountdown, setShowCountdown] = useState(false);
   
   const handleSurpriseClick = () => {
+    // Google Analytics tracking - Sakın Basma butonu
+    gtag.event({
+      action: 'easter_egg_click',
+      category: 'Engagement',
+      label: 'Sakın Basma Button',
+    });
+    
     if (balloonsRef.current) {
       balloonsRef.current.launchAnimation();
     }
