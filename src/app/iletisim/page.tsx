@@ -174,7 +174,7 @@ export default function IletisimPage() {
       
       setTimeout(() => setIsSuccess(false), 5000);
       
-    } catch (error: any) {
+    } catch (error) {
       console.error('Form gönderme hatası:', error);
       
       // Hata durumunda kullanıcıya bilgi ver
