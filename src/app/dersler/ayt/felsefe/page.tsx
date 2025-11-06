@@ -8,6 +8,7 @@ import Link from "next/link";
 import { YouTubeVideo, youtubeService } from "@/lib/youtube-api";
 import { YouTubePlayer, VideoCard } from "@/components/ui/youtube-player";
 import Image from "next/image";
+import * as gtag from "@/lib/gtag";
 
 interface SubTopic {
   id: string;
@@ -138,6 +139,7 @@ export default function AytFelsefePage() {
     // Seçilen konuya göre YouTube video arama
     const currentSubTopic = getCurrentSubTopicById(topicId);
     if (currentSubTopic) {
+      gtag.trackTopicSelect(currentSubTopic.title, "AYT Felsefe");
       setVideosLoading(true);
       setVideos([]);
       
@@ -171,11 +173,18 @@ export default function AytFelsefePage() {
   };
 
   const markTopicComplete = (topicId: string) => {
+    const isAlreadyCompleted = completedTopics.includes(topicId);
     setCompletedTopics(prev => 
       prev.includes(topicId) 
         ? prev.filter(id => id !== topicId)
         : [...prev, topicId]
     );
+    if (!isAlreadyCompleted) {
+      const currentSubTopic = getCurrentSubTopicById(topicId);
+      if (currentSubTopic) {
+        gtag.trackTopicComplete(currentSubTopic.title, "AYT Felsefe");
+      }
+    }
   };
 
   const getCurrentTopic = () => {
@@ -208,6 +217,7 @@ export default function AytFelsefePage() {
 
   // Video player functions
   const playVideo = (video: YouTubeVideo) => {
+    gtag.trackVideoPlay(video.title, video.id);
     setSelectedVideo(video);
     setIsPlayerOpen(true);
   };
