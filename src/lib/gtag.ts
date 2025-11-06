@@ -97,13 +97,23 @@ export const trackExternalLink = (linkName: string, url: string) => {
   });
 };
 
+// Cookie consent management
+export const updateConsent = (analyticsGranted: boolean) => {
+  if (typeof window !== 'undefined' && window.gtag) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (window.gtag as any)('consent', 'update', {
+      analytics_storage: analyticsGranted ? 'granted' : 'denied'
+    });
+  }
+};
+
 // Declare gtag function for TypeScript
 declare global {
   interface Window {
     gtag: (
-      command: 'config' | 'event' | 'js',
+      command: 'config' | 'event' | 'js' | 'consent',
       targetId: string,
-      config?: Record<string, string | number | boolean>
+      config?: Record<string, string | number | boolean> | string
     ) => void;
   }
 }

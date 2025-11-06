@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
+import { CookieConsent } from "@/components/ui/cookie-consent";
 
 export const metadata: Metadata = {
   title: "YKS Şekeri - YKS Hazırlığının Tatlı Hali",
@@ -161,6 +162,7 @@ export default function RootLayout({
         style={{ fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif" }}
       >
         <GoogleAnalytics />
+        <CookieConsent />
         {children}
       </body>
     </html>
