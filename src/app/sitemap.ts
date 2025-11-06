@@ -17,25 +17,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
     {
       url: `${baseUrl}/dersler/tyt/matematik`,
       lastModified: currentDate,
-      changeFrequency: 'monthly',
+      changeFrequency: 'daily',
       priority: 0.9,
     },
     {
       url: `${baseUrl}/dersler/tyt/turkce`,
       lastModified: currentDate,
-      changeFrequency: 'monthly',
+      changeFrequency: 'daily',
       priority: 0.9,
     },
     {
       url: `${baseUrl}/dersler/tyt/fen`,
       lastModified: currentDate,
-      changeFrequency: 'monthly',
+      changeFrequency: 'daily',
       priority: 0.9,
     },
     {
       url: `${baseUrl}/dersler/tyt/sosyal`,
       lastModified: currentDate,
-      changeFrequency: 'monthly',
+      changeFrequency: 'daily',
       priority: 0.9,
     },
 
@@ -43,25 +43,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
     {
       url: `${baseUrl}/dersler/ayt/matematik`,
       lastModified: currentDate,
-      changeFrequency: 'monthly',
+      changeFrequency: 'daily',
       priority: 0.9,
     },
     {
       url: `${baseUrl}/dersler/ayt/fizik`,
       lastModified: currentDate,
-      changeFrequency: 'monthly',
+      changeFrequency: 'daily',
       priority: 0.9,
     },
     {
       url: `${baseUrl}/dersler/ayt/kimya`,
       lastModified: currentDate,
-      changeFrequency: 'monthly',
+      changeFrequency: 'daily',
       priority: 0.9,
     },
     {
       url: `${baseUrl}/dersler/ayt/biyoloji`,
       lastModified: currentDate,
-      changeFrequency: 'monthly',
+      changeFrequency: 'daily',
       priority: 0.9,
     },
 
@@ -69,25 +69,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
     {
       url: `${baseUrl}/dersler/ayt/edebiyat`,
       lastModified: currentDate,
-      changeFrequency: 'monthly',
+      changeFrequency: 'daily',
       priority: 0.9,
     },
     {
       url: `${baseUrl}/dersler/ayt/tarih`,
       lastModified: currentDate,
-      changeFrequency: 'monthly',
+      changeFrequency: 'daily',
       priority: 0.9,
     },
     {
       url: `${baseUrl}/dersler/ayt/cografya`,
       lastModified: currentDate,
-      changeFrequency: 'monthly',
+      changeFrequency: 'daily',
       priority: 0.9,
     },
     {
       url: `${baseUrl}/dersler/ayt/felsefe`,
       lastModified: currentDate,
-      changeFrequency: 'monthly',
+      changeFrequency: 'daily',
       priority: 0.9,
     },
 
