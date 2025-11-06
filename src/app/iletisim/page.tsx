@@ -5,6 +5,7 @@ import Image from "next/image";
 import { CheckCircle, AlertCircle, Send, User, Mail, MessageSquare, Phone } from "lucide-react";
 import { Header } from "@/components/ui/header";
 import * as gtag from "@/lib/gtag";
+import emailjs from '@emailjs/browser';
 
 export default function IletisimPage() {
   // Apple-style select dropdown CSS
@@ -137,24 +138,51 @@ export default function IletisimPage() {
 
     setIsSubmitting(true);
     
-    // Google Analytics tracking - Form gönderimi
-    gtag.event({
-      action: 'form_submit',
-      category: 'Contact',
-      label: `${formData.category || 'No Category'} - ${formData.priority}`,
-    });
-    
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    setIsSuccess(true);
-    setFormData({
-      firstName: '', lastName: '', email: '', phone: '', 
-      subject: '', priority: 'normal', category: '', message: ''
-    });
-    setIsSubmitting(false);
-    
-    setTimeout(() => setIsSuccess(false), 5000);
+    try {
+      // Google Analytics tracking - Form gönderimi
+      gtag.event({
+        action: 'form_submit',
+        category: 'Contact',
+        label: `${formData.category || 'No Category'} - ${formData.priority}`,
+      });
+      
+      // EmailJS ile e-posta gönder
+      const templateParams = {
+        from_name: `${formData.firstName} ${formData.lastName}`,
+        from_email: formData.email,
+        phone: formData.phone || 'Belirtilmedi',
+        subject: formData.subject,
+        priority: formData.priority,
+        category: formData.category || 'Belirtilmedi',
+        message: formData.message,
+        to_name: 'YKS Şekeri',
+      };
+
+      await emailjs.send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || '',
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || '',
+        templateParams,
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || ''
+      );
+      
+      // Başarılı
+      setIsSuccess(true);
+      setFormData({
+        firstName: '', lastName: '', email: '', phone: '', 
+        subject: '', priority: 'normal', category: '', message: ''
+      });
+      
+      setTimeout(() => setIsSuccess(false), 5000);
+      
+    } catch (error: any) {
+      console.error('Form gönderme hatası:', error);
+      
+      // Hata durumunda kullanıcıya bilgi ver
+      alert('Mesaj gönderilemedi. Lütfen daha sonra tekrar deneyin veya doğrudan tahavacid@gmail.com adresine yazın.');
+      
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const getProgressPercentage = () => {
