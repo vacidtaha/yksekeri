@@ -75,7 +75,8 @@ export default function TytTurkcePage() {
     }
     // Tüm konu başlıklarını açık başlat
     setOpenSections(topics.map(topic => topic.id));
-  }, [topics]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // Sadece component mount olduğunda çalışsın
 
   useEffect(() => {
     if (completedTopics.length > 0) {

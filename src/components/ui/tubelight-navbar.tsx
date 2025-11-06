@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, useRef } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { LucideIcon, ChevronDown, BookOpen, Calculator, TestTube, Globe, Book, MapPin, Brain, Atom, Beaker } from "lucide-react"
@@ -23,6 +23,19 @@ export function NavBar({ items, className, disableFixed = false }: NavBarProps) 
   const [activeTab, setActiveTab] = useState("")
   const [showDropdown, setShowDropdown] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
+  const isMountedRef = useRef(true)
+  const itemsRef = useRef(items)
+  const activeTabRef = useRef(activeTab)
+  
+  // items'ı ref'te sakla
+  useEffect(() => {
+    itemsRef.current = items
+  }, [items])
+  
+  // activeTab'ı ref'te sakla
+  useEffect(() => {
+    activeTabRef.current = activeTab
+  }, [activeTab])
 
   // Ders sayfası adını döndüren fonksiyon
   const getDersPageName = () => {
@@ -83,48 +96,66 @@ export function NavBar({ items, className, disableFixed = false }: NavBarProps) 
   }
 
   useEffect(() => {
-    // URL ve hash'e göre aktif tab'ı belirle
-    const currentPath = pathname
-    const currentHash = window.location.hash
-    const fullUrl = currentHash ? `${currentPath}${currentHash}` : currentPath
+    // Component mount olduğunda flag'i true yap
+    isMountedRef.current = true
     
-    const currentItem = items.find(item => item.url === fullUrl)
-    if (currentItem) {
-      setActiveTab(currentItem.name)
-    } else {
-      // Hash olmadan da kontrol et
-      const pathOnlyItem = items.find(item => item.url === currentPath)
-      if (pathOnlyItem) {
-        setActiveTab(pathOnlyItem.name)
-      } else {
-        // Ders sayfalarında "Dersler" aktif olsun
-        if (pathname.includes('/dersler/')) {
-          setActiveTab("Dersler")
-        } else if (currentPath === '/' && items.find(item => item.url === '/#content')) {
-          setActiveTab("Ana Sayfa")
-        } else {
-          setActiveTab(items[0].name)
-        }
-      }
-    }
-  }, [pathname, items])
-
-  // Hash değişikliklerini dinle
-  useEffect(() => {
-    const handleHashChange = () => {
+    // URL ve hash'e göre aktif tab'ı belirle
+    const updateActiveTab = () => {
+      if (!isMountedRef.current) return
+      
+      const currentItems = itemsRef.current
       const currentPath = pathname
-      const currentHash = window.location.hash
+      const currentHash = typeof window !== 'undefined' ? window.location.hash : ''
       const fullUrl = currentHash ? `${currentPath}${currentHash}` : currentPath
       
-      const currentItem = items.find(item => item.url === fullUrl)
+      let newActiveTab = ""
+      
+      const currentItem = currentItems.find(item => item.url === fullUrl)
       if (currentItem) {
-        setActiveTab(currentItem.name)
+        newActiveTab = currentItem.name
+      } else {
+        // Hash olmadan da kontrol et
+        const pathOnlyItem = currentItems.find(item => item.url === currentPath)
+        if (pathOnlyItem) {
+          newActiveTab = pathOnlyItem.name
+        } else {
+          // Ders sayfalarında "Dersler" aktif olsun
+          if (pathname.includes('/dersler/')) {
+            newActiveTab = "Dersler"
+          } else if (currentPath === '/' && currentItems.find(item => item.url === '/#content')) {
+            newActiveTab = "Ana Sayfa"
+          } else if (currentItems.length > 0) {
+            newActiveTab = currentItems[0].name
+          }
+        }
+      }
+      
+      // Sadece değer gerçekten değiştiyse state'i güncelle
+      if (newActiveTab && newActiveTab !== activeTabRef.current && isMountedRef.current) {
+        setActiveTab(newActiveTab)
       }
     }
+    
+    // Hemen güncelle
+    updateActiveTab()
+    
+    // Hash değişikliklerini dinle
+    const handleHashChange = () => {
+      updateActiveTab()
+    }
+    
+    if (typeof window !== 'undefined') {
+      window.addEventListener('hashchange', handleHashChange)
+    }
+    
+    return () => {
+      isMountedRef.current = false
+      if (typeof window !== 'undefined') {
+        window.removeEventListener('hashchange', handleHashChange)
+      }
+    }
+  }, [pathname])
 
-    window.addEventListener('hashchange', handleHashChange)
-    return () => window.removeEventListener('hashchange', handleHashChange)
-  }, [pathname, items])
 
 
 
@@ -139,6 +170,11 @@ export function NavBar({ items, className, disableFixed = false }: NavBarProps) 
     
     return () => window.removeEventListener('resize', checkMobile)
   }, [])
+
+  // Pathname değiştiğinde dropdown'u kapat
+  useEffect(() => {
+    setShowDropdown(false)
+  }, [pathname])
 
   // Dropdown dışına tıklanırsa kapat
   useEffect(() => {

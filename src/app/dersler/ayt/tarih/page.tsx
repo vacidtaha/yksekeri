@@ -104,7 +104,8 @@ export default function AytTarihPage() {
     }
     // Tüm konu başlıklarını açık başlat
     setOpenSections(topics.map(topic => topic.id));
-  }, [topics]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // Sadece component mount olduğunda çalışsın
 
   // Save completed topics to localStorage
   useEffect(() => {

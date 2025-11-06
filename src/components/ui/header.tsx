@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { NavBar } from "@/components/ui/tubelight-navbar";
@@ -14,12 +14,12 @@ export function Header({ alwaysShow = false }: HeaderProps) {
   const pathname = usePathname();
   const [showFixedHeader, setShowFixedHeader] = useState(alwaysShow);
   
-  const navItems = [
+  const navItems = useMemo(() => [
     { name: "Ana Sayfa", url: "/#content", icon: HomeIcon },
     { name: "Dersler", url: "#", icon: BookOpen },
     { name: "Kaynaklar", url: "/kaynaklar", icon: Users },
     { name: "İletişim", url: "/iletisim", icon: Mail },
-  ];
+  ], []);
 
   useEffect(() => {
     if (alwaysShow) {
