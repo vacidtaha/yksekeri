@@ -17,18 +17,18 @@ export function NotFoundPage() {
                 aria-hidden="true"
               >
                 <h1 className="text-center text-black text-6xl sm:text-7xl md:text-8xl pt-6 sm:pt-8 font-light"
-                    style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif' }}>
+                    style={{ fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif" }}>
                   404
                 </h1>
               </div>
 
               <div className="mt-[-50px]">
                 <h3 className="text-2xl text-black sm:text-3xl font-light mb-4"
-                    style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif' }}>
+                    style={{ fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif" }}>
                   Aradığın sayfa bulunamadı
                 </h3>
                 <p className="mb-6 text-gray-600 sm:mb-5 text-lg leading-relaxed max-w-2xl mx-auto"
-                   style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif' }}>
+                   style={{ fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif" }}>
                   Umarım sen yanlış linke girmişsindir yoksa bizim site patlamış. 
                   Dert etme ve endişelenme bir iki saatte biz hallederiz.
                 </p>
@@ -37,7 +37,7 @@ export function NotFoundPage() {
                   variant="default"
                   onClick={() => router.push("/")}
                   className="my-5 bg-black text-white hover:bg-gray-800 text-lg px-8 py-4 rounded-xl font-medium transition-all duration-200"
-                  style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif' }}
+                  style={{ fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif" }}
                 >
                   Ana Sayfaya Dönmeyi dene
                 </Button>
@@ -45,7 +45,7 @@ export function NotFoundPage() {
                 {/* Ders Yönlendirmeleri */}
                 <div className="mt-12">
                   <p className="text-gray-600 mb-6"
-                     style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif' }}>
+                     style={{ fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif" }}>
                     Aşkta kaybettim kumarda kazanırım diyorsan şansını dene:
                   </p>
                   <div className="flex flex-wrap gap-3 justify-center">

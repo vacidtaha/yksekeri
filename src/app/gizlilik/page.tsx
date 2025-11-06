@@ -17,7 +17,7 @@ export default function GizlilikPage() {
             <Shield className="w-8 h-8" style={{color: '#FF9500'}} />
           </div>
           <h1 className="text-4xl md:text-5xl font-light tracking-tight mb-4" 
-              style={{color: '#f5f5f7', fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif'}}>
+              style={{color: '#f5f5f7', fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif"}}>
             Gizlilik Politikası
           </h1>
           <p className="text-lg max-w-3xl mx-auto leading-relaxed" style={{color: '#86868b'}}>
@@ -47,7 +47,7 @@ export default function GizlilikPage() {
                   <FileText className="w-5 h-5" style={{color: '#FF9500'}} />
                 </div>
                 <h2 className="text-2xl font-semibold" 
-                    style={{color: '#f5f5f7', fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif'}}>
+                    style={{color: '#f5f5f7', fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif"}}>
                   1. Giriş
                 </h2>
               </div>
@@ -73,7 +73,7 @@ export default function GizlilikPage() {
                   <Eye className="w-5 h-5" style={{color: '#FF9500'}} />
                 </div>
                 <h2 className="text-2xl font-semibold" 
-                    style={{color: '#f5f5f7', fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif'}}>
+                    style={{color: '#f5f5f7', fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif"}}>
                   2. Topladığımız (ve Toplamadığımız) Veriler
                 </h2>
               </div>
@@ -141,7 +141,7 @@ export default function GizlilikPage() {
                   <Lock className="w-5 h-5" style={{color: '#FF9500'}} />
                 </div>
                 <h2 className="text-2xl font-semibold" 
-                    style={{color: '#f5f5f7', fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif'}}>
+                    style={{color: '#f5f5f7', fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif"}}>
                   3. Çerezler, Yerel Depolama ve Benzeri Teknolojiler
                 </h2>
               </div>
@@ -181,7 +181,7 @@ export default function GizlilikPage() {
                   <AlertTriangle className="w-5 h-5" style={{color: '#FF9500'}} />
                 </div>
                 <h2 className="text-2xl font-semibold" 
-                    style={{color: '#f5f5f7', fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif'}}>
+                    style={{color: '#f5f5f7', fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif"}}>
                   4. Veri Paylaşımı
                 </h2>
               </div>
@@ -213,7 +213,7 @@ export default function GizlilikPage() {
                   <Server className="w-5 h-5" style={{color: '#FF9500'}} />
                 </div>
                 <h2 className="text-2xl font-semibold" 
-                    style={{color: '#f5f5f7', fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif'}}>
+                    style={{color: '#f5f5f7', fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif"}}>
                   5. Üçüncü Taraf Hizmetleri
                 </h2>
               </div>
@@ -279,7 +279,7 @@ export default function GizlilikPage() {
                    <Shield className="w-5 h-5" style={{color: '#FF9500'}} />
                  </div>
                  <h2 className="text-2xl font-semibold" 
-                     style={{color: '#f5f5f7', fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif'}}>
+                     style={{color: '#f5f5f7', fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif"}}>
                    6. Veri Güvenliği
                  </h2>
                </div>
@@ -336,7 +336,7 @@ export default function GizlilikPage() {
                    <FileText className="w-5 h-5" style={{color: '#FF9500'}} />
                  </div>
                  <h2 className="text-2xl font-semibold" 
-                     style={{color: '#f5f5f7', fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif'}}>
+                     style={{color: '#f5f5f7', fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif"}}>
                    7. Haklarınız (KVKK & GDPR)
                  </h2>
                </div>
@@ -406,7 +406,7 @@ export default function GizlilikPage() {
                    <AlertTriangle className="w-5 h-5" style={{color: '#FF9500'}} />
                  </div>
                  <h2 className="text-2xl font-semibold" 
-                     style={{color: '#f5f5f7', fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif'}}>
+                     style={{color: '#f5f5f7', fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif"}}>
                    8. 18 Yaş Altı Kullanıcılar
                  </h2>
                </div>
@@ -462,7 +462,7 @@ export default function GizlilikPage() {
                    <FileText className="w-5 h-5" style={{color: '#FF9500'}} />
                  </div>
                  <h2 className="text-2xl font-semibold" 
-                     style={{color: '#f5f5f7', fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif'}}>
+                     style={{color: '#f5f5f7', fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif"}}>
                    9. Politika Değişiklikleri
                  </h2>
                </div>
@@ -518,7 +518,7 @@ export default function GizlilikPage() {
               }}
             >
               <h2 className="text-2xl font-semibold mb-6 text-center" 
-                  style={{color: '#30d158', fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif'}}>
+                  style={{color: '#30d158', fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif"}}>
                 Özetle
               </h2>
               

@@ -67,91 +67,56 @@ export function Countdown({ isOpen, onAnimationComplete }: CountdownProps) {
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50 pointer-events-none">
       <div 
-        className="bg-white/98 rounded-2xl lg:rounded-3xl p-4 lg:p-8 w-full max-w-sm lg:max-w-4xl mx-4 shadow-2xl border border-white/40"
-        style={{
-          backdropFilter: 'blur(20px)',
-          WebkitBackdropFilter: 'blur(20px)'
-        }}
+        className="bg-white rounded-xl lg:rounded-2xl p-6 lg:p-8 w-full max-w-xs lg:max-w-md mx-4 shadow-xl border border-gray-200"
       >
         <div className="text-center">
-          <div className="mb-8">
-            {/* Özel mesaj */}
-            <p className="text-sm lg:text-lg font-bold mb-4 px-4 leading-relaxed" 
-               style={{ 
-                 fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif',
-                 background: 'linear-gradient(90deg, #7C3AED, #EC4899, #EAB308)',
-                 WebkitBackgroundClip: 'text',
-                 WebkitTextFillColor: 'transparent',
-                 backgroundClip: 'text'
-               }}>
-              Az söz dinle vakit daralıyor<br className="hidden lg:inline" />
-              <span className="lg:ml-1"> içinden geçmen gereken bir sınav var</span><br />
-              <span className="text-xl lg:text-2xl">BAASSS LAN</span>
-            </p>
-            
-            <h2 className="text-2xl lg:text-3xl font-semibold text-black mb-3" 
-                style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif' }}>
-              YKS 2026
-            </h2>
-            <p className="text-gray-800 text-base lg:text-lg font-medium"
-               style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif' }}>
-              20 Haziran 2026 • 10:00
-            </p>
-          </div>
+          <h2 className="text-xl lg:text-2xl font-semibold text-gray-900 mb-4" 
+              style={{ fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif" }}>
+            YKS 2026
+          </h2>
           
-          <div className="flex justify-center items-center gap-2 lg:gap-6 flex-wrap">
-            <div className="bg-gray-200/90 border border-gray-300/60 rounded-xl lg:rounded-2xl p-3 lg:p-6 min-w-[80px] lg:min-w-[120px]">
-              <div className="text-2xl lg:text-4xl font-light text-black mb-1 lg:mb-3" 
-                   style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif' }}>
+          <div className="flex justify-center items-center gap-3 lg:gap-4">
+            <div className="bg-gray-100 rounded-lg p-4 min-w-[70px] lg:min-w-[90px]">
+              <div className="text-3xl lg:text-4xl font-light text-gray-900 mb-1" 
+                   style={{ fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif" }}>
                 {timeLeft.days.toString().padStart(2, '0')}
               </div>
-              <div className="text-xs lg:text-base text-black font-semibold"
-                   style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif' }}>
+              <div className="text-xs text-gray-600"
+                   style={{ fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif" }}>
                 Gün
               </div>
             </div>
             
-            <div className="bg-gray-200/90 border border-gray-300/60 rounded-xl lg:rounded-2xl p-3 lg:p-6 min-w-[80px] lg:min-w-[120px]">
-              <div className="text-2xl lg:text-4xl font-light text-black mb-1 lg:mb-3"
-                   style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif' }}>
+            <div className="bg-gray-100 rounded-lg p-4 min-w-[70px] lg:min-w-[90px]">
+              <div className="text-3xl lg:text-4xl font-light text-gray-900 mb-1"
+                   style={{ fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif" }}>
                 {timeLeft.hours.toString().padStart(2, '0')}
               </div>
-              <div className="text-xs lg:text-base text-black font-semibold"
-                   style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif' }}>
+              <div className="text-xs text-gray-600"
+                   style={{ fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif" }}>
                 Saat
               </div>
             </div>
             
-            <div className="bg-gray-200/90 border border-gray-300/60 rounded-xl lg:rounded-2xl p-3 lg:p-6 min-w-[80px] lg:min-w-[120px]">
-              <div className="text-2xl lg:text-4xl font-light text-black mb-1 lg:mb-3"
-                   style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif' }}>
+            <div className="bg-gray-100 rounded-lg p-4 min-w-[70px] lg:min-w-[90px]">
+              <div className="text-3xl lg:text-4xl font-light text-gray-900 mb-1"
+                   style={{ fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif" }}>
                 {timeLeft.minutes.toString().padStart(2, '0')}
               </div>
-              <div className="text-xs lg:text-base text-black font-semibold"
-                   style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif' }}>
+              <div className="text-xs text-gray-600"
+                   style={{ fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif" }}>
                 Dakika
               </div>
             </div>
             
-            <div className="bg-gray-200/90 border border-gray-300/60 rounded-xl lg:rounded-2xl p-3 lg:p-6 min-w-[80px] lg:min-w-[120px]">
-              <div className="text-2xl lg:text-4xl font-light text-black mb-1 lg:mb-3"
-                   style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif' }}>
+            <div className="bg-gray-100 rounded-lg p-4 min-w-[70px] lg:min-w-[90px]">
+              <div className="text-3xl lg:text-4xl font-light text-gray-900 mb-1"
+                   style={{ fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif" }}>
                 {timeLeft.seconds.toString().padStart(2, '0')}
               </div>
-              <div className="text-xs lg:text-base text-black font-semibold"
-                   style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif' }}>
+              <div className="text-xs text-gray-600"
+                   style={{ fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif" }}>
                 Saniye
-              </div>
-            </div>
-            
-            <div className="bg-gray-200/90 border border-gray-300/60 rounded-xl lg:rounded-2xl p-3 lg:p-6 min-w-[80px] lg:min-w-[120px]">
-              <div className="text-2xl lg:text-4xl font-light text-black mb-1 lg:mb-3"
-                   style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif' }}>
-                {timeLeft.milliseconds.toString().padStart(2, '0')}
-              </div>
-              <div className="text-xs lg:text-base text-black font-semibold"
-                   style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif' }}>
-                Salise
               </div>
             </div>
           </div>

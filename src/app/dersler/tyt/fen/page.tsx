@@ -4,7 +4,8 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { Header } from "@/components/ui/header";
 import { Footer } from "@/components/ui/footer";
-import { ChevronDown, ChevronRight, ChevronLeft, BookOpen, Play, CheckCircle, Loader2 } from "lucide-react";
+import { ChevronDown, ChevronRight, ChevronLeft, BookOpen, Play, CheckCircle, Loader2, BarChart3 } from "lucide-react";
+import Link from "next/link";
 import { YouTubeVideo, youtubeService } from "@/lib/youtube-api";
 import { YouTubePlayer, VideoCard } from "@/components/ui/youtube-player";
 
@@ -50,7 +51,7 @@ export default function TytFenPage() {
     {
       id: "fizik",
       title: "1. Fizik",
-      color: "#007AFF",
+      color: "#3b82f6",
       subTopics: [
         { id: "fizik-bilimine-giris", title: "Fizik Bilimine Giriş", hasVideo: true, hasPDF: true, hasQuiz: true },
         { id: "madde-ozellikleri", title: "Madde ve Özellikleri", hasVideo: true, hasPDF: true, hasQuiz: true },
@@ -68,7 +69,7 @@ export default function TytFenPage() {
     {
       id: "kimya",
       title: "2. Kimya",
-      color: "#34C759",
+      color: "#60a5fa",
       subTopics: [
         { id: "kimya-bilimi-uygulama", title: "Kimya Bilimi ve Uygulama Alanları", hasVideo: true, hasPDF: true, hasQuiz: true },
         { id: "atom-periyodik-sistem", title: "Atom ve Periyodik Sistem", hasVideo: true, hasPDF: true, hasQuiz: true },
@@ -84,7 +85,7 @@ export default function TytFenPage() {
     {
       id: "biyoloji",
       title: "3. Biyoloji",
-      color: "#FF9F0A",
+      color: "#60a5fa",
       subTopics: [
         { id: "canlilar-ortak-ozellikler", title: "Canlıların Ortak Özellikleri", hasVideo: true, hasPDF: true, hasQuiz: true },
         { id: "canlilar-siniflandirilmasi", title: "Canlıların Sınıflandırılması", hasVideo: true, hasPDF: true, hasQuiz: true },
@@ -108,6 +109,8 @@ export default function TytFenPage() {
     if (saved) {
       setCompletedTopics(JSON.parse(saved));
     }
+    // Tüm konu başlıklarını açık başlat
+    setOpenSections(topics.map(topic => topic.id));
   }, []);
 
   useEffect(() => {
@@ -272,7 +275,7 @@ export default function TytFenPage() {
   };
 
   return (
-    <div className="min-h-screen text-white" style={{backgroundColor: '#1d1d1d'}}>
+    <div className="min-h-screen text-white" style={{backgroundColor: '#0a0e27'}}>
       <style>{`
         @keyframes gradient {
           0% { background-position: 0% 50%; }
@@ -299,7 +302,7 @@ export default function TytFenPage() {
         <div className="text-center mb-6 lg:mb-12 px-3 lg:px-4">
           <div className="max-w-4xl mx-auto">
             <h1 className="text-2xl lg:text-4xl xl:text-5xl font-light tracking-tight mb-3 lg:mb-6 text-white"
-                style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif' }}>
+                style={{ fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif" }}>
               TYT Fen Bilimleri
             </h1>
             
@@ -307,7 +310,7 @@ export default function TytFenPage() {
             <div className="max-w-xs lg:max-w-md mx-auto mb-4 lg:mb-6">
               <div className="flex justify-between items-center mb-2 lg:mb-3">
                 <span className="text-xs lg:text-sm font-medium text-gray-400">Genel İlerleme</span>
-                <span className="text-xs lg:text-sm font-semibold" style={{color: '#007AFF'}}>{getTotalProgress()}%</span>
+                <span className="text-xs lg:text-sm font-semibold" style={{color: '#3b82f6'}}>{getTotalProgress()}%</span>
               </div>
               <div 
                 className="w-full rounded-full h-1.5 lg:h-2"
@@ -317,18 +320,18 @@ export default function TytFenPage() {
                   className="h-1.5 lg:h-2 rounded-full transition-all duration-700 ease-out"
                   style={{ 
                     width: `${getTotalProgress()}%`,
-                    background: 'linear-gradient(90deg, #007AFF 0%, #34C759 100%)'
+                    background: 'linear-gradient(90deg, #3b82f6 0%, #60a5fa 100%)'
                   }}
                 ></div>
               </div>
             </div>
             
             <p className="text-sm lg:text-lg text-gray-400 max-w-2xl lg:max-w-3xl mx-auto px-2 lg:px-0"
-               style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif' }}>
+               style={{ fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif" }}>
               <span className="hidden lg:inline">Sağ panelden konu seçin, eğitici videolar izleyin, PDF materyallerini indirin ve pratik sorularla bilginizi pekiştirin.</span>
               <span className="lg:hidden">Aşağıdan konu seçin, videolar izleyin ve pratik yapın.</span>
               <span style={{
-                background: 'linear-gradient(135deg, #32D74B 0%, #30D158 25%, #34C759 50%, #30D158 75%, #32D74B 100%)',
+                background: 'linear-gradient(135deg, #32D74B 0%, #30D158 25%, #60a5fa 50%, #30D158 75%, #32D74B 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text',
@@ -346,21 +349,21 @@ export default function TytFenPage() {
                 <div 
                   className="rounded-lg lg:rounded-xl p-3 lg:p-4 border relative"
                   style={{
-                    backgroundColor: 'rgba(255, 149, 0, 0.1)',
-                    borderColor: 'rgba(255, 149, 0, 0.3)',
+                    backgroundColor: 'rgba(30, 64, 175, 0.1)',
+                    borderColor: 'rgba(30, 64, 175, 0.3)',
                     backdropFilter: 'blur(10px)'
                   }}
                 >
                   <button
                     onClick={() => setShowProgressWarning(false)}
-                    className="absolute top-2 right-2 lg:top-3 lg:right-3 text-orange-400 hover:text-orange-300 transition-colors w-6 h-6 lg:w-auto lg:h-auto flex items-center justify-center"
+                    className="absolute top-2 right-2 lg:top-3 lg:right-3 text-blue-400 hover:text-blue-300 transition-colors w-6 h-6 lg:w-auto lg:h-auto flex items-center justify-center"
                   >
                     ✕
                   </button>
                   <p className="text-xs lg:text-sm text-center leading-relaxed pr-6 lg:pr-6"
                      style={{ 
-                       color: '#FF9500',
-                       fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif' 
+                       color: '#60a5fa',
+                       fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif" 
                      }}>
                     İlerleme durumunuz tarayıcıda önbelleği temizlemediğiniz sürece otomatik olarak kaydedilir. İstediğiniz zaman kaldığınız yerden devam edebilirsiniz.
                   </p>
@@ -385,13 +388,13 @@ export default function TytFenPage() {
                     <div 
                       className="rounded-lg lg:rounded-xl p-3 lg:p-5 border border-white/8 hover:border-white/12 transition-all duration-200"
                       style={{
-                        backgroundColor: 'rgba(255,255,255,0.03)',
+                        backgroundColor: 'rgba(30, 64, 175, 0.05)',
                         backdropFilter: 'blur(15px)'
                       }}
                     >
                       <div className="mb-3 lg:mb-4">
                         <h3 className="font-semibold text-white text-xs lg:text-sm mb-1"
-                            style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif' }}>
+                            style={{ fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif" }}>
                           {getCurrentSubTopic()?.title}
                         </h3>
                         <p className="text-xs text-gray-500">Konu Özeti</p>
@@ -407,7 +410,7 @@ export default function TytFenPage() {
                         style={{
                           backgroundColor: 'white',
                           color: 'black',
-                          fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif'
+                          fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif"
                         }}
                         onMouseEnter={(e) => {
                           if (window.innerWidth >= 1024) {
@@ -426,13 +429,13 @@ export default function TytFenPage() {
                     <div 
                       className="rounded-lg lg:rounded-xl p-3 lg:p-5 border border-white/8 hover:border-white/12 transition-all duration-200"
                       style={{
-                        backgroundColor: 'rgba(255,255,255,0.03)',
+                        backgroundColor: 'rgba(30, 64, 175, 0.05)',
                         backdropFilter: 'blur(15px)'
                       }}
                     >
                       <div className="mb-3 lg:mb-4">
                         <h3 className="font-semibold text-white text-xs lg:text-sm mb-1"
-                            style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif' }}>
+                            style={{ fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif" }}>
                           İnteraktif Sorular
                         </h3>
                         <p className="text-xs text-gray-500">Sınavdan Örnek Sorular</p>
@@ -448,7 +451,7 @@ export default function TytFenPage() {
                         style={{
                           backgroundColor: 'white',
                           color: 'black',
-                          fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif'
+                          fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif"
                         }}
                         onMouseEnter={(e) => {
                           if (window.innerWidth >= 1024) {
@@ -466,11 +469,11 @@ export default function TytFenPage() {
                 ) : (
                   <div className="text-center py-12 lg:py-16">
                     <div className="w-10 h-10 lg:w-12 lg:h-12 rounded-lg lg:rounded-xl mx-auto mb-3 lg:mb-4 flex items-center justify-center"
-                         style={{backgroundColor: 'rgba(255,255,255,0.05)'}}>
+                         style={{backgroundColor: 'rgba(30, 64, 175, 0.08)'}}>
                       <BookOpen className="w-5 h-5 lg:w-6 lg:h-6 text-gray-500" />
                     </div>
                     <h3 className="text-sm lg:text-base font-medium text-gray-400 mb-2"
-                        style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif' }}>
+                        style={{ fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif" }}>
                       Konu Kaynakları
                     </h3>
                     <p className="text-xs lg:text-sm text-gray-500 leading-relaxed max-w-32 lg:max-w-40 mx-auto">
@@ -490,7 +493,7 @@ export default function TytFenPage() {
                     <div className="mb-4 lg:mb-8">
                       <div className="mb-3 lg:mb-4">
                         <h2 className="text-lg lg:text-2xl font-semibold text-white mb-1"
-                            style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif' }}>
+                            style={{ fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif" }}>
                           {getCurrentSubTopic()?.title}
                         </h2>
                         <p className="text-xs lg:text-sm text-gray-400">
@@ -506,7 +509,7 @@ export default function TytFenPage() {
                         // Loading skeleton
                         Array.from({ length: 3 }).map((_, i) => (
                           <div key={i} className="rounded-xl lg:rounded-2xl p-3 lg:p-5 border border-white/10" 
-                               style={{ backgroundColor: 'rgba(255,255,255,0.05)', backdropFilter: 'blur(20px)' }}>
+                               style={{ backgroundColor: 'rgba(30, 64, 175, 0.08)', backdropFilter: 'blur(20px)' }}>
                             <div className="flex items-start gap-3 lg:gap-5">
                               <div className="w-24 h-16 lg:w-40 lg:h-24 rounded-lg lg:rounded-xl bg-gray-700 animate-pulse flex items-center justify-center">
                                 <Loader2 className="w-4 h-4 lg:w-8 lg:h-8 text-gray-500 animate-spin" />
@@ -568,7 +571,7 @@ export default function TytFenPage() {
                                   : 'bg-white/10 text-gray-400 hover:bg-white/20 hover:text-white'
                               }`}
                               style={{
-                                fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif'
+                                fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif"
                               }}
                             >
                               {page}
@@ -590,15 +593,15 @@ export default function TytFenPage() {
                 ) : (
                   <div className="text-center py-16 lg:py-32">
                     <div className="w-16 h-16 lg:w-20 lg:h-20 rounded-full mx-auto mb-4 lg:mb-6 flex items-center justify-center"
-                         style={{backgroundColor: 'rgba(255,255,255,0.05)'}}>
+                         style={{backgroundColor: 'rgba(30, 64, 175, 0.08)'}}>
                       <Play className="w-8 h-8 lg:w-10 lg:h-10 text-gray-600" />
                     </div>
                     <h3 className="text-lg lg:text-2xl font-medium text-gray-400 mb-3 lg:mb-4"
-                        style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif' }}>
+                        style={{ fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif" }}>
                       YouTube Eğitici Videolar
                     </h3>
                     <p className="text-gray-500 max-w-sm lg:max-w-lg mx-auto leading-relaxed text-sm lg:text-lg px-4 lg:px-0"
-                       style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif' }}>
+                       style={{ fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif" }}>
                       <span className="lg:hidden">Aşağıdan bir konu seçtiğinizde videolar burada görünecek.</span>
                       <span className="hidden lg:inline">Sağ panelden bir konu seçtiğinizde, o konuyu anlatan popüler YouTube eğitmenlerinin videoları burada görünecek. İstediğinizi seçip izleyebilirsiniz.</span>
                     </p>
@@ -610,12 +613,38 @@ export default function TytFenPage() {
             {/* Sağ Sütun/Alt Kısım - Konu Başlıkları (Responsive) */}
             <div className="w-full lg:w-[30%] flex justify-center px-3 lg:px-0">
               <div className="lg:sticky lg:top-40 w-full max-w-xs lg:max-w-xs">
+                {/* İstatistikler Butonu */}
+                <Link href="/istatistikler?subject=TYT Fizik" className="block mb-4">
+                  <button
+                    className="w-full py-2.5 px-4 rounded-lg lg:rounded-xl transition-all duration-200 border hover:border-white/30 active:scale-[0.98] flex items-center justify-center gap-2"
+                    style={{
+                      backgroundColor: 'rgba(30, 64, 175, 0.15)',
+                      backdropFilter: 'blur(20px)',
+                      borderColor: 'rgba(30, 64, 175, 0.3)'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = 'rgba(30, 64, 175, 0.25)';
+                      e.currentTarget.style.borderColor = 'rgba(30, 64, 175, 0.5)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = 'rgba(30, 64, 175, 0.15)';
+                      e.currentTarget.style.borderColor = 'rgba(30, 64, 175, 0.3)';
+                    }}
+                  >
+                    <BarChart3 className="w-4 h-4 text-white" />
+                    <span className="text-sm font-medium text-white"
+                          style={{ fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif" }}>
+                      Soru İstatistikleri
+                    </span>
+                  </button>
+                </Link>
+
                 <div className="flex items-center justify-center mb-4 lg:mb-6">
                   <div className="text-xs text-gray-500 mr-2 lg:mr-3">
                     {completedTopics.length}/{topics.reduce((acc, topic) => acc + topic.subTopics.length, 0)}
                   </div>
                   <h3 className="text-base lg:text-lg font-semibold text-white"
-                      style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif' }}>
+                      style={{ fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif" }}>
                     Konu Başlıkları
                   </h3>
                 </div>
@@ -632,29 +661,29 @@ export default function TytFenPage() {
                           onClick={() => toggleSection(topic.id)}
                           className="w-full text-left p-3 lg:p-4 rounded-lg lg:rounded-xl transition-all duration-200 border hover:border-white/20 active:scale-[0.98]"
                           style={{
-                            backgroundColor: 'rgba(255,255,255,0.05)',
+                            backgroundColor: 'rgba(30, 64, 175, 0.08)',
                             backdropFilter: 'blur(20px)',
                             borderColor: 'rgba(255,255,255,0.1)'
                           }}
                           onMouseEnter={(e) => {
-                            e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.08)';
+                            e.currentTarget.style.backgroundColor = 'rgba(30, 64, 175, 0.12)';
                             if (window.innerWidth >= 1024) {
                               e.currentTarget.style.transform = 'translateY(-1px)';
                             }
                           }}
                           onMouseLeave={(e) => {
-                            e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.05)';
+                            e.currentTarget.style.backgroundColor = 'rgba(30, 64, 175, 0.08)';
                             e.currentTarget.style.transform = 'translateY(0px)';
                           }}
                         >
                           <div className="flex items-center justify-between mb-2 lg:mb-3">
                             <div className="flex items-center gap-2 lg:gap-3">
                               <span className="text-sm lg:text-sm font-semibold text-white"
-                                    style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif' }}>
+                                    style={{ fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif" }}>
                                 {topic.title}
                               </span>
                               {isTopicCompleted && (
-                                <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4" style={{color: '#34C759'}} />
+                                <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4" style={{color: '#60a5fa'}} />
                               )}
                             </div>
                             {openSections.includes(topic.id) ? (
@@ -704,28 +733,28 @@ export default function TytFenPage() {
                                   }`}
                                   style={{
                                     backgroundColor: isSelected 
-                                      ? 'rgba(0, 122, 255, 0.15)' 
+                                      ? 'rgba(30, 64, 175, 0.15)' 
                                       : isCompleted 
-                                        ? 'rgba(52, 199, 89, 0.1)' 
-                                        : 'rgba(255,255,255,0.03)',
+                                        ? 'rgba(30, 64, 175, 0.1)' 
+                                        : 'rgba(30, 64, 175, 0.05)',
                                     border: isSelected 
-                                      ? '1px solid rgba(0, 122, 255, 0.3)' 
+                                      ? '1px solid rgba(30, 64, 175, 0.3)' 
                                       : isCompleted 
-                                        ? '1px solid rgba(52, 199, 89, 0.2)' 
+                                        ? '1px solid rgba(30, 64, 175, 0.2)' 
                                         : '1px solid rgba(255,255,255,0.06)',
-                                    fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif',
+                                    fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif",
                                     minHeight: '44px' // Touch-friendly minimum
                                   }}
                                   onMouseEnter={(e) => {
                                     if (!isSelected && window.innerWidth >= 1024) {
-                                      e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.08)';
+                                      e.currentTarget.style.backgroundColor = 'rgba(30, 64, 175, 0.12)';
                                     }
                                   }}
                                   onMouseLeave={(e) => {
                                     if (!isSelected) {
                                       e.currentTarget.style.backgroundColor = isCompleted 
-                                        ? 'rgba(52, 199, 89, 0.1)' 
-                                        : 'rgba(255,255,255,0.03)';
+                                        ? 'rgba(30, 64, 175, 0.1)' 
+                                        : 'rgba(30, 64, 175, 0.05)';
                                     }
                                   }}
                                 >
@@ -743,8 +772,8 @@ export default function TytFenPage() {
                                       }}
                                       className={`w-6 h-6 lg:w-5 lg:h-5 rounded-full border-2 flex items-center justify-center transition-all duration-200 flex-shrink-0 cursor-pointer ${
                                         isCompleted
-                                          ? 'border-green-500 bg-green-500'
-                                          : 'border-gray-500 hover:border-green-400'
+                                          ? 'border-blue-500 bg-blue-500'
+                                          : 'border-gray-500 hover:border-blue-400'
                                       }`}
                                     >
                                       {isCompleted && (

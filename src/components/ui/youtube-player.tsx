@@ -92,7 +92,7 @@ export function YouTubePlayer({ video, isOpen, onClose }: YouTubePlayerProps) {
           <div className="flex items-center justify-between">
             <div className="flex-1 min-w-0">
               <h3 className="text-white font-semibold text-xs lg:text-lg leading-tight truncate pr-1 lg:pr-4"
-                  style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif' }}>
+                  style={{ fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif" }}>
                 {video.title}
               </h3>
               <div className="flex items-center gap-1.5 lg:gap-4 mt-0.5 lg:mt-1 text-xs lg:text-sm text-gray-300">
@@ -227,7 +227,7 @@ export function VideoCard({ video, onClick, isLoading = false, currentQuery, onC
           style={{
             backgroundColor: 'rgba(255,255,255,0.05)',
             color: 'white',
-            fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif'
+            fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif"
           }}
         >
           {loadingMore ? '...' : showMoreVideos ? '−' : '+'}
@@ -268,7 +268,7 @@ export function VideoCard({ video, onClick, isLoading = false, currentQuery, onC
           <div className="flex-1 min-w-0 flex flex-col justify-between h-16 lg:h-24 pr-8 lg:pr-0">
             <div>
               <h3 className="font-semibold text-white mb-1 lg:mb-2 text-sm lg:text-base leading-tight line-clamp-2"
-                  style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif' }}>
+                  style={{ fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif" }}>
                 {video.title}
               </h3>
               
@@ -289,7 +289,7 @@ export function VideoCard({ video, onClick, isLoading = false, currentQuery, onC
                 style={{
                   backgroundColor: '#EF4444',
                   color: 'white',
-                  fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif'
+                  fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif"
                 }}
                 onMouseEnter={(e) => {
                   if (!isLoading) {
@@ -314,7 +314,7 @@ export function VideoCard({ video, onClick, isLoading = false, currentQuery, onC
                 style={{
                   backgroundColor: 'rgba(255,255,255,0.05)',
                   color: 'white',
-                  fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif'
+                  fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif"
                 }}
                 onMouseEnter={(e) => {
                   if (!isLoading && window.innerWidth >= 1024) {

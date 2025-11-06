@@ -9,12 +9,12 @@ export default function IletisimPage() {
   // Apple-style select dropdown CSS
   const selectStyle = `
     select:focus {
-      box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.2) !important;
-      border-color: #007AFF !important;
+      box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.3) !important;
+      border-color: #8b5cf6 !important;
     }
     
     select option {
-      background-color: #1d1d1f !important;
+      background-color: #2a2a2a !important;
       color: #f5f5f7 !important;
       padding: 12px 16px !important;
       border: none !important;
@@ -24,12 +24,12 @@ export default function IletisimPage() {
     }
     
     select option:hover {
-      background-color: rgba(0, 122, 255, 0.15) !important;
+      background-color: rgba(139, 92, 246, 0.2) !important;
       color: #ffffff !important;
     }
     
     select option:checked, select option:active {
-      background-color: #007AFF !important;
+      background-color: #8b5cf6 !important;
       color: #ffffff !important;
     }
     
@@ -157,21 +157,21 @@ export default function IletisimPage() {
 
   if (isSuccess) {
     return (
-      <div className="min-h-screen" style={{backgroundColor: '#1d1d1f'}}>
+      <div className="min-h-screen text-white" style={{backgroundColor: '#2a2a2a'}}>
         <Header alwaysShow={true} />
         
         <div className="min-h-screen flex items-center justify-center px-3 lg:px-4 pt-16 lg:pt-20">
           <div className="text-center max-w-xs lg:max-w-md">
-            <CheckCircle className="w-12 h-12 lg:w-16 lg:h-16 mx-auto mb-4 lg:mb-6" style={{color: '#30d158'}} />
-            <h2 className="text-xl lg:text-3xl font-light tracking-tight mb-3 lg:mb-4" style={{color: '#f5f5f7'}}>Mesaj Gönderildi!</h2>
-            <p className="mb-4 lg:mb-6 text-sm lg:text-base" style={{color: '#86868b'}}>
+            <CheckCircle className="w-12 h-12 lg:w-16 lg:h-16 mx-auto mb-4 lg:mb-6" style={{color: '#a78bfa'}} />
+            <h2 className="text-xl lg:text-3xl font-light tracking-tight mb-3 lg:mb-4 text-white">Mesaj Gönderildi!</h2>
+            <p className="mb-4 lg:mb-6 text-sm lg:text-base text-gray-300">
               Mesajınız başarıyla alındı. 24 saat içinde size geri dönüş yapacağız.
             </p>
             <button 
               onClick={() => setIsSuccess(false)}
               className="px-4 lg:px-6 py-2.5 lg:py-3 rounded-xl font-semibold transition-all duration-200 text-sm lg:text-base"
               style={{
-                backgroundColor: '#007AFF',
+                backgroundColor: '#8b5cf6',
                 color: '#ffffff'
               }}
             >
@@ -183,8 +183,8 @@ export default function IletisimPage() {
     );
   }
 
-    return (
-    <div className="min-h-screen" style={{backgroundColor: '#1d1d1f'}}>
+  return (
+    <div className="min-h-screen text-white" style={{backgroundColor: '#2a2a2a'}}>
       <style dangerouslySetInnerHTML={{__html: selectStyle}} />
       
       <Header alwaysShow={true} />
@@ -204,11 +204,11 @@ export default function IletisimPage() {
         
         {/* Header */}
         <div className="text-center mb-6 lg:mb-12">
-          <h1 className="text-2xl lg:text-4xl xl:text-5xl font-light tracking-tight mb-3 lg:mb-4" style={{color: '#f5f5f7'}}>
+          <h1 className="text-2xl lg:text-4xl xl:text-5xl font-light tracking-tight mb-3 lg:mb-4 text-white">
             İletişime Geçin
           </h1>
-          <p className="text-sm lg:text-lg max-w-xl lg:max-w-2xl mx-auto px-2 lg:px-0" style={{color: '#86868b'}}>
-            Sorularınız, önerileriniz teknik destek ihtiyaçlarınız veya içeriğiniz gösteriliyorsa ve bizi dava etmek üzereyseniz <span style={{background: 'linear-gradient(90deg, #7C3AED, #EAB308)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', fontWeight: '600'}}>öncelikle sakin olun</span> ✨ ve bizimle iletişime geçin.
+          <p className="text-sm lg:text-lg max-w-xl lg:max-w-2xl mx-auto px-2 lg:px-0 text-gray-300">
+            Sorularınız, önerileriniz teknik destek ihtiyaçlarınız veya içeriğiniz gösteriliyorsa ve bizi dava etmek üzereyseniz <span style={{background: 'linear-gradient(90deg, #7c3aed 0%, #8b5cf6 50%, #a78bfa 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', fontWeight: '600'}}>öncelikle sakin olun</span> ✨ ve bizimle iletişime geçin.
           </p>
         </div>
 
@@ -218,8 +218,8 @@ export default function IletisimPage() {
             <div 
               className="rounded-xl lg:rounded-2xl p-4 lg:p-8"
               style={{
-                backgroundColor: 'rgba(255,255,255,0.05)',
-                border: '1px solid rgba(255,255,255,0.1)',
+                backgroundColor: 'rgba(139, 92, 246, 0.08)',
+                border: '1px solid rgba(139, 92, 246, 0.2)',
                 backdropFilter: 'blur(20px)'
               }}
             >
@@ -227,8 +227,8 @@ export default function IletisimPage() {
                              {/* Progress Bar */}
                <div className="mb-4 lg:mb-8">
                  <div className="flex justify-between items-center mb-2 lg:mb-3">
-                   <span className="text-xs lg:text-sm font-medium" style={{color: '#86868b'}}>Form Tamamlanma</span>
-                   <span className="text-xs lg:text-sm font-medium" style={{color: '#007AFF'}}>{getProgressPercentage()}%</span>
+                   <span className="text-xs lg:text-sm font-medium text-gray-400">Form Tamamlanma</span>
+                   <span className="text-xs lg:text-sm font-medium" style={{color: '#8b5cf6'}}>{getProgressPercentage()}%</span>
                  </div>
                  <div 
                    className="w-full rounded-full h-0.5 lg:h-1"
@@ -238,7 +238,7 @@ export default function IletisimPage() {
                      className="h-0.5 lg:h-1 rounded-full transition-all duration-500 ease-out"
                      style={{ 
                        width: `${getProgressPercentage()}%`,
-                       backgroundColor: '#007AFF'
+                       background: 'linear-gradient(90deg, #7c3aed 0%, #8b5cf6 100%)'
                      }}
                    ></div>
                  </div>
@@ -249,8 +249,8 @@ export default function IletisimPage() {
                 {/* İsim Soyisim */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
                   <div>
-                                         <label className="block text-xs lg:text-sm font-medium mb-1.5 lg:mb-2" style={{color: '#86868b'}}>
-                       <User className="w-3 h-3 lg:w-4 lg:h-4 inline mr-1 lg:mr-2" style={{color: '#86868b'}} />
+                                         <label className="block text-xs lg:text-sm font-medium mb-1.5 lg:mb-2 text-gray-400">
+                       <User className="w-3 h-3 lg:w-4 lg:h-4 inline mr-1 lg:mr-2 text-gray-400" />
                        Ad *
                      </label>
                                          <input
@@ -262,10 +262,10 @@ export default function IletisimPage() {
                        onBlur={() => setFocusedField('')}
                        className="w-full px-3 lg:px-4 py-2.5 lg:py-3 rounded-lg lg:rounded-xl font-medium transition-all duration-200 focus:outline-none text-base"
                        style={{
-                         backgroundColor: 'rgba(255,255,255,0.05)',
+                         backgroundColor: 'rgba(139, 92, 246, 0.08)',
                          border: `1px solid ${
                            errors.firstName ? '#ff3b30' : 
-                           focusedField === 'firstName' ? '#007AFF' : 'rgba(255,255,255,0.1)'
+                           focusedField === 'firstName' ? '#8b5cf6' : 'rgba(139, 92, 246, 0.2)'
                          }`,
                          color: '#f5f5f7'
                        }}
@@ -280,7 +280,7 @@ export default function IletisimPage() {
                   </div>
 
                   <div>
-                                         <label className="block text-xs lg:text-sm font-medium mb-1.5 lg:mb-2" style={{color: '#86868b'}}>
+                                         <label className="block text-xs lg:text-sm font-medium mb-1.5 lg:mb-2 text-gray-400">
                        Soyad *
                      </label>
                                          <input
@@ -292,10 +292,10 @@ export default function IletisimPage() {
                        onBlur={() => setFocusedField('')}
                        className="w-full px-3 lg:px-4 py-2.5 lg:py-3 rounded-lg lg:rounded-xl font-medium transition-all duration-200 focus:outline-none text-base"
                        style={{
-                         backgroundColor: 'rgba(255,255,255,0.05)',
+                         backgroundColor: 'rgba(139, 92, 246, 0.08)',
                          border: `1px solid ${
                            errors.lastName ? '#ff3b30' : 
-                           focusedField === 'lastName' ? '#007AFF' : 'rgba(255,255,255,0.1)'
+                           focusedField === 'lastName' ? '#8b5cf6' : 'rgba(139, 92, 246, 0.2)'
                          }`,
                          color: '#f5f5f7'
                        }}
@@ -313,8 +313,8 @@ export default function IletisimPage() {
                 {/* E-posta ve Telefon */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
                   <div>
-                                         <label className="block text-xs lg:text-sm font-medium mb-1.5 lg:mb-2" style={{color: '#86868b'}}>
-                       <Mail className="w-3 h-3 lg:w-4 lg:h-4 inline mr-1 lg:mr-2" style={{color: '#86868b'}} />
+                                         <label className="block text-xs lg:text-sm font-medium mb-1.5 lg:mb-2 text-gray-400">
+                       <Mail className="w-3 h-3 lg:w-4 lg:h-4 inline mr-1 lg:mr-2 text-gray-400" />
                        E-posta *
                      </label>
                     <input
@@ -326,10 +326,10 @@ export default function IletisimPage() {
                       onBlur={() => setFocusedField('')}
                       className="w-full px-3 lg:px-4 py-2.5 lg:py-3 rounded-lg lg:rounded-xl font-medium transition-all duration-200 focus:outline-none text-base"
                       style={{
-                        backgroundColor: 'rgba(255,255,255,0.05)',
+                        backgroundColor: 'rgba(139, 92, 246, 0.08)',
                         border: `1px solid ${
                           errors.email ? '#ff3b30' : 
-                          focusedField === 'email' ? '#007AFF' : 'rgba(255,255,255,0.1)'
+                          focusedField === 'email' ? '#8b5cf6' : 'rgba(139, 92, 246, 0.2)'
                         }`,
                         color: '#f5f5f7'
                       }}
@@ -344,8 +344,8 @@ export default function IletisimPage() {
                   </div>
 
                   <div>
-                    <label className="block text-xs lg:text-sm font-medium mb-1.5 lg:mb-2" style={{color: '#86868b'}}>
-                      <Phone className="w-3 h-3 lg:w-4 lg:h-4 inline mr-1 lg:mr-2" style={{color: '#86868b'}} />
+                    <label className="block text-xs lg:text-sm font-medium mb-1.5 lg:mb-2 text-gray-400">
+                      <Phone className="w-3 h-3 lg:w-4 lg:h-4 inline mr-1 lg:mr-2 text-gray-400" />
                       Telefon (opsiyonel)
                     </label>
                     <input
@@ -357,10 +357,10 @@ export default function IletisimPage() {
                       onBlur={() => setFocusedField('')}
                       className="w-full px-3 lg:px-4 py-2.5 lg:py-3 rounded-lg lg:rounded-xl font-medium transition-all duration-200 focus:outline-none text-base"
                       style={{
-                        backgroundColor: 'rgba(255,255,255,0.05)',
+                        backgroundColor: 'rgba(139, 92, 246, 0.08)',
                         border: `1px solid ${
                           errors.phone ? '#ff3b30' : 
-                          focusedField === 'phone' ? '#007AFF' : 'rgba(255,255,255,0.1)'
+                          focusedField === 'phone' ? '#8b5cf6' : 'rgba(139, 92, 246, 0.2)'
                         }`,
                         color: '#f5f5f7'
                       }}
@@ -377,7 +377,7 @@ export default function IletisimPage() {
 
                 {/* Konu */}
                 <div>
-                  <label className="block text-xs lg:text-sm font-medium mb-1.5 lg:mb-2" style={{color: '#86868b'}}>
+                  <label className="block text-xs lg:text-sm font-medium mb-1.5 lg:mb-2 text-gray-400">
                     Konu *
                   </label>
                   <input
@@ -389,10 +389,10 @@ export default function IletisimPage() {
                     onBlur={() => setFocusedField('')}
                     className="w-full px-3 lg:px-4 py-2.5 lg:py-3 rounded-lg lg:rounded-xl font-medium transition-all duration-200 focus:outline-none text-base"
                     style={{
-                      backgroundColor: 'rgba(255,255,255,0.05)',
+                      backgroundColor: 'rgba(139, 92, 246, 0.08)',
                       border: `1px solid ${
                         errors.subject ? '#ff3b30' : 
-                        focusedField === 'subject' ? '#007AFF' : 'rgba(255,255,255,0.1)'
+                        focusedField === 'subject' ? '#8b5cf6' : 'rgba(139, 92, 246, 0.2)'
                       }`,
                       color: '#f5f5f7'
                     }}
@@ -409,7 +409,7 @@ export default function IletisimPage() {
                 {/* Kategori ve Öncelik */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
                   <div>
-                    <label className="block text-xs lg:text-sm font-medium mb-1.5 lg:mb-2" style={{color: '#86868b'}}>
+                    <label className="block text-xs lg:text-sm font-medium mb-1.5 lg:mb-2 text-gray-400">
                       Kategori
                     </label>
                                          <select
@@ -418,12 +418,12 @@ export default function IletisimPage() {
                        onChange={handleChange}
                        className="w-full px-3 lg:px-4 py-2.5 lg:py-3 rounded-lg lg:rounded-xl font-medium transition-all duration-200 focus:outline-none appearance-none cursor-pointer text-base"
                        style={{
-                         backgroundColor: 'rgba(255,255,255,0.05)',
+                         backgroundColor: 'rgba(139, 92, 246, 0.08)',
                          border: `1px solid ${
-                           errors.category ? '#ff3b30' : 'rgba(255,255,255,0.1)'
+                           errors.category ? '#ff3b30' : 'rgba(139, 92, 246, 0.2)'
                          }`,
                          color: '#f5f5f7',
-                         fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif',
+                         fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif",
                          backgroundImage: `url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f5f5f7' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e")`,
                          backgroundRepeat: 'no-repeat',
                          backgroundPosition: 'right 8px center',
@@ -449,7 +449,7 @@ export default function IletisimPage() {
                   </div>
 
                   <div>
-                    <label className="block text-xs lg:text-sm font-medium mb-1.5 lg:mb-2" style={{color: '#86868b'}}>
+                    <label className="block text-xs lg:text-sm font-medium mb-1.5 lg:mb-2 text-gray-400">
                       Öncelik
                     </label>
                                          <select
@@ -458,10 +458,10 @@ export default function IletisimPage() {
                        onChange={handleChange}
                        className="w-full px-3 lg:px-4 py-2.5 lg:py-3 rounded-lg lg:rounded-xl font-medium transition-all duration-200 focus:outline-none appearance-none cursor-pointer text-base"
                        style={{
-                         backgroundColor: 'rgba(255,255,255,0.05)',
-                         border: '1px solid rgba(255,255,255,0.1)',
+                         backgroundColor: 'rgba(139, 92, 246, 0.08)',
+                         border: '1px solid rgba(139, 92, 246, 0.2)',
                          color: '#f5f5f7',
-                         fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif',
+                         fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif",
                          backgroundImage: `url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f5f5f7' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e")`,
                          backgroundRepeat: 'no-repeat',
                          backgroundPosition: 'right 8px center',
@@ -479,8 +479,8 @@ export default function IletisimPage() {
 
                 {/* Mesaj */}
                 <div>
-                  <label className="block text-xs lg:text-sm font-medium mb-1.5 lg:mb-2" style={{color: '#86868b'}}>
-                    <MessageSquare className="w-3 h-3 lg:w-4 lg:h-4 inline mr-1 lg:mr-2" style={{color: '#86868b'}} />
+                  <label className="block text-xs lg:text-sm font-medium mb-1.5 lg:mb-2 text-gray-400">
+                    <MessageSquare className="w-3 h-3 lg:w-4 lg:h-4 inline mr-1 lg:mr-2 text-gray-400" />
                     Mesaj * 
                     <span className="text-xs ml-1 lg:ml-2" style={{color: '#515154'}}>
                       ({formData.message.length}/1000 karakter)
@@ -496,10 +496,10 @@ export default function IletisimPage() {
                     maxLength={1000}
                     className="w-full px-3 lg:px-4 py-2.5 lg:py-3 rounded-lg lg:rounded-xl font-medium transition-all duration-200 resize-none focus:outline-none text-base"
                     style={{
-                      backgroundColor: 'rgba(255,255,255,0.05)',
+                      backgroundColor: 'rgba(139, 92, 246, 0.08)',
                       border: `1px solid ${
                         errors.message ? '#ff3b30' : 
-                        focusedField === 'message' ? '#007AFF' : 'rgba(255,255,255,0.1)'
+                        focusedField === 'message' ? '#8b5cf6' : 'rgba(139, 92, 246, 0.2)'
                       }`,
                       color: '#f5f5f7'
                     }}
@@ -511,7 +511,7 @@ export default function IletisimPage() {
                       {errors.message}
                     </p>
                   )}
-                  <p className="mt-1 text-xs" style={{color: '#86868b'}}>
+                  <p className="mt-1 text-xs text-gray-400">
                     Minimum 10 karakter gerekli. Mümkün olduğunca detaylı açıklama yapın.
                   </p>
                 </div>
@@ -523,14 +523,14 @@ export default function IletisimPage() {
                     disabled={isSubmitting}
                     className="w-full font-semibold py-3 lg:py-4 px-4 lg:px-6 rounded-lg lg:rounded-xl transition-all duration-200 flex items-center justify-center space-x-2 text-sm lg:text-base"
                     style={{
-                      backgroundColor: isSubmitting ? 'rgba(255,255,255,0.1)' : '#ffffff',
-                      color: isSubmitting ? '#86868b' : '#000000',
+                      backgroundColor: isSubmitting ? 'rgba(139, 92, 246, 0.3)' : '#8b5cf6',
+                      color: isSubmitting ? '#a78bfa' : '#ffffff',
                       cursor: isSubmitting ? 'not-allowed' : 'pointer'
                     }}
                   >
                     {isSubmitting ? (
                       <>
-                        <div className="animate-spin rounded-full h-4 w-4 lg:h-5 lg:w-5 border-b-2 border-white"></div>
+                        <div className="animate-spin rounded-full h-4 w-4 lg:h-5 lg:w-5 border-b-2 border-white border-t-transparent"></div>
                         <span>Gönderiliyor...</span>
                       </>
                     ) : (

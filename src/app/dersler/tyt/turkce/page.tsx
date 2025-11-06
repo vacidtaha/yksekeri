@@ -4,7 +4,8 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { Header } from "@/components/ui/header";
 import { Footer } from "@/components/ui/footer";
-import { ChevronDown, ChevronRight, ChevronLeft, BookOpen, Play, CheckCircle, Loader2 } from "lucide-react";
+import { ChevronDown, ChevronRight, ChevronLeft, BookOpen, Play, CheckCircle, Loader2, BarChart3 } from "lucide-react";
+import Link from "next/link";
 import { YouTubeVideo, youtubeService } from "@/lib/youtube-api";
 import { YouTubePlayer, VideoCard } from "@/components/ui/youtube-player";
 
@@ -50,7 +51,7 @@ export default function TytTurkcePage() {
     {
       id: "turkce",
       title: "Türkçe",
-      color: "#007AFF",
+      color: "#3b82f6",
       subTopics: [
         { id: "sozcukte-anlam", title: "Sözcükte Anlam", hasVideo: true, hasPDF: true, hasQuiz: true },
         { id: "cumlede-anlam", title: "Cümlede Anlam", hasVideo: true, hasPDF: true, hasQuiz: true },
@@ -72,6 +73,8 @@ export default function TytTurkcePage() {
     if (saved) {
       setCompletedTopics(JSON.parse(saved));
     }
+    // Tüm konu başlıklarını açık başlat
+    setOpenSections(topics.map(topic => topic.id));
   }, []);
 
   useEffect(() => {
@@ -209,7 +212,7 @@ export default function TytTurkcePage() {
   };
 
   return (
-    <div className="min-h-screen text-white" style={{backgroundColor: '#1d1d1d'}}>
+    <div className="min-h-screen text-white" style={{backgroundColor: '#0a0e27'}}>
       <style>{`
         @keyframes gradient {
           0% { background-position: 0% 50%; }
@@ -236,7 +239,7 @@ export default function TytTurkcePage() {
         <div className="text-center mb-6 lg:mb-12 px-3 lg:px-4">
           <div className="max-w-4xl mx-auto">
             <h1 className="text-2xl lg:text-4xl xl:text-5xl font-light tracking-tight mb-3 lg:mb-6 text-white"
-                style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif' }}>
+                style={{ fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif" }}>
               TYT Türkçe
             </h1>
             
@@ -244,7 +247,7 @@ export default function TytTurkcePage() {
             <div className="max-w-xs lg:max-w-md mx-auto mb-4 lg:mb-6">
               <div className="flex justify-between items-center mb-2 lg:mb-3">
                 <span className="text-xs lg:text-sm font-medium text-gray-400">Genel İlerleme</span>
-                <span className="text-xs lg:text-sm font-semibold" style={{color: '#007AFF'}}>{getTotalProgress()}%</span>
+                <span className="text-xs lg:text-sm font-semibold" style={{color: '#3b82f6'}}>{getTotalProgress()}%</span>
               </div>
               <div 
                 className="w-full rounded-full h-1.5 lg:h-2"
@@ -254,18 +257,18 @@ export default function TytTurkcePage() {
                   className="h-1.5 lg:h-2 rounded-full transition-all duration-700 ease-out"
                   style={{ 
                     width: `${getTotalProgress()}%`,
-                    background: 'linear-gradient(90deg, #007AFF 0%, #34C759 100%)'
+                    background: 'linear-gradient(90deg, #1e40af 0%, #3b82f6 100%)'
                   }}
                 ></div>
               </div>
             </div>
             
             <p className="text-sm lg:text-lg text-gray-400 max-w-2xl lg:max-w-3xl mx-auto px-2 lg:px-0"
-               style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif' }}>
+               style={{ fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif" }}>
               <span className="hidden lg:inline">Sağ panelden konu seçin, eğitici videolar izleyin, PDF materyallerini indirin ve pratik sorularla bilginizi pekiştirin.</span>
               <span className="lg:hidden">Aşağıdan konu seçin, videolar izleyin ve pratik yapın.</span>
               <span style={{
-                background: 'linear-gradient(135deg, #32D74B 0%, #30D158 25%, #34C759 50%, #30D158 75%, #32D74B 100%)',
+                background: 'linear-gradient(135deg, #1e40af 0%, #2563eb 25%, #3b82f6 50%, #2563eb 75%, #1e40af 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text',
@@ -283,21 +286,21 @@ export default function TytTurkcePage() {
                 <div 
                   className="rounded-lg lg:rounded-xl p-3 lg:p-4 border relative"
                   style={{
-                    backgroundColor: 'rgba(255, 149, 0, 0.1)',
-                    borderColor: 'rgba(255, 149, 0, 0.3)',
+                    backgroundColor: 'rgba(30, 64, 175, 0.15)',
+                    borderColor: 'rgba(30, 64, 175, 0.3)',
                     backdropFilter: 'blur(10px)'
                   }}
                 >
                   <button
                     onClick={() => setShowProgressWarning(false)}
-                    className="absolute top-2 right-2 lg:top-3 lg:right-3 text-orange-400 hover:text-orange-300 transition-colors w-6 h-6 lg:w-auto lg:h-auto flex items-center justify-center"
+                    className="absolute top-2 right-2 lg:top-3 lg:right-3 text-blue-400 hover:text-blue-300 transition-colors w-6 h-6 lg:w-auto lg:h-auto flex items-center justify-center"
                   >
                     ✕
                   </button>
                   <p className="text-xs lg:text-sm text-center leading-relaxed pr-6 lg:pr-6"
                      style={{ 
-                       color: '#FF9500',
-                       fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif' 
+                       color: '#60a5fa',
+                       fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif" 
                      }}>
                     İlerleme durumunuz tarayıcıda önbelleği temizlemediğiniz sürece otomatik olarak kaydedilir. İstediğiniz zaman kaldığınız yerden devam edebilirsiniz.
                   </p>
@@ -326,7 +329,7 @@ export default function TytTurkcePage() {
                     >
                       <div className="mb-3 lg:mb-4">
                         <h3 className="font-semibold text-white text-xs lg:text-sm mb-1"
-                            style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif' }}>
+                            style={{ fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif" }}>
                           {getCurrentSubTopic()?.title}
                         </h3>
                         <p className="text-xs text-gray-500">Konu Özeti</p>
@@ -342,7 +345,7 @@ export default function TytTurkcePage() {
                         style={{
                           backgroundColor: 'white',
                           color: 'black',
-                          fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif'
+                          fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif"
                         }}
                         onMouseEnter={(e) => {
                           if (window.innerWidth >= 1024) {
@@ -367,7 +370,7 @@ export default function TytTurkcePage() {
                     >
                       <div className="mb-3 lg:mb-4">
                         <h3 className="font-semibold text-white text-xs lg:text-sm mb-1"
-                            style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif' }}>
+                            style={{ fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif" }}>
                           İnteraktif Sorular
                         </h3>
                         <p className="text-xs text-gray-500">Sınavdan Örnek Sorular</p>
@@ -383,7 +386,7 @@ export default function TytTurkcePage() {
                         style={{
                           backgroundColor: 'white',
                           color: 'black',
-                          fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif'
+                          fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif"
                         }}
                         onMouseEnter={(e) => {
                           if (window.innerWidth >= 1024) {
@@ -405,7 +408,7 @@ export default function TytTurkcePage() {
                       <BookOpen className="w-5 h-5 lg:w-6 lg:h-6 text-gray-500" />
                     </div>
                     <h3 className="text-sm lg:text-base font-medium text-gray-400 mb-2"
-                        style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif' }}>
+                        style={{ fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif" }}>
                       Konu Kaynakları
                     </h3>
                     <p className="text-xs lg:text-sm text-gray-500 leading-relaxed max-w-32 lg:max-w-40 mx-auto">
@@ -425,7 +428,7 @@ export default function TytTurkcePage() {
                     <div className="mb-4 lg:mb-8">
                       <div className="mb-3 lg:mb-4">
                         <h2 className="text-lg lg:text-2xl font-semibold text-white mb-1"
-                            style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif' }}>
+                            style={{ fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif" }}>
                           {getCurrentSubTopic()?.title}
                         </h2>
                         <p className="text-xs lg:text-sm text-gray-400">
@@ -502,7 +505,7 @@ export default function TytTurkcePage() {
                                   : 'bg-white/10 text-gray-400 hover:bg-white/20 hover:text-white'
                               }`}
                               style={{
-                                fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif'
+                                fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif"
                               }}
                             >
                               {page}
@@ -529,11 +532,11 @@ export default function TytTurkcePage() {
                       <Play className="w-8 h-8 lg:w-10 lg:h-10 text-gray-600" />
                     </div>
                     <h3 className="text-lg lg:text-2xl font-medium text-gray-400 mb-3 lg:mb-4"
-                        style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif' }}>
+                        style={{ fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif" }}>
                       YouTube Eğitici Videolar
                     </h3>
                     <p className="text-gray-500 max-w-sm lg:max-w-lg mx-auto leading-relaxed text-sm lg:text-lg px-4 lg:px-0"
-                       style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif' }}>
+                       style={{ fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif" }}>
                       <span className="lg:hidden">Aşağıdan bir konu seçtiğinizde videolar burada görünecek.</span>
                       <span className="hidden lg:inline">Sağ panelden bir konu seçtiğinizde, o konuyu anlatan popüler YouTube eğitmenlerinin videoları burada görünecek. İstediğinizi seçip izleyebilirsiniz.</span>
                     </p>
@@ -545,12 +548,38 @@ export default function TytTurkcePage() {
             {/* Sağ Sütun/Alt Kısım - Konu Başlıkları (Responsive) */}
             <div className="w-full lg:w-[30%] flex justify-center px-3 lg:px-0">
               <div className="lg:sticky lg:top-40 w-full max-w-xs lg:max-w-xs">
+                {/* İstatistikler Butonu */}
+                <Link href="/istatistikler?subject=TYT Türkçe" className="block mb-4">
+                  <button
+                    className="w-full py-2.5 px-4 rounded-lg lg:rounded-xl transition-all duration-200 border hover:border-white/30 active:scale-[0.98] flex items-center justify-center gap-2"
+                    style={{
+                      backgroundColor: 'rgba(30, 64, 175, 0.15)',
+                      backdropFilter: 'blur(20px)',
+                      borderColor: 'rgba(30, 64, 175, 0.3)'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = 'rgba(30, 64, 175, 0.25)';
+                      e.currentTarget.style.borderColor = 'rgba(30, 64, 175, 0.5)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = 'rgba(30, 64, 175, 0.15)';
+                      e.currentTarget.style.borderColor = 'rgba(30, 64, 175, 0.3)';
+                    }}
+                  >
+                    <BarChart3 className="w-4 h-4 text-white" />
+                    <span className="text-sm font-medium text-white"
+                          style={{ fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif" }}>
+                      Soru İstatistikleri
+                    </span>
+                  </button>
+                </Link>
+
                 <div className="flex items-center justify-center mb-4 lg:mb-6">
                   <div className="text-xs text-gray-500 mr-2 lg:mr-3">
                     {completedTopics.length}/{topics.reduce((acc, topic) => acc + topic.subTopics.length, 0)}
                   </div>
                   <h3 className="text-base lg:text-lg font-semibold text-white"
-                      style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif' }}>
+                      style={{ fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif" }}>
                     Konu Başlıkları
                   </h3>
                 </div>
@@ -585,11 +614,11 @@ export default function TytTurkcePage() {
                           <div className="flex items-center justify-between mb-2 lg:mb-3">
                             <div className="flex items-center gap-2 lg:gap-3">
                               <span className="text-sm lg:text-sm font-semibold text-white"
-                                    style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif' }}>
+                                    style={{ fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif" }}>
                                 {topic.title}
                               </span>
                               {isTopicCompleted && (
-                                <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4" style={{color: '#34C759'}} />
+                                <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4" style={{color: '#3b82f6'}} />
                               )}
                             </div>
                             {openSections.includes(topic.id) ? (
@@ -639,16 +668,16 @@ export default function TytTurkcePage() {
                                   }`}
                                   style={{
                                     backgroundColor: isSelected 
-                                      ? 'rgba(0, 122, 255, 0.15)' 
+                                      ? 'rgba(30, 64, 175, 0.2)' 
                                       : isCompleted 
-                                        ? 'rgba(52, 199, 89, 0.1)' 
-                                        : 'rgba(255,255,255,0.03)',
+                                        ? 'rgba(30, 64, 175, 0.15)' 
+                                        : 'rgba(30, 64, 175, 0.05)',
                                     border: isSelected 
-                                      ? '1px solid rgba(0, 122, 255, 0.3)' 
+                                      ? '1px solid rgba(30, 64, 175, 0.4)' 
                                       : isCompleted 
-                                        ? '1px solid rgba(52, 199, 89, 0.2)' 
-                                        : '1px solid rgba(255,255,255,0.06)',
-                                    fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif',
+                                        ? '1px solid rgba(30, 64, 175, 0.25)' 
+                                        : '1px solid rgba(30, 64, 175, 0.1)',
+                                    fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif",
                                     minHeight: '44px' // Touch-friendly minimum
                                   }}
                                   onMouseEnter={(e) => {
@@ -659,8 +688,8 @@ export default function TytTurkcePage() {
                                   onMouseLeave={(e) => {
                                     if (!isSelected) {
                                       e.currentTarget.style.backgroundColor = isCompleted 
-                                        ? 'rgba(52, 199, 89, 0.1)' 
-                                        : 'rgba(255,255,255,0.03)';
+                                        ? 'rgba(30, 64, 175, 0.15)' 
+                                        : 'rgba(30, 64, 175, 0.05)';
                                     }
                                   }}
                                 >
@@ -678,8 +707,8 @@ export default function TytTurkcePage() {
                                       }}
                                       className={`w-6 h-6 lg:w-5 lg:h-5 rounded-full border-2 flex items-center justify-center transition-all duration-200 flex-shrink-0 cursor-pointer ${
                                         isCompleted
-                                          ? 'border-green-500 bg-green-500'
-                                          : 'border-gray-500 hover:border-green-400'
+                                          ? 'border-blue-500 bg-blue-500'
+                                          : 'border-gray-500 hover:border-blue-400'
                                       }`}
                                     >
                                       {isCompleted && (

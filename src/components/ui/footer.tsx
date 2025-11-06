@@ -21,7 +21,7 @@ export function Footer() {
   };
 
   return (
-    <footer className="mt-12 border-t bg-gray-50 relative rounded-t-3xl pb-20 lg:pb-0" style={{ borderColor: 'rgba(0,0,0,0.1)' }}>
+    <footer className="border-t relative rounded-t-3xl pb-20 lg:pb-0 text-white" style={{ backgroundColor: '#000000', borderColor: 'rgba(59, 130, 246, 0.2)' }}>
       <div className="max-w-6xl mx-auto px-4 py-4 lg:py-8">
         {/* Ana İçerik */}
         <div className="grid grid-cols-1 md:grid-cols-5 gap-3 lg:gap-6 mb-4 lg:mb-8">
@@ -42,8 +42,8 @@ export function Footer() {
             <div className="flex md:hidden justify-center mt-3">
               <button
                 onClick={handleSurpriseClick}
-                className="bg-gradient-to-r from-pink-400 to-purple-500 hover:from-pink-500 hover:to-purple-600 text-white font-medium py-1.5 px-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 text-xs"
-                style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif' }}
+                className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-medium py-1.5 px-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 text-xs"
+                style={{ fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif" }}
               >
                 Sakın Basma
               </button>
@@ -52,8 +52,8 @@ export function Footer() {
           
           {/* TYT Dersleri */}
           <div>
-            <h4 className="text-gray-900 font-semibold mb-2 lg:mb-3 text-xs lg:text-sm"
-                style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif' }}>
+            <h4 className="text-white font-semibold mb-2 lg:mb-3 text-xs lg:text-sm"
+                style={{ fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif" }}>
               TYT Dersleri
             </h4>
             <ul className="space-y-1 lg:space-y-2">
@@ -65,8 +65,8 @@ export function Footer() {
               ].map((item) => (
                 <li key={item.name}>
                   <a href={item.href} 
-                     className="text-gray-600 hover:text-gray-900 text-xs lg:text-sm transition-colors duration-200"
-                     style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif' }}>
+                     className="text-gray-300 hover:text-blue-400 text-xs lg:text-sm transition-colors duration-200"
+                     style={{ fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif" }}>
                     {item.name}
                   </a>
                 </li>
@@ -76,8 +76,8 @@ export function Footer() {
           
           {/* AYT Dersleri */}
           <div>
-            <h4 className="text-gray-900 font-semibold mb-2 lg:mb-3 text-xs lg:text-sm"
-                style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif' }}>
+            <h4 className="text-white font-semibold mb-2 lg:mb-3 text-xs lg:text-sm"
+                style={{ fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif" }}>
               AYT Dersleri
             </h4>
             <ul className="space-y-1 lg:space-y-2">
@@ -93,8 +93,8 @@ export function Footer() {
               ].map((item) => (
                 <li key={item.name}>
                   <a href={item.href} 
-                     className="text-gray-600 hover:text-gray-900 text-xs lg:text-sm transition-colors duration-200"
-                     style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif' }}>
+                     className="text-gray-300 hover:text-blue-400 text-xs lg:text-sm transition-colors duration-200"
+                     style={{ fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif" }}>
                     {item.name}
                   </a>
                 </li>
@@ -104,8 +104,8 @@ export function Footer() {
           
           {/* Sayfa Bağlantıları */}
           <div>
-            <h4 className="text-gray-900 font-semibold mb-2 lg:mb-3 text-xs lg:text-sm"
-                style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif' }}>
+            <h4 className="text-white font-semibold mb-2 lg:mb-3 text-xs lg:text-sm"
+                style={{ fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif" }}>
               Keşfet
             </h4>
             <ul className="space-y-1 lg:space-y-2">
@@ -116,8 +116,8 @@ export function Footer() {
               ].map((item) => (
                 <li key={item.name}>
                   <a href={item.href} 
-                     className="text-gray-600 hover:text-gray-900 text-xs lg:text-sm transition-colors duration-200"
-                     style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif' }}>
+                     className="text-gray-300 hover:text-blue-400 text-xs lg:text-sm transition-colors duration-200"
+                     style={{ fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif" }}>
                     {item.name}
                   </a>
                 </li>
@@ -132,8 +132,8 @@ export function Footer() {
         <div className="hidden md:block absolute bottom-2 lg:bottom-4 right-2 lg:right-4">
           <button
             onClick={handleSurpriseClick}
-            className="bg-gradient-to-r from-pink-400 to-purple-500 hover:from-pink-500 hover:to-purple-600 text-white font-medium py-1.5 lg:py-2 px-3 lg:px-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 text-xs lg:text-sm"
-            style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif' }}
+            className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-medium py-1.5 lg:py-2 px-3 lg:px-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 text-xs lg:text-sm"
+            style={{ fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif" }}
           >
             Sakın Basma
           </button>

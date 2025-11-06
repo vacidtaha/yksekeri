@@ -75,7 +75,7 @@ export function BetaNotification({ isOpen, onClose }: BetaNotificationProps) {
             <div className="hidden lg:block bg-gradient-to-r from-blue-50 to-green-50 border border-blue-200 rounded-lg p-4">
               <div className="text-center">
                 <p className="text-sm text-gray-700 mb-2"
-                   style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif' }}>
+                   style={{ fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif" }}>
                   Kararlı Sürüm Yayın Tarihi
                 </p>
                 <div className="text-2xl font-bold text-blue-700 mb-1">
@@ -108,12 +108,12 @@ export function BetaNotification({ isOpen, onClose }: BetaNotificationProps) {
             {/* Main Message - Desktop Only */}
             <div className="hidden lg:block bg-gray-50 rounded-lg p-4 border border-gray-200">
               <p className="text-sm text-gray-700 leading-relaxed mb-3"
-                 style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif' }}>
+                 style={{ fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif" }}>
                 Bu uygulama şu anda <span className="font-semibold text-gray-900">beta aşamasında</span> olup, 
                 active development cycle'ındadır. Production-ready features ve stable API endpoints henüz deploy edilmemiştir.
               </p>
               <p className="text-sm text-gray-600 leading-relaxed"
-                 style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif' }}>
+                 style={{ fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif" }}>
                 Herhangi bir bug, crash veya unexpected behavior ile karşılaştığınızda 
                 <span className="font-semibold"> issue tracker</span> üzerinden report edebilirsiniz.
               </p>
@@ -136,7 +136,7 @@ export function BetaNotification({ isOpen, onClose }: BetaNotificationProps) {
               <button
                 onClick={onClose}
                 className="flex-1 py-2 lg:py-3 px-3 lg:px-4 bg-green-600 hover:bg-green-700 text-white text-xs lg:text-sm font-medium rounded lg:rounded-lg transition-colors"
-                style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif' }}
+                style={{ fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif" }}
               >
                 <span className="lg:hidden">Devam Et</span>
                 <span className="hidden lg:inline">Devam Et --ignore-warnings</span>
@@ -144,7 +144,7 @@ export function BetaNotification({ isOpen, onClose }: BetaNotificationProps) {
               <button
                 onClick={onClose}
                 className="py-2 lg:py-3 px-3 lg:px-6 bg-gray-200 hover:bg-gray-300 text-gray-700 text-xs lg:text-sm font-medium rounded lg:rounded-lg transition-colors"
-                style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif' }}
+                style={{ fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif" }}
               >
                 exit
               </button>
