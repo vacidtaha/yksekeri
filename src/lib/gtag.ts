@@ -2,8 +2,25 @@
 
 export const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || '';
 
+// Kullanıcının analytics iznini kontrol et
+const hasAnalyticsConsent = (): boolean => {
+  if (typeof window === 'undefined') return false;
+  
+  const consent = localStorage.getItem('cookie-consent');
+  if (!consent) return false;
+  
+  try {
+    const preferences = JSON.parse(consent);
+    return preferences.analytics === true;
+  } catch {
+    return false;
+  }
+};
+
 // Log page views
 export const pageview = (url: string) => {
+  if (!hasAnalyticsConsent()) return;
+  
   if (typeof window !== 'undefined' && window.gtag) {
     window.gtag('config', GA_MEASUREMENT_ID, {
       page_path: url,
@@ -23,6 +40,9 @@ export const event = ({
   label?: string;
   value?: number;
 }) => {
+  // Analytics iznini kontrol et
+  if (!hasAnalyticsConsent()) return;
+  
   if (typeof window !== 'undefined' && window.gtag) {
     const eventParams: Record<string, string | number | boolean> = {
       event_category: category,
