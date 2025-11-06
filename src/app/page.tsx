@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import { Header } from "@/components/ui/header";
 import { Footer } from "@/components/ui/footer";
 import { BookOpen, Calculator, TestTube, Globe, BarChart3, Target, Zap, ArrowRight, Atom, Beaker, Book, MapPin, Brain, TrendingUp } from "lucide-react";
+import * as gtag from "@/lib/gtag";
 
 export default function Home() {
   const [showWarning, setShowWarning] = useState(true);
@@ -386,7 +387,15 @@ Haddimize değil, inanın umurumuzda da değil — ama şunu unutmayın: **Sına
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 lg:gap-8 mb-8 lg:mb-24">
             
             {/* Türkçe */}
-            <Link href="/dersler/tyt/turkce" className="group cursor-pointer">
+            <Link 
+              href="/dersler/tyt/turkce" 
+              className="group cursor-pointer"
+              onClick={() => gtag.event({
+                action: 'subject_card_click',
+                category: 'Homepage',
+                label: 'TYT Türkçe',
+              })}
+            >
               <div 
                 className="rounded-2xl lg:rounded-3xl p-4 lg:p-8 h-auto lg:h-72 flex flex-col justify-between transition-all duration-300 border hover:border-white/20"
                 style={{
@@ -420,7 +429,15 @@ Haddimize değil, inanın umurumuzda da değil — ama şunu unutmayın: **Sına
             </Link>
 
             {/* Matematik */}
-            <Link href="/dersler/tyt/matematik" className="group cursor-pointer">
+            <Link 
+              href="/dersler/tyt/matematik" 
+              className="group cursor-pointer"
+              onClick={() => gtag.event({
+                action: 'subject_card_click',
+                category: 'Homepage',
+                label: 'TYT Matematik',
+              })}
+            >
               <div 
                 className="rounded-2xl lg:rounded-3xl p-4 lg:p-8 h-auto lg:h-72 flex flex-col justify-between transition-all duration-300 border hover:border-white/20"
                 style={{
@@ -454,7 +471,15 @@ Haddimize değil, inanın umurumuzda da değil — ama şunu unutmayın: **Sına
             </Link>
 
             {/* Fen Bilimleri */}
-            <Link href="/dersler/tyt/fen" className="group cursor-pointer">
+            <Link 
+              href="/dersler/tyt/fen" 
+              className="group cursor-pointer"
+              onClick={() => gtag.event({
+                action: 'subject_card_click',
+                category: 'Homepage',
+                label: 'TYT Fen Bilimleri',
+              })}
+            >
               <div 
                 className="rounded-2xl lg:rounded-3xl p-4 lg:p-8 h-auto lg:h-72 flex flex-col justify-between transition-all duration-300 border hover:border-white/20"
                 style={{
@@ -488,7 +513,15 @@ Haddimize değil, inanın umurumuzda da değil — ama şunu unutmayın: **Sına
             </Link>
 
             {/* Sosyal Bilimler */}
-            <Link href="/dersler/tyt/sosyal" className="group cursor-pointer">
+            <Link 
+              href="/dersler/tyt/sosyal" 
+              className="group cursor-pointer"
+              onClick={() => gtag.event({
+                action: 'subject_card_click',
+                category: 'Homepage',
+                label: 'TYT Sosyal Bilimler',
+              })}
+            >
               <div 
                 className="rounded-2xl lg:rounded-3xl p-4 lg:p-8 h-auto lg:h-72 flex flex-col justify-between transition-all duration-300 border hover:border-white/20"
                 style={{
@@ -558,7 +591,17 @@ Haddimize değil, inanın umurumuzda da değil — ama şunu unutmayın: **Sına
               {/* Sayısal */}
               <div 
                 className={`group cursor-pointer transition-all duration-300 ${selectedArea === 'sayisal' ? 'scale-105' : ''} ${selectedArea && selectedArea !== 'sayisal' ? 'opacity-30' : ''}`}
-                onClick={() => setSelectedArea(selectedArea === 'sayisal' ? null : 'sayisal')}
+                onClick={() => {
+                  const newArea = selectedArea === 'sayisal' ? null : 'sayisal';
+                  setSelectedArea(newArea);
+                  if (newArea) {
+                    gtag.event({
+                      action: 'area_select',
+                      category: 'Homepage',
+                      label: 'Sayısal',
+                    });
+                  }
+                }}
               >
                 <div 
                   className={`rounded-lg lg:rounded-xl p-2 lg:p-4 w-20 h-12 lg:w-32 lg:h-20 flex items-center justify-center transition-all duration-300 border`}
@@ -581,7 +624,17 @@ Haddimize değil, inanın umurumuzda da değil — ama şunu unutmayın: **Sına
               {/* Eşit Ağırlık */}
               <div 
                 className={`group cursor-pointer transition-all duration-300 ${selectedArea === 'esit' ? 'scale-105' : ''} ${selectedArea && selectedArea !== 'esit' ? 'opacity-30' : ''}`}
-                onClick={() => setSelectedArea(selectedArea === 'esit' ? null : 'esit')}
+                onClick={() => {
+                  const newArea = selectedArea === 'esit' ? null : 'esit';
+                  setSelectedArea(newArea);
+                  if (newArea) {
+                    gtag.event({
+                      action: 'area_select',
+                      category: 'Homepage',
+                      label: 'Eşit Ağırlık',
+                    });
+                  }
+                }}
               >
                 <div 
                   className={`rounded-lg lg:rounded-xl p-2 lg:p-4 w-20 h-12 lg:w-32 lg:h-20 flex items-center justify-center transition-all duration-300 border`}
@@ -604,7 +657,17 @@ Haddimize değil, inanın umurumuzda da değil — ama şunu unutmayın: **Sına
               {/* Sözel */}
               <div 
                 className={`group cursor-pointer transition-all duration-300 ${selectedArea === 'sozel' ? 'scale-105' : ''} ${selectedArea && selectedArea !== 'sozel' ? 'opacity-30' : ''}`}
-                onClick={() => setSelectedArea(selectedArea === 'sozel' ? null : 'sozel')}
+                onClick={() => {
+                  const newArea = selectedArea === 'sozel' ? null : 'sozel';
+                  setSelectedArea(newArea);
+                  if (newArea) {
+                    gtag.event({
+                      action: 'area_select',
+                      category: 'Homepage',
+                      label: 'Sözel',
+                    });
+                  }
+                }}
               >
                 <div 
                   className={`rounded-lg lg:rounded-xl p-2 lg:p-4 w-20 h-12 lg:w-32 lg:h-20 flex items-center justify-center transition-all duration-300 border`}
