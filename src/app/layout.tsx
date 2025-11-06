@@ -38,6 +38,35 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
+  
+  // Open Graph (Facebook, WhatsApp, LinkedIn)
+  openGraph: {
+    type: "website",
+    locale: "tr_TR",
+    url: "https://yksekeri.com",
+    siteName: "YKS Şekeri",
+    title: "YKS Şekeri - YKS Hazırlığının Tatlı Hali",
+    description: "YKS hazırlığının tatlı hali! 🍬 Ücretsiz video dersler, PDF kaynaklar ve interaktif sorularla TYT & AYT'ye hazırlan. Reklamsız, tamamen hayrına!",
+    images: [
+      {
+        url: "/yks.png",
+        width: 1200,
+        height: 630,
+        alt: "YKS Şekeri - Ücretsiz YKS TYT AYT Hazırlık Platformu",
+      },
+    ],
+  },
+  
+  // Twitter Card
+  twitter: {
+    card: "summary_large_image",
+    title: "YKS Şekeri - YKS Hazırlığının Tatlı Hali",
+    description: "YKS hazırlığının tatlı hali! 🍬 Ücretsiz video dersler, PDF kaynaklar ve interaktif sorularla TYT & AYT'ye hazırlan.",
+    images: ["/yks.png"],
+    creator: "@yksekeri",
+    site: "@yksekeri",
+  },
+  
   other: {
     "geo.region": "TR",
     "geo.country": "Turkey",
