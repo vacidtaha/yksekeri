@@ -8,6 +8,7 @@ import { ChevronDown, ChevronRight, ChevronLeft, BookOpen, Play, CheckCircle, Lo
 import Link from "next/link";
 import { YouTubeVideo, youtubeService } from "@/lib/youtube-api";
 import { YouTubePlayer, VideoCard } from "@/components/ui/youtube-player";
+import { OnboardingTour } from "@/components/ui/onboarding-tour";
 import Image from "next/image";
 import * as gtag from "@/lib/gtag";
 
@@ -276,7 +277,7 @@ export default function AytEdebiyatPage() {
             </h1>
             
             {/* Overall Progress Bar */}
-            <div className="max-w-xs lg:max-w-md mx-auto mb-4 lg:mb-6">
+            <div id="tour-progress-bar" className="max-w-xs lg:max-w-md mx-auto mb-4 lg:mb-6">
               <div className="flex justify-between items-center mb-2 lg:mb-3">
                 <span className="text-xs lg:text-sm font-medium text-gray-400">Genel İlerleme</span>
                 <span className="text-xs lg:text-sm font-semibold" style={{color: '#8b5cf6'}}>{getTotalProgress()}%</span>
@@ -348,7 +349,7 @@ export default function AytEdebiyatPage() {
             
             {/* Sol Sütun - PDF ve Sorular (Desktop Only) */}
             <div className="hidden lg:flex lg:w-[30%] justify-center">
-              <div className="sticky top-32 w-full max-w-xs">
+              <div id="tour-resources-panel" className="sticky top-32 w-full max-w-xs">
                 {selectedTopic ? (
                   <div className="space-y-3 lg:space-y-4">
                     {/* PDF Özet */}
@@ -454,7 +455,7 @@ export default function AytEdebiyatPage() {
 
             {/* Orta Sütun - YouTube Videoları (Responsive) */}
             <div className="w-full lg:w-[40%] flex justify-center px-3 lg:px-0 mb-8 lg:mb-0">
-              <div className="lg:sticky lg:top-40 w-full max-w-4xl">
+              <div id="tour-videos-section" className="lg:sticky lg:top-40 w-full max-w-4xl">
                 {selectedTopic ? (
                   <div>
                     <div className="mb-4 lg:mb-8">
@@ -579,10 +580,11 @@ export default function AytEdebiyatPage() {
 
             {/* Sağ Sütun/Alt Kısım - Konu Başlıkları (Responsive) */}
             <div className="w-full lg:w-[30%] flex justify-center px-3 lg:px-0">
-              <div className="lg:sticky lg:top-40 w-full max-w-xs lg:max-w-xs">
+              <div id="tour-topics-panel" className="lg:sticky lg:top-40 w-full max-w-xs lg:max-w-xs">
                 {/* İstatistikler Butonu */}
                 <Link href="/istatistikler?subject=AYT Türk Dili ve Edebiyatı#ayt" className="block mb-4">
                   <button
+                    id="tour-statistics-button"
                     className="w-full py-2.5 px-4 rounded-lg lg:rounded-xl transition-all duration-200 border hover:border-white/30 active:scale-[0.98] flex items-center justify-center gap-2"
                     style={{
                       backgroundColor: 'rgba(139, 92, 246, 0.15)',
@@ -692,6 +694,7 @@ export default function AytEdebiyatPage() {
                               return (
                                 <button
                                   key={subTopic.id}
+                                  data-topic-id={subTopic.id}
                                   onClick={() => selectTopic(subTopic.id)}
                                   className={`w-full text-left p-2.5 lg:p-3 rounded-lg text-xs transition-all duration-200 active:scale-[0.98] ${
                                     isSelected
@@ -772,6 +775,115 @@ export default function AytEdebiyatPage() {
 
       {/* Feedback Button - Desktop Only */}
       <FeedbackButton />
+
+      {/* Mobil Test Bölümü - Konu Başlıklarının Altında */}
+      {selectedTopic && (
+        <div id="tour-resources-panel-mobile" className="lg:hidden px-4 py-6">
+          <div 
+            className="rounded-xl p-4 border border-white/8"
+            style={{
+              backgroundColor: 'rgba(255,255,255,0.03)',
+              backdropFilter: 'blur(15px)'
+            }}
+          >
+            <div className="mb-3">
+              <h3 className="font-semibold text-white text-sm mb-1"
+                  style={{ fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif" }}>
+                İnteraktif Sorular
+              </h3>
+              <p className="text-xs text-gray-500">Sınavdan Örnek Sorular</p>
+            </div>
+            
+            <p className="text-xs text-gray-400 mb-3 leading-relaxed">
+              Geçmiş AYT sınavlarından yayınlanmış örnek sorulardan ve yapay zeka&apos;nın ürettiği sorulardan 
+              oluşan {getCurrentSubTopic()?.title.toLowerCase()} soruları. Adım adım çözümlerle interaktif deneyim.
+            </p>
+            
+            <button 
+              data-test-button="true"
+              onClick={() => {
+                const testButton = document.querySelector('[data-test-button="true"]');
+                if (testButton) {
+                  testButton.setAttribute('data-test-open', 'true');
+                }
+              }}
+              className="w-full py-3 rounded-lg transition-all duration-200 text-sm font-medium active:scale-[0.98]"
+              style={{
+                backgroundColor: 'white',
+                color: 'black',
+                fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif"
+              }}
+            >
+              Kendini Test Et
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Onboarding Tour */}
+      <OnboardingTour
+        storageKey="course-onboarding-tour-completed"
+        steps={[
+          {
+            id: "progress",
+            target: "#tour-progress-bar",
+            title: "İlerleme Takibi",
+            content: "İşte ilerleme çubuğun. Şu an boş ama umut var, belki bir gün dolar.",
+            position: "bottom",
+          },
+          {
+            id: "select-topic",
+            target: "#tour-topics-panel",
+            title: "Konu Seç",
+            content: "Tamam, şimdi izlemek için bir konu seç. Evet, o kadar.",
+            waitForAction: true,
+            actionType: "select-topic",
+            position: "left",
+          },
+          {
+            id: "statistics",
+            target: "#tour-statistics-button",
+            title: "Soru İstatistikleri",
+            content: "Bak burada soru istatistikleri var. Hangi konudan kaç soru çıkmış, hangi yıllarda ne sorulmuş, hepsi burada. İstersen bak, istersen geç. Ama bakarsan hangi konulara daha çok çalışman gerektiğini anlarsın.",
+            waitForAction: false,
+            position: "bottom",
+          },
+          {
+            id: "videos",
+            target: "#tour-videos-section",
+            title: "Videolar",
+            content: "Videolar burada. İzlemek istersen izle, istemezsen izleme. Zorla izletmiyoruz, rahat ol. Ama eğitici bitince izlersen daha iyi olur tabii.",
+            waitForAction: false,
+            position: "center",
+          },
+          {
+            id: "mark-complete",
+            target: "#tour-topics-panel",
+            title: "Tamamlandı İşaretle",
+            content: "İzlediğin diyelim sonrasında konunun yanındaki o küçük daireye tıklıyorsun. Hadi tıkla",
+            waitForAction: true,
+            actionType: "mark-complete",
+            position: "left",
+          },
+          {
+            id: "test",
+            target: "#tour-resources-panel",
+            title: "Çaldığımız Sorularla Kendini Test Et",
+            content: "Son adım! Her sene sorular çalınıyordu bu senede biz çaldık buraya da ekledik git çöz (çalma kısmı şaka)",
+            waitForAction: false,
+            position: "right",
+          },
+        ]}
+        onComplete={() => {
+          console.log("Tour tamamlandı!");
+        }}
+        onActionComplete={(stepId, actionType) => {
+          console.log(`Eylem tamamlandı: ${stepId} - ${actionType}`);
+        }}
+        selectedTopic={selectedTopic}
+        isPlayerOpen={isPlayerOpen}
+        completedTopics={completedTopics}
+      />
 
       <Footer />
     </div>

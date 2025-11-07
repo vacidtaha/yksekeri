@@ -5,6 +5,35 @@ import { X, Play, Maximize2 } from "lucide-react";
 import { YouTubeVideo, youtubeService } from "@/lib/youtube-api";
 import Image from "next/image";
 
+// CSS animasyonları için style tag ekle
+if (typeof document !== 'undefined' && !document.getElementById('video-card-animations')) {
+  const style = document.createElement('style');
+  style.id = 'video-card-animations';
+  style.textContent = `
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+      }
+    }
+    @keyframes fadeOut {
+      from {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+      }
+      to {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.9);
+      }
+    }
+  `;
+  document.head.appendChild(style);
+}
+
 interface YouTubePlayerProps {
   video: YouTubeVideo | null;
   isOpen: boolean;
@@ -215,13 +244,37 @@ export function VideoCard({ video, onClick, isLoading = false, currentQuery, onC
         backgroundColor: 'rgba(255,255,255,0.05)',
         backdropFilter: 'blur(20px)'
       }}
-      onClick={!isLoading ? onClick : undefined}
+      onClick={!isLoading ? (e) => {
+        // Eğitici tur açıkken tıklamayı engelle
+        const tourOverlay = document.querySelector('[style*="z-index: 9998"]');
+        if (tourOverlay) {
+          e.preventDefault();
+          e.stopPropagation();
+          // Tooltip içinde mesaj göster
+          const event = new CustomEvent('showVideoMessage');
+          window.dispatchEvent(event);
+          return;
+        }
+        onClick();
+      } : undefined}
     >
       {/* Ana Video Kartı */}
       <div className={`${showMoreVideos ? 'p-3 lg:p-5 border-b border-white/10' : 'p-3 lg:p-5'} relative`}>
         {/* Mobile Diğer Button - Top Right */}
         <button 
-          onClick={handleShowMoreVideos}
+          onClick={(e) => {
+            e.stopPropagation();
+            // Eğitici tur açıkken tıklamayı engelle
+            const tourOverlay = document.querySelector('[style*="z-index: 9998"]');
+            if (tourOverlay) {
+              e.preventDefault();
+              // Tooltip içinde mesaj göster
+              const event = new CustomEvent('showVideoMessage');
+              window.dispatchEvent(event);
+              return;
+            }
+            handleShowMoreVideos(e);
+          }}
           disabled={isLoading}
           className="lg:hidden absolute top-2 right-2 px-2 py-1 rounded-md transition-all duration-200 text-xs font-medium border border-gray-600 hover:border-red-400 hover:bg-red-400/10 disabled:opacity-50 z-10"
           style={{
@@ -283,7 +336,19 @@ export function VideoCard({ video, onClick, isLoading = false, currentQuery, onC
             {/* Action Buttons */}
             <div className="flex items-center gap-2 lg:justify-between">
               <button 
-                onClick={(e) => { e.stopPropagation(); onClick(); }}
+                onClick={(e) => { 
+                  e.stopPropagation();
+                  // Eğitici tur açıkken tıklamayı engelle
+                  const tourOverlay = document.querySelector('[style*="z-index: 9998"]');
+                  if (tourOverlay) {
+                    e.preventDefault();
+                    // Tooltip içinde mesaj göster
+                    const event = new CustomEvent('showVideoMessage');
+                    window.dispatchEvent(event);
+                    return;
+                  }
+                  onClick();
+                }}
                 disabled={isLoading}
                 className="hidden lg:flex items-center gap-1 px-2 lg:px-3 py-1 lg:py-1.5 rounded-md lg:rounded-lg transition-all duration-200 text-xs font-medium disabled:opacity-50 disabled:cursor-not-allowed"
                 style={{
@@ -308,7 +373,19 @@ export function VideoCard({ video, onClick, isLoading = false, currentQuery, onC
               
               {/* Desktop Diğer Button */}
               <button 
-                onClick={handleShowMoreVideos}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  // Eğitici tur açıkken tıklamayı engelle
+                  const tourOverlay = document.querySelector('[style*="z-index: 9998"]');
+                  if (tourOverlay) {
+                    e.preventDefault();
+                    // Tooltip içinde mesaj göster
+                    const event = new CustomEvent('showVideoMessage');
+                    window.dispatchEvent(event);
+                    return;
+                  }
+                  handleShowMoreVideos(e);
+                }}
                 disabled={isLoading}
                 className="hidden lg:block px-2 lg:px-3 py-1 lg:py-1.5 rounded-md lg:rounded-lg transition-all duration-200 text-xs font-medium border border-gray-600 hover:border-red-400 hover:bg-red-400/10 disabled:opacity-50"
                 style={{
@@ -348,7 +425,16 @@ export function VideoCard({ video, onClick, isLoading = false, currentQuery, onC
                    key={channelVideo.id} 
                    className="flex items-center gap-2 lg:gap-3 p-1.5 lg:p-2 rounded-md lg:rounded-lg hover:bg-white/5 transition-colors duration-200 cursor-pointer"
                    onClick={(e) => { 
-                     e.stopPropagation(); 
+                     e.stopPropagation();
+                     // Eğitici tur açıkken tıklamayı engelle
+                     const tourOverlay = document.querySelector('[style*="z-index: 9998"]');
+                     if (tourOverlay) {
+                       e.preventDefault();
+                       // Tooltip içinde mesaj göster
+                       const event = new CustomEvent('showVideoMessage');
+                       window.dispatchEvent(event);
+                       return;
+                     }
                      if (onChannelVideoClick) {
                        onChannelVideoClick(channelVideo);
                      } else {
