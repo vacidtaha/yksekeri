@@ -139,13 +139,13 @@ export default function IletisimPage() {
     setIsSubmitting(true);
     
     try {
-      // Google Analytics tracking - Form gönderimi
-      gtag.event({
-        action: 'form_submit',
-        category: 'Contact',
-        label: `${formData.category || 'No Category'} - ${formData.priority}`,
-      });
-      
+    // Google Analytics tracking - Form gönderimi
+    gtag.event({
+      action: 'form_submit',
+      category: 'Contact',
+      label: `${formData.category || 'No Category'} - ${formData.priority}`,
+    });
+    
       // EmailJS ile e-posta gönder
       const templateParams = {
         from_name: `${formData.firstName} ${formData.lastName}`,
@@ -166,13 +166,13 @@ export default function IletisimPage() {
       );
       
       // Başarılı
-      setIsSuccess(true);
-      setFormData({
-        firstName: '', lastName: '', email: '', phone: '', 
-        subject: '', priority: 'normal', category: '', message: ''
-      });
-      
-      setTimeout(() => setIsSuccess(false), 5000);
+    setIsSuccess(true);
+    setFormData({
+      firstName: '', lastName: '', email: '', phone: '', 
+      subject: '', priority: 'normal', category: '', message: ''
+    });
+    
+    setTimeout(() => setIsSuccess(false), 5000);
       
     } catch (error) {
       console.error('Form gönderme hatası:', error);

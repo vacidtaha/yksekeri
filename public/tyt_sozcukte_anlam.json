@@ -1,0 +1,322 @@
+[
+  {
+    "number": 1,
+    "stem": "Aşağıdaki cümlelerde boş bırakılan yerlere sırasıyla hangi sözcükler getirilmelidir?\nI. Parçada eksik bölüme uygun sözcüğü seçtiren soru tipi “_____” sorusudur.\nII. “Dolabın gözü” ifadesindeki “göz”, gerçek anlamına benzerlikten dolayı “_____” anlam kazanmıştır.\nIII. “Biçem” sözcüğünün eş anlamlısı “_____”tır.",
+    "options": [
+      {
+        "key": "A",
+        "text": "Deyim – mecaz – tarz",
+        "isCorrect": false
+      },
+      {
+        "key": "B",
+        "text": "Boşluk doldurma – yan – üslup",
+        "isCorrect": true
+      },
+      {
+        "key": "C",
+        "text": "Boşluk doldurma – yan – tarz",
+        "isCorrect": false
+      },
+      {
+        "key": "D",
+        "text": "Deyim – yan – üslup",
+        "isCorrect": false
+      },
+      {
+        "key": "E",
+        "text": "Boşluk doldurma – mecaz – üslup",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "Doğru: Boşluk doldurma, yan anlam, üslup."
+  },
+  {
+    "number": 2,
+    "stem": "“Bu yazarların eserleri aynı tornadan çıkmış gibiydi.” cümlesinde altı çizili söz öbeği hangi anlamı karşılar?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Yüksek nitelik",
+        "isCorrect": false
+      },
+      {
+        "key": "B",
+        "text": "Tekdüzelik",
+        "isCorrect": true
+      },
+      {
+        "key": "C",
+        "text": "Yoğun emek",
+        "isCorrect": false
+      },
+      {
+        "key": "D",
+        "text": "Özgünlük",
+        "isCorrect": false
+      },
+      {
+        "key": "E",
+        "text": "Aşırı süsleme",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "“Aynı tornadan çıkmak” → tek tiplik."
+  },
+  {
+    "number": 3,
+    "stem": "Aşağıdaki cümlelerdeki altı çizili sözcüklerden hangisi, ayraç içindeki açıklamayla anlamca uyuşmaz?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Bu sözcük eş (anlamdaş) kabul edilir.",
+        "isCorrect": false
+      },
+      {
+        "key": "B",
+        "text": "Temel (gerçek) anlam her zaman ilk akla gelendir.",
+        "isCorrect": false
+      },
+      {
+        "key": "C",
+        "text": "Perde (tiyatro) sözcüğü terimdir.",
+        "isCorrect": false
+      },
+      {
+        "key": "D",
+        "text": "Bir sözcüğün gerçek anlamdan koparak kazandığı yeni anlama mecaz denir.",
+        "isCorrect": false
+      },
+      {
+        "key": "E",
+        "text": "Bu makale çok özgün (has) bir çalışma.",
+        "isCorrect": true
+      }
+    ],
+    "explanation": "Özgün ≠ has; uyuşmaz."
+  },
+  {
+    "number": 4,
+    "stem": "Aşağıdaki cümlelerin hangisinde altı çizili sözcük nicel (ölçülebilir) anlamdadır?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Beş kilogram un aldı.",
+        "isCorrect": true
+      },
+      {
+        "key": "B",
+        "text": "Bize karşı soğuk davrandı.",
+        "isCorrect": false
+      },
+      {
+        "key": "C",
+        "text": "Çok büyük işler başardı.",
+        "isCorrect": false
+      },
+      {
+        "key": "D",
+        "text": "Mavi bir ceket giydi.",
+        "isCorrect": false
+      },
+      {
+        "key": "E",
+        "text": "Bu yaramaz çocuk beni yordu.",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "Beş kilogram → nicel."
+  },
+  {
+    "number": 5,
+    "stem": "Aşağıdakilerden hangisinde altı çizili sözcük, sesteş değil kökteş (eylem–isim ilişkili) olarak kullanılmıştır?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Çocuk gül topladı.",
+        "isCorrect": false
+      },
+      {
+        "key": "B",
+        "text": "Şakaya çok güldük.",
+        "isCorrect": false
+      },
+      {
+        "key": "C",
+        "text": "Duvarı boya ile boyuyorum.",
+        "isCorrect": true
+      },
+      {
+        "key": "D",
+        "text": "Suda kendi yüzünü izledi.",
+        "isCorrect": false
+      },
+      {
+        "key": "E",
+        "text": "Yaptığı iş yüzünden yüzü asıldı.",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "Boya (ad)–boyamak (fiil) → kökteş."
+  },
+  {
+    "number": 6,
+    "stem": "I. Nevruz ateşi yakıldı.\nII. Çocuğun yüksek ateşi vardı.\nIII. Kalabalığın ateşi gittikçe arttı.\n\nBu sözcükler sırasıyla hangi anlamlardadır?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Gerçek – Yan – Mecaz",
+        "isCorrect": false
+      },
+      {
+        "key": "B",
+        "text": "Yan – Gerçek – Mecaz",
+        "isCorrect": false
+      },
+      {
+        "key": "C",
+        "text": "Gerçek – Mecaz – Yan",
+        "isCorrect": false
+      },
+      {
+        "key": "D",
+        "text": "Gerçek – Yan – Mecaz",
+        "isCorrect": true
+      },
+      {
+        "key": "E",
+        "text": "Yan – Mecaz – Gerçek",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "Sıra: gerçek, yan, mecaz."
+  },
+  {
+    "number": 7,
+    "stem": "Aşağıdaki cümlelerin hangisinde terim anlamlı bir sözcük vardır?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Ay ile Güneş dost gibidir.",
+        "isCorrect": false
+      },
+      {
+        "key": "B",
+        "text": "Bu sorunu çözeceğiz.",
+        "isCorrect": false
+      },
+      {
+        "key": "C",
+        "text": "Eserin ana teması dikkat çekiciydi.",
+        "isCorrect": false
+      },
+      {
+        "key": "D",
+        "text": "Roman, kahramanların ağız özelliklerini yansıtır.",
+        "isCorrect": true
+      },
+      {
+        "key": "E",
+        "text": "Aklındaki soru işareti onu yordu.",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "Ağız (edebiyat terimi)."
+  },
+  {
+    "number": 8,
+    "stem": "Aşağıdaki cümlelerin hangisi gereksiz eş anlamlı sözcük kullanımından dolayı duruluk ilkesine aykırıdır?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Yaptığı işte yüksek performans sergiledi.",
+        "isCorrect": false
+      },
+      {
+        "key": "B",
+        "text": "Edebiyat dünyası zengin örneklerle dolu.",
+        "isCorrect": false
+      },
+      {
+        "key": "C",
+        "text": "Bu topraklarda herkes özgür ve hür yaşıyor.",
+        "isCorrect": true
+      },
+      {
+        "key": "D",
+        "text": "Yansıma sözcükler ses taklidiyle oluşur.",
+        "isCorrect": false
+      },
+      {
+        "key": "E",
+        "text": "Mecaz anlam gerçek anlamdan uzaklaşarak oluşur.",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "Özgür & hür → eş anlamlı, gereksiz tekrar."
+  },
+  {
+    "number": 9,
+    "stem": "Aşağıdaki cümlelerin hangisinde “kitap” sözcüğü genel anlamdadır?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Kitap insanın en iyi dostudur.",
+        "isCorrect": true
+      },
+      {
+        "key": "B",
+        "text": "Elindeki kitabı bitirdi.",
+        "isCorrect": false
+      },
+      {
+        "key": "C",
+        "text": "Bu kitap uzun betimlemeler içeriyor.",
+        "isCorrect": false
+      },
+      {
+        "key": "D",
+        "text": "Son aldığım kitabı bir günde okudum.",
+        "isCorrect": false
+      },
+      {
+        "key": "E",
+        "text": "O kitabı yazmak yıllar aldı.",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "A şıkkında kitap genel anlam."
+  },
+  {
+    "number": 10,
+    "stem": "Aşağıdaki söz öbeklerinden hangisi dolaylama değildir?",
+    "options": [
+      {
+        "key": "A",
+        "text": "Sanat Güneşi",
+        "isCorrect": true
+      },
+      {
+        "key": "B",
+        "text": "Yavru vatan",
+        "isCorrect": false
+      },
+      {
+        "key": "C",
+        "text": "Yedi tepeli şehir",
+        "isCorrect": false
+      },
+      {
+        "key": "D",
+        "text": "Derya kuzusu",
+        "isCorrect": false
+      },
+      {
+        "key": "E",
+        "text": "Meşin yuvarlak",
+        "isCorrect": false
+      }
+    ],
+    "explanation": "Sanat Güneşi → takma ad; dolaylama değil."
+  }
+]
