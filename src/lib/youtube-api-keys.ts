@@ -60,7 +60,7 @@ export function getApiKeyForSubject(subject: SubjectType): string {
  * API key'in hangi derse ait olduğunu döndürür (debug için)
  */
 export function getSubjectForApiKey(apiKey: string): SubjectType | null {
-  const entry = Object.entries(API_KEY_MAP).find(([_, key]) => key === apiKey);
+  const entry = Object.entries(API_KEY_MAP).find(([, key]) => key === apiKey);
   return entry ? entry[0] as SubjectType : null;
 }
 

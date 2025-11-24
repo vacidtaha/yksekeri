@@ -41,7 +41,6 @@ export default function AytTarihPage() {
   const [videosLoading, setVideosLoading] = useState(false);
   const [selectedVideo, setSelectedVideo] = useState<YouTubeVideo | null>(null);
   const [isPlayerOpen, setIsPlayerOpen] = useState(false);
-  const [currentSearchQuery, setCurrentSearchQuery] = useState<string>("");
   
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
@@ -171,14 +170,24 @@ export default function AytTarihPage() {
     
          try {
        const searchQuery = getOptimizedSearchQuery(topicId);
-       setCurrentSearchQuery(searchQuery);
-       const fetchedVideos = await youtubeService.searchVideos({
-         query: searchQuery,
-         maxResults: 20,
-         order: 'relevance',
-         subject: 'ayt-tarih' // Her ders için ayrı API key
-       });
-       setVideos(fetchedVideos);
+       
+       // 🔥 ÖNCELİKLE CACHE'E BAK
+       console.log(`📦 Cache kontrol ediliyor: ayt-tarih - ${topicId}`);
+       const cachedVideos = await getCachedVideos('ayt-tarih', topicId);
+       
+       if (cachedVideos && cachedVideos.length > 0) {
+         console.log(`✅ ${cachedVideos.length} video cache'den yüklendi (API kullanılmadı)`);
+         setVideos(cachedVideos);
+       } else {
+         console.log(`🔍 Cache bulunamadı, YouTube API'ye gidiliyor: "${searchQuery}"`);
+         const fetchedVideos = await youtubeService.searchVideos({
+           query: searchQuery,
+           maxResults: 20,
+           order: 'relevance',
+           subject: 'ayt-tarih'
+         });
+         setVideos(fetchedVideos);
+       }
      } catch (error) {
        console.error('Video arama hatası:', error);
        setVideos([]);

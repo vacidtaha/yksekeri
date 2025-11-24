@@ -46,9 +46,6 @@ export default function AytFelsefePage() {
   const [currentPage, setCurrentPage] = useState(1);
   const videosPerPage = 8;
   const totalPages = 4;
-  
-  // Current search query for channel videos
-  const [currentSearchQuery, setCurrentSearchQuery] = useState<string>('');
 
   // AYT Felsefe Konu Başlıkları
   const topics: Topic[] = [
@@ -148,7 +145,6 @@ export default function AytFelsefePage() {
       
       try {
         const searchQuery = getOptimizedSearchQuery(topicId);
-        setCurrentSearchQuery(searchQuery);
         
         // 🔥 ÖNCELİKLE CACHE'E BAK
         console.log(`📦 Cache kontrol ediliyor: ayt-felsefe - ${topicId}`);

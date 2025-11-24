@@ -46,9 +46,6 @@ export default function AytKimyaPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const videosPerPage = 8;
   const totalPages = 4;
-  
-  // Current search query for channel videos
-  const [currentSearchQuery, setCurrentSearchQuery] = useState<string>('');
 
   // AYT Kimya Konu Başlıkları
   const topics: Topic[] = [
@@ -169,7 +166,6 @@ export default function AytKimyaPage() {
       
       try {
         const searchQuery = getOptimizedSearchQuery(topicId);
-        setCurrentSearchQuery(searchQuery);
         
         // 🔥 ÖNCELİKLE CACHE'E BAK
         console.log(`📦 Cache kontrol ediliyor: ayt-kimya - ${topicId}`);

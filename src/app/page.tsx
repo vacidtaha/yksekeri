@@ -13,7 +13,6 @@ export default function Home() {
   const [showScrollText, setShowScrollText] = useState(true);
   const [selectedArea, setSelectedArea] = useState<string | null>(null);
   const [visibleWords, setVisibleWords] = useState<number>(0);
-  const [isTyping, setIsTyping] = useState(false); // Animasyon kapalı
 
   // Typing animation için tam metin (vurgulu kelimeler için özel işaretler)
   const fullText = `Biz **Taha Vacid ve Haktan Köksal**. Bu siteyi can sıkıntısından ve bir iddia sonucu kurduk — (tabiki biz kazandık). İşin gerçeği harcayamayacak kadar çok paramız, Tövbeyle geçiremeyeceğimiz kadar da çok günahımız var, o yüzden buraya **reklâm sıkıştırmaya hiç niyetimiz yok duanız yeterli**.

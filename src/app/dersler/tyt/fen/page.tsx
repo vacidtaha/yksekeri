@@ -46,9 +46,6 @@ export default function TytFenPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const videosPerPage = 8;
   const totalPages = 4;
-  
-  // Current search query for channel videos
-  const [currentSearchQuery, setCurrentSearchQuery] = useState<string>('');
 
   // TYT Fen Bilimleri Konu Başlıkları
   const topics: Topic[] = [
@@ -194,7 +191,6 @@ export default function TytFenPage() {
       try {
         // Konuya özel optimize edilmiş sorgu
         const searchQuery = getOptimizedSearchQuery(topicId);
-        setCurrentSearchQuery(searchQuery);
         
         // 🔥 ÖNCELİKLE CACHE'E BAK
         console.log(`📦 Cache kontrol ediliyor: tyt-fen - ${topicId}`);
