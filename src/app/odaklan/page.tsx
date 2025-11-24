@@ -89,6 +89,19 @@ function OdaklanContent() {
       value: timerSeconds > 0 ? Math.floor(timerSeconds / 60) : undefined,
     });
     
+    // Sesi durdur
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current = null;
+    }
+    setActiveSound(null);
+    
+    // Kronometreyi durdur
+    if (timerIntervalRef.current) {
+      clearInterval(timerIntervalRef.current);
+      timerIntervalRef.current = null;
+    }
+    
     // Tam ekrandaysa önce çık
     if (document.fullscreenElement) {
       await exitFullscreen();
@@ -213,11 +226,17 @@ function OdaklanContent() {
     localStorage.setItem('studySessions', JSON.stringify(updated));
   }, [savedSessions]);
 
-  // Cleanup - component unmount olduğunda timer'ı temizle
+  // Cleanup - component unmount olduğunda timer ve sesleri temizle
   useEffect(() => {
     return () => {
+      // Timer'ı temizle
       if (timerIntervalRef.current) {
         clearInterval(timerIntervalRef.current);
+      }
+      // Sesi durdur
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current = null;
       }
     };
   }, []);
