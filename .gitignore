@@ -65,3 +65,6 @@ yarn.lock
 
 # PM2
 .pm2/
+
+# Video Cache Files
+public/cache/
