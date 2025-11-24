@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, useCallback, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
+import * as gtag from "@/lib/gtag";
 
 function OdaklanContent() {
   const searchParams = useSearchParams();
@@ -57,6 +58,11 @@ function OdaklanContent() {
     try {
       await document.documentElement.requestFullscreen();
       setShowFullscreenPrompt(false);
+      gtag.event({
+        action: 'fullscreen_enter',
+        category: 'Odaklan',
+        label: 'Fullscreen Mode',
+      });
     } catch (error) {
       console.log("Fullscreen hatası:", error);
     }
@@ -75,12 +81,20 @@ function OdaklanContent() {
 
   // Ana sayfaya dön (content bölümüne)
   const goToHome = useCallback(async () => {
+    // Analytics tracking
+    gtag.event({
+      action: 'exit_odaklan',
+      category: 'Odaklan',
+      label: 'Return to Homepage',
+      value: timerSeconds > 0 ? Math.floor(timerSeconds / 60) : undefined,
+    });
+    
     // Tam ekrandaysa önce çık
     if (document.fullscreenElement) {
       await exitFullscreen();
     }
     router.push('/#content');
-  }, [router, exitFullscreen]);
+  }, [router, exitFullscreen, timerSeconds]);
 
   // Kronometro fonksiyonları
   const toggleTimer = useCallback(() => {
@@ -91,14 +105,25 @@ function OdaklanContent() {
         timerIntervalRef.current = null;
       }
       setIsTimerRunning(false);
+      gtag.event({
+        action: 'timer_pause',
+        category: 'Odaklan',
+        label: selectedSubject || 'Genel',
+        value: timerSeconds,
+      });
     } else {
       // Başlat
       setIsTimerRunning(true);
       timerIntervalRef.current = setInterval(() => {
         setTimerSeconds(prev => prev + 1);
       }, 1000);
+      gtag.event({
+        action: timerSeconds > 0 ? 'timer_resume' : 'timer_start',
+        category: 'Odaklan',
+        label: selectedSubject || 'Genel',
+      });
     }
-  }, [isTimerRunning]);
+  }, [isTimerRunning, timerSeconds, selectedSubject]);
 
   const resetTimer = useCallback(() => {
     if (timerIntervalRef.current) {
@@ -158,6 +183,14 @@ function OdaklanContent() {
     const updated = [newSession, ...savedSessions];
     setSavedSessions(updated);
     localStorage.setItem('studySessions', JSON.stringify(updated));
+    
+    // Analytics tracking
+    gtag.event({
+      action: 'study_session_save',
+      category: 'Odaklan',
+      label: selectedSubject || 'Genel Çalışma',
+      value: Math.floor(timerSeconds / 60), // Dakika cinsinden
+    });
     
     // Sıfırla
     resetTimer();
@@ -339,6 +372,11 @@ function OdaklanContent() {
         audioRef.current = null;
       }
       setActiveSound(null);
+      gtag.event({
+        action: 'ambient_sound_stop',
+        category: 'Odaklan',
+        label: soundId,
+      });
     } else {
       // Yeni ses çal
       if (audioRef.current) {
@@ -350,6 +388,11 @@ function OdaklanContent() {
       audio.play().catch(error => console.log('Ses oynatma hatası:', error));
       audioRef.current = audio;
       setActiveSound(soundId);
+      gtag.event({
+        action: 'ambient_sound_play',
+        category: 'Odaklan',
+        label: soundId,
+      });
     }
   };
 
@@ -534,7 +577,14 @@ function OdaklanContent() {
             
             {/* Kronometro Butonu */}
             <button
-              onClick={() => setShowTimerModal(true)}
+              onClick={() => {
+                setShowTimerModal(true);
+                gtag.event({
+                  action: 'timer_modal_open',
+                  category: 'Odaklan',
+                  label: 'Study Timer',
+                });
+              }}
               className="backdrop-blur-lg transition-all duration-300"
               style={{
                 width: '56px',
@@ -690,7 +740,14 @@ function OdaklanContent() {
             <>
               {/* Gizle/Göster Butonu */}
       <button
-        onClick={() => setShowUI(!showUI)}
+        onClick={() => {
+          setShowUI(!showUI);
+          gtag.event({
+            action: showUI ? 'ui_hide' : 'ui_show',
+            category: 'Odaklan',
+            label: 'Toggle UI',
+          });
+        }}
                 className="backdrop-blur-lg transition-all duration-200"
         style={{ 
                   width: '56px',
@@ -1308,7 +1365,14 @@ function OdaklanContent() {
                     {allSubjects.map((subject) => (
                       <button
                         key={subject.name}
-                        onClick={() => setSelectedSubject(subject.name)}
+                        onClick={() => {
+                          setSelectedSubject(subject.name);
+                          gtag.event({
+                            action: 'subject_select',
+                            category: 'Odaklan',
+                            label: subject.name,
+                          });
+                        }}
                         style={{
                           padding: '6px 12px',
                           borderRadius: '8px',
