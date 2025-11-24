@@ -119,6 +119,7 @@ export default function GizlilikPage() {
                     <li>• <strong>Çerez Tercihleri:</strong> Hangi çerezleri kabul ettiğiniz bilgisi (localStorage)</li>
                     <li>• <strong>Konu İlerlemesi:</strong> Hangi konuları tamamladığınız (localStorage)</li>
                     <li>• <strong>Test Sonuçları:</strong> Quiz ve soru çözüm geçmişiniz (localStorage)</li>
+                    <li>• <strong>Çalışma Takibi:</strong> Odaklan sayfasında kaydettiğiniz çalışma seansları, süreleri ve başarı bilgileri (localStorage)</li>
                     <li>• <strong>Tema ve Tercihler:</strong> Görsel ayarlarınız (localStorage)</li>
                   </ul>
                   <p className="mt-3 text-xs" style={{color: '#515154'}}>
@@ -208,9 +209,9 @@ export default function GizlilikPage() {
                   </thead>
                   <tbody>
                     <tr className="border-b" style={{borderColor: 'rgba(255,255,255,0.05)'}}>
-                      <td className="py-3 px-2" style={{color: '#86868b'}}>Konu ilerlemesi, test sonuçları</td>
-                      <td className="py-3 px-2" style={{color: '#86868b'}}>Ders sayfaları kullanımı</td>
-                      <td className="py-3 px-2" style={{color: '#86868b'}}>Kaldığınız yerden devam edebilmeniz</td>
+                      <td className="py-3 px-2" style={{color: '#86868b'}}>Konu ilerlemesi, test sonuçları, çalışma seansları</td>
+                      <td className="py-3 px-2" style={{color: '#86868b'}}>Ders sayfaları ve Odaklan modu kullanımı</td>
+                      <td className="py-3 px-2" style={{color: '#86868b'}}>Kaldığınız yerden devam edebilmeniz ve çalışma takibi</td>
                       <td className="py-3 px-2" style={{color: '#86868b'}}>Tarayıcınızın localStorage'ında (sunucuya gönderilmez)</td>
                     </tr>
                     <tr className="border-b" style={{borderColor: 'rgba(255,255,255,0.05)'}}>
@@ -300,6 +301,8 @@ export default function GizlilikPage() {
                         <li>• Hangi videolar izleniyor</li>
                         <li>• Hangi PDF'ler indiriliyor</li>
                         <li>• Konu tamamlama oranları</li>
+                        <li>• Odaklan modu kullanım süreleri ve kronometro aktiviteleri</li>
+                        <li>• Ambient ses tercihleri ve kullanım sıklıkları</li>
                       </ul>
                     </div>
                     
@@ -699,7 +702,7 @@ export default function GizlilikPage() {
                   </div>
                   <div className="flex items-center">
                     <div className="w-2 h-2 rounded-full mr-3" style={{backgroundColor: '#30d158'}}></div>
-                    <span style={{color: '#8ee4af'}}>İlerleme bilgileri yalnızca sizin tarayıcınızda durur.</span>
+                    <span style={{color: '#8ee4af'}}>İlerleme ve çalışma takibi bilgileri yalnızca sizin tarayıcınızda durur.</span>
                   </div>
                   <div className="flex items-center">
                     <div className="w-2 h-2 rounded-full mr-3" style={{backgroundColor: '#30d158'}}></div>
@@ -734,6 +737,9 @@ export default function GizlilikPage() {
               <div className="text-center mt-8">
                 <p className="text-lg font-medium" style={{color: '#30d158'}}>
                   YKS Şekeri'de başarıya giden yolunuzda yalnızca bilgi iz bırakır; kişisel verileriniz değil! 🍬
+                </p>
+                <p className="text-sm mt-3" style={{color: '#8ee4af'}}>
+                  Çalışma takibi ve kronometro kayıtlarınız da sadece sizin tarayıcınızda saklanır, asla sunucumuza gönderilmez.
                 </p>
               </div>
             </div>

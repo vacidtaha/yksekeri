@@ -127,7 +127,7 @@ Haddimize değil, inanın umurumuzda da değil — ama şunu unutmayın: **Sına
       <Header />
 
       {/* Hero Section - İki Kolon */}
-      <div className="min-h-screen flex flex-col py-12 px-2" style={{backgroundColor: '#ffffff'}}>
+      <div className="min-h-screen flex flex-col py-12 px-2" style={{backgroundColor: '#000000'}}>
         
         {/* Uyarı Kutusu */}
         {showWarning && (
@@ -176,8 +176,8 @@ Haddimize değil, inanın umurumuzda da değil — ama şunu unutmayın: **Sına
           </div>
 
           {/* Sağ Taraf - Karşılama Mesajı - Mobilde Ortalı */}
-          <div className="text-center lg:text-left space-y-3 lg:space-y-4 text-gray-900 leading-relaxed px-4 lg:pr-4">
-            <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-4 lg:mb-6">Hoş geldin</h2>
+          <div className="text-center lg:text-left space-y-3 lg:space-y-4 text-white leading-relaxed px-4 lg:pr-4">
+            <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-4 lg:mb-6">Hoş geldin</h2>
             
             <div className="text-sm lg:text-base">
               <style>{`
@@ -208,9 +208,9 @@ Haddimize değil, inanın umurumuzda da değil — ama şunu unutmayın: **Sına
                     className="inline"
                   >
                     {word.isEmphasized ? (
-                      <span className="text-blue-600 font-semibold">{word.text}</span>
+                      <span className="text-blue-400 font-semibold">{word.text}</span>
                     ) : (
-                      <span className="text-gray-900">{word.text}</span>
+                      <span className="text-white">{word.text}</span>
                     )}
                   </span>
                 );
@@ -224,7 +224,7 @@ Haddimize değil, inanın umurumuzda da değil — ama şunu unutmayın: **Sına
         {/* Basit Aşağı Kaydırma Uyarısı - Mobilde Gizli */}
         {showScrollText && (
           <div className="hidden lg:block absolute bottom-8 left-1/2 transform -translate-x-1/2 text-center transition-opacity duration-300">
-            <p className="text-gray-900 text-lg font-semibold">
+            <p className="text-white text-lg font-semibold">
               Arayüze erişmek için aşağı kaydırın ↓
             </p>
           </div>
@@ -233,6 +233,7 @@ Haddimize değil, inanın umurumuzda da değil — ama şunu unutmayın: **Sına
 
       {/* İstatistikler Bölümü */}
       <div 
+        id="content"
         className="pt-12 lg:pt-24 pb-12 lg:pb-24 px-4 lg:px-6 relative overflow-hidden"
         style={{
           background: 'linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #60a5fa 100%)',
@@ -342,7 +343,7 @@ Haddimize değil, inanın umurumuzda da değil — ama şunu unutmayın: **Sına
       </div>
 
       {/* İçerik Bölümü - TYT Dersleri */}
-      <div id="content" className="min-h-screen py-8 lg:py-24 px-3 lg:px-6" style={{backgroundColor: '#0a0e27'}}>
+      <div className="min-h-screen py-8 lg:py-24 px-3 lg:px-6" style={{backgroundColor: '#0a0e27'}}>
         <div className="max-w-7xl mx-auto">
           
           {/* Başlık */}
@@ -397,7 +398,7 @@ Haddimize değil, inanın umurumuzda da değil — ama şunu unutmayın: **Sına
                 </div>
                 <div className="flex items-center justify-between text-xs lg:text-sm font-medium"
                      style={{color: '#ffffff'}}>
-                  <span>30 konu</span>
+                  <span>10 konu</span>
                   <ArrowRight className="w-4 h-4 lg:w-5 lg:h-5 transform group-hover:translate-x-1 transition-transform duration-300" style={{color: '#ffffff'}} />
                 </div>
               </div>
@@ -439,7 +440,7 @@ Haddimize değil, inanın umurumuzda da değil — ama şunu unutmayın: **Sına
                 </div>
                 <div className="flex items-center justify-between text-xs lg:text-sm font-medium"
                      style={{color: '#ffffff'}}>
-                  <span>35 konu</span>
+                  <span>31 konu</span>
                   <ArrowRight className="w-4 h-4 lg:w-5 lg:h-5 transform group-hover:translate-x-1 transition-transform duration-300" style={{color: '#ffffff'}} />
                 </div>
               </div>
@@ -481,7 +482,7 @@ Haddimize değil, inanın umurumuzda da değil — ama şunu unutmayın: **Sına
                 </div>
                 <div className="flex items-center justify-between text-xs lg:text-sm font-medium"
                      style={{color: '#ffffff'}}>
-                  <span>25 konu</span>
+                  <span>32 konu</span>
                   <ArrowRight className="w-4 h-4 lg:w-5 lg:h-5 transform group-hover:translate-x-1 transition-transform duration-300" style={{color: '#ffffff'}} />
                 </div>
               </div>
@@ -523,7 +524,7 @@ Haddimize değil, inanın umurumuzda da değil — ama şunu unutmayın: **Sına
                 </div>
                 <div className="flex items-center justify-between text-xs lg:text-sm font-medium"
                      style={{color: '#ffffff'}}>
-                  <span>22 konu</span>
+                  <span>45 konu</span>
                   <ArrowRight className="w-4 h-4 lg:w-5 lg:h-5 transform group-hover:translate-x-1 transition-transform duration-300" style={{color: '#ffffff'}} />
                 </div>
               </div>
@@ -695,7 +696,7 @@ Haddimize değil, inanın umurumuzda da değil — ama şunu unutmayın: **Sına
                           </div>
                           <div className="flex items-center justify-between text-xs lg:text-sm font-medium"
                                style={{color: '#ffffff'}}>
-                            <span>45 konu</span>
+                            <span>40 konu</span>
                             <ArrowRight className="w-4 h-4 lg:w-5 lg:h-5 transform group-hover:translate-x-1 transition-transform duration-300" style={{color: '#ffffff'}} />
                           </div>
                         </div>
@@ -719,7 +720,7 @@ Haddimize değil, inanın umurumuzda da değil — ama şunu unutmayın: **Sına
                           </div>
                           <div className="flex items-center justify-between text-xs lg:text-sm font-medium"
                                style={{color: '#ffffff'}}>
-                            <span>28 konu</span>
+                            <span>26 konu</span>
                             <ArrowRight className="w-4 h-4 lg:w-5 lg:h-5 transform group-hover:translate-x-1 transition-transform duration-300" style={{color: '#ffffff'}} />
                           </div>
                         </div>
@@ -743,7 +744,7 @@ Haddimize değil, inanın umurumuzda da değil — ama şunu unutmayın: **Sına
                           </div>
                           <div className="flex items-center justify-between text-xs lg:text-sm font-medium"
                                style={{color: '#ffffff'}}>
-                            <span>24 konu</span>
+                            <span>17 konu</span>
                             <ArrowRight className="w-4 h-4 lg:w-5 lg:h-5 transform group-hover:translate-x-1 transition-transform duration-300" style={{color: '#ffffff'}} />
                           </div>
                         </div>
@@ -767,7 +768,7 @@ Haddimize değil, inanın umurumuzda da değil — ama şunu unutmayın: **Sına
                           </div>
                           <div className="flex items-center justify-between text-xs lg:text-sm font-medium"
                                style={{color: '#ffffff'}}>
-                            <span>32 konu</span>
+                            <span>18 konu</span>
                             <ArrowRight className="w-4 h-4 lg:w-5 lg:h-5 transform group-hover:translate-x-1 transition-transform duration-300" style={{color: '#ffffff'}} />
                           </div>
                         </div>
@@ -803,7 +804,7 @@ Haddimize değil, inanın umurumuzda da değil — ama şunu unutmayın: **Sına
                           </div>
                           <div className="flex items-center justify-between text-xs lg:text-sm font-medium"
                                style={{color: '#ffffff'}}>
-                            <span>20 konu</span>
+                            <span>40 konu</span>
                             <ArrowRight className="w-4 h-4 lg:w-5 lg:h-5 transform group-hover:translate-x-1 transition-transform duration-300" style={{color: '#ffffff'}} />
                           </div>
                         </div>
@@ -875,7 +876,7 @@ Haddimize değil, inanın umurumuzda da değil — ama şunu unutmayın: **Sına
                           </div>
                           <div className="flex items-center justify-between text-xs lg:text-sm font-medium"
                                style={{color: '#ffffff'}}>
-                            <span>25 konu</span>
+                            <span>20 konu</span>
                             <ArrowRight className="w-4 h-4 lg:w-5 lg:h-5 transform group-hover:translate-x-1 transition-transform duration-300" style={{color: '#ffffff'}} />
                           </div>
                         </div>
@@ -911,7 +912,7 @@ Haddimize değil, inanın umurumuzda da değil — ama şunu unutmayın: **Sına
                           </div>
                           <div className="flex items-center justify-between text-xs lg:text-sm font-medium"
                                style={{color: '#ffffff'}}>
-                            <span>25 konu</span>
+                            <span>20 konu</span>
                             <ArrowRight className="w-4 h-4 lg:w-5 lg:h-5 transform group-hover:translate-x-1 transition-transform duration-300" style={{color: '#ffffff'}} />
                           </div>
                         </div>
@@ -959,7 +960,7 @@ Haddimize değil, inanın umurumuzda da değil — ama şunu unutmayın: **Sına
                           </div>
                           <div className="flex items-center justify-between text-xs lg:text-sm font-medium"
                                style={{color: '#ffffff'}}>
-                            <span>25 konu</span>
+                            <span>20 konu</span>
                             <ArrowRight className="w-4 h-4 lg:w-5 lg:h-5 transform group-hover:translate-x-1 transition-transform duration-300" style={{color: '#ffffff'}} />
                           </div>
                         </div>
@@ -983,7 +984,7 @@ Haddimize değil, inanın umurumuzda da değil — ama şunu unutmayın: **Sına
                           </div>
                           <div className="flex items-center justify-between text-xs lg:text-sm font-medium"
                                style={{color: '#ffffff'}}>
-                            <span>32 konu</span>
+                            <span>19 konu</span>
                             <ArrowRight className="w-4 h-4 lg:w-5 lg:h-5 transform group-hover:translate-x-1 transition-transform duration-300" style={{color: '#ffffff'}} />
                           </div>
                         </div>
@@ -1073,44 +1074,126 @@ Haddimize değil, inanın umurumuzda da değil — ama şunu unutmayın: **Sına
         </div>
       </div>
 
-      {/* Odaklan Bölümü - Apple Minimal */}
+      {/* Odaklan Bölümü */}
       <div 
         className="py-20 lg:py-32 px-4 lg:px-6"
         style={{
           backgroundColor: '#000000',
         }}
       >
-        <div className="max-w-6xl mx-auto text-center">
+        <div className="max-w-7xl mx-auto">
           
-          {/* Başlık */}
-          <h2 className="text-4xl md:text-6xl lg:text-7xl font-semibold tracking-tight mb-6 text-white" 
-              style={{ fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif" }}>
-            Odaklan
-          </h2>
-          
-          {/* Alt Başlık */}
-          <p className="text-lg lg:text-2xl text-white/60 mb-16 lg:mb-20 max-w-3xl mx-auto font-normal leading-relaxed"
-             style={{ fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif" }}>
-            Tam ekran çalışma ortamı. Ambient sesler. Hiçbir dikkat dağıtıcı.
-          </p>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            
+            {/* Sol Taraf - İçerik */}
+            <div className="text-center lg:text-left">
+              
+              {/* Başlık */}
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight mb-6 text-white" 
+                  style={{ fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif" }}>
+                Odaklanarak Çalış
+              </h2>
+              
+              {/* Açıklama */}
+              <p className="text-base lg:text-xl text-white/60 mb-10 font-normal leading-relaxed"
+                 style={{ fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif" }}>
+                Tam ekran çalışma ortamında, ambient sesler eşliğinde dikkat dağıtıcılardan uzak maksimum verim alın.
+              </p>
 
-          {/* CTA Button */}
-          <Link 
-            href="/odaklan?auto=true"
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-medium text-base lg:text-lg transition-all duration-200 hover:opacity-90"
-            style={{
-              backgroundColor: '#0071e3',
-              color: '#ffffff',
-            }}
-            onClick={() => gtag.event({
-              action: 'odaklan_click',
-              category: 'Homepage',
-              label: 'Odaklan Mode',
-            })}
-          >
-            <span>Dene</span>
-            <ArrowRight className="w-5 h-5" />
-          </Link>
+              {/* Özellikler */}
+              <div className="space-y-4 mb-10 text-left max-w-md mx-auto lg:mx-0">
+                <div className="flex items-start gap-3">
+                  <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0 mt-1">
+                    <span className="text-white text-xs">✓</span>
+                  </div>
+                  <div>
+                    <h4 className="text-white font-medium mb-1" style={{ fontFamily: "'SF Pro Display', -apple-system, sans-serif", fontSize: '15px' }}>
+                      Ambient Sesler
+                    </h4>
+                    <p className="text-white/50 text-sm" style={{ fontFamily: "'SF Pro Text', -apple-system, sans-serif" }}>
+                      Yağmur, şömine, deniz ve daha fazlası
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0 mt-1">
+                    <span className="text-white text-xs">✓</span>
+                  </div>
+                  <div>
+                    <h4 className="text-white font-medium mb-1" style={{ fontFamily: "'SF Pro Display', -apple-system, sans-serif", fontSize: '15px' }}>
+                      Çalışma Takibi
+                    </h4>
+                    <p className="text-white/50 text-sm" style={{ fontFamily: "'SF Pro Text', -apple-system, sans-serif" }}>
+                      Kronometro ile süre ve başarı takibi
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0 mt-1">
+                    <span className="text-white text-xs">✓</span>
+                  </div>
+                  <div>
+                    <h4 className="text-white font-medium mb-1" style={{ fontFamily: "'SF Pro Display', -apple-system, sans-serif", fontSize: '15px' }}>
+                      Minimal Arayüz
+                    </h4>
+                    <p className="text-white/50 text-sm" style={{ fontFamily: "'SF Pro Text', -apple-system, sans-serif" }}>
+                      Sadece saat, ses kontrolleri ve kronometro
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* CTA Button */}
+              <Link 
+                href="/odaklan?auto=true"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-medium text-base lg:text-lg transition-all duration-200 hover:opacity-90"
+                style={{
+                  backgroundColor: '#0071e3',
+                  color: '#ffffff',
+                }}
+                onClick={() => gtag.event({
+                  action: 'odaklan_click',
+                  category: 'Homepage',
+                  label: 'Odaklan Mode',
+                })}
+              >
+                <span>Dene</span>
+                <ArrowRight className="w-5 h-5" />
+              </Link>
+            </div>
+
+            {/* Sağ Taraf - Screenshots */}
+            <div className="grid grid-cols-1 gap-6">
+              {/* Odaklan Sayfası Görseli */}
+              <div className="rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
+                <Image
+                  src="/odaklan-main.png"
+                  alt="Odaklan sayfası - Tam ekran çalışma ortamı"
+                  width={600}
+                  height={400}
+                  className="w-full h-auto"
+                  style={{
+                    boxShadow: '0 20px 60px rgba(0, 0, 0, 0.5)'
+                  }}
+                />
+              </div>
+              
+              {/* Kronometro Görseli */}
+              <div className="rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
+                <Image
+                  src="/odaklan-timer.png"
+                  alt="Kronometro ve çalışma takibi sistemi"
+                  width={600}
+                  height={400}
+                  className="w-full h-auto"
+                  style={{
+                    boxShadow: '0 20px 60px rgba(0, 0, 0, 0.5)'
+                  }}
+                />
+              </div>
+            </div>
+
+          </div>
 
         </div>
       </div>

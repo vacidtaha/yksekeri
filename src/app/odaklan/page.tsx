@@ -288,7 +288,7 @@ function OdaklanContent() {
     { id: 'ocean', name: 'Deniz', file: '/sounds/ocean.mp3' },
     { id: 'forest', name: 'Orman', file: '/sounds/forest.mp3' },
     { id: 'plane', name: 'Uçak', file: '/sounds/plane.mp3' },
-    { id: 'snow', name: 'Kar', file: '/sounds/snow.mp3' },
+    { id: 'traffic', name: 'Trafik', file: '/sounds/traffic.mp3' },
   ];
 
   const getSoundIcon = (soundId: string) => {
@@ -302,7 +302,7 @@ function OdaklanContent() {
         case 'ocean': return '#06b6d4'; // Turkuaz
         case 'forest': return '#22c55e'; // Yeşil
         case 'plane': return '#94a3b8'; // Açık gri
-        case 'snow': return '#e0f2fe'; // Açık mavi/beyaz
+        case 'traffic': return '#facc15'; // Sarı (trafik ışığı)
         default: return '#ffffff';
       }
     };
@@ -347,16 +347,13 @@ function OdaklanContent() {
             <path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/>
           </svg>
         );
-      case 'snow':
+      case 'traffic':
         return (
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke={iconColor} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M12 2v20"/>
-            <path d="m4.93 4.93 14.14 14.14"/>
-            <path d="m19.07 4.93-14.14 14.14"/>
-            <path d="M12 2 9 5m3-3 3 3M12 22l3-3m-3 3-3-3"/>
-            <path d="M2 12h20"/>
-            <path d="M5 9h14"/>
-            <path d="M5 15h14"/>
+            <rect x="5" y="2" width="14" height="20" rx="2"/>
+            <circle cx="12" cy="7" r="2"/>
+            <circle cx="12" cy="12" r="2"/>
+            <circle cx="12" cy="17" r="2"/>
           </svg>
         );
       default:
