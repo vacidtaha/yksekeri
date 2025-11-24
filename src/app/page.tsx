@@ -1073,6 +1073,48 @@ Haddimize değil, inanın umurumuzda da değil — ama şunu unutmayın: **Sına
         </div>
       </div>
 
+      {/* Odaklan Bölümü - Apple Minimal */}
+      <div 
+        className="py-20 lg:py-32 px-4 lg:px-6"
+        style={{
+          backgroundColor: '#000000',
+        }}
+      >
+        <div className="max-w-6xl mx-auto text-center">
+          
+          {/* Başlık */}
+          <h2 className="text-4xl md:text-6xl lg:text-7xl font-semibold tracking-tight mb-6 text-white" 
+              style={{ fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif" }}>
+            Odaklan
+          </h2>
+          
+          {/* Alt Başlık */}
+          <p className="text-lg lg:text-2xl text-white/60 mb-16 lg:mb-20 max-w-3xl mx-auto font-normal leading-relaxed"
+             style={{ fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif" }}>
+            Tam ekran çalışma ortamı. Ambient sesler. Hiçbir dikkat dağıtıcı.
+          </p>
+
+          {/* CTA Button */}
+          <Link 
+            href="/odaklan?auto=true"
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-medium text-base lg:text-lg transition-all duration-200 hover:opacity-90"
+            style={{
+              backgroundColor: '#0071e3',
+              color: '#ffffff',
+            }}
+            onClick={() => gtag.event({
+              action: 'odaklan_click',
+              category: 'Homepage',
+              label: 'Odaklan Mode',
+            })}
+          >
+            <span>Dene</span>
+            <ArrowRight className="w-5 h-5" />
+          </Link>
+
+        </div>
+      </div>
+
       {/* Üniversite Bilgileri Bölümü - Modern Tasarım */}
       <div 
         className="pt-12 lg:pt-24 pb-0 px-4 lg:px-6 relative overflow-hidden"

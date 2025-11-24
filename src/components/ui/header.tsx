@@ -4,7 +4,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { NavBar } from "@/components/ui/tubelight-navbar";
-import { Home as HomeIcon, BookOpen, Users, Mail } from "lucide-react";
+import { Home as HomeIcon, BookOpen, Users, Mail, Target } from "lucide-react";
 
 interface HeaderProps {
   alwaysShow?: boolean; // Ana sayfa dışındaki sayfalar için her zaman göster
@@ -17,6 +17,7 @@ export function Header({ alwaysShow = false }: HeaderProps) {
   const navItems = useMemo(() => [
     { name: "Ana Sayfa", url: "/#content", icon: HomeIcon },
     { name: "Dersler", url: "#", icon: BookOpen },
+    { name: "Odaklan", url: "/odaklan?auto=true", icon: Target },
     { name: "Kaynaklar", url: "/kaynaklar", icon: Users },
     { name: "İletişim", url: "/iletisim", icon: Mail },
   ], []);
