@@ -13,7 +13,7 @@ export default function Home() {
   const [showScrollText, setShowScrollText] = useState(true);
   const [selectedArea, setSelectedArea] = useState<string | null>(null);
   const [visibleWords, setVisibleWords] = useState<number>(0);
-  const [isTyping, setIsTyping] = useState(true);
+  const [isTyping, setIsTyping] = useState(false); // Animasyon kapalı
 
   // Typing animation için tam metin (vurgulu kelimeler için özel işaretler)
   const fullText = `Biz **Taha Vacid ve Haktan Köksal**. Bu siteyi can sıkıntısından ve bir iddia sonucu kurduk — (tabiki biz kazandık). İşin gerçeği harcayamayacak kadar çok paramız, Tövbeyle geçiremeyeceğimiz kadar da çok günahımız var, o yüzden buraya **reklâm sıkıştırmaya hiç niyetimiz yok duanız yeterli**.
@@ -64,25 +64,10 @@ Haddimize değil, inanın umurumuzda da değil — ama şunu unutmayın: **Sına
   
   const words = parseTextWithEmphasis(fullText);
 
-  // Kelime kelime fade-in animasyonu - akıcı geçiş için
+  // Animasyon kapalı - tüm metni direkt göster
   useEffect(() => {
-    if (!isTyping) return;
-    
-    const wordDelay = 30; // Her kelime arası milisaniye (daha hızlı)
-    let currentWordIndex = 0;
-    
-    const wordInterval = setInterval(() => {
-      if (currentWordIndex < words.length) {
-        setVisibleWords(currentWordIndex + 1);
-        currentWordIndex++;
-      } else {
-        setIsTyping(false);
-        clearInterval(wordInterval);
-      }
-    }, wordDelay);
-
-    return () => clearInterval(wordInterval);
-  }, [isTyping, words.length]);
+    setVisibleWords(words.length);
+  }, [words.length]);
 
 
   useEffect(() => {
@@ -217,20 +202,11 @@ Haddimize değil, inanın umurumuzda da değil — ama şunu unutmayın: **Sına
                   return <span key={index} className="inline">{word.text}</span>;
                 }
                 
-                // Her kelime için kademeli delay - akıcı geçiş için
-                const delayPerWord = 20; // Her kelime arası delay (ms) - çok hızlı
-                // Her kelime bir öncekinden 20ms sonra başlar, böylece 7 kelime aynı anda animasyonda olur
-                // Animasyon süresi 1.4s olduğu için (20ms * 7 = 140ms < 1400ms) 7 kelime overlap olur
-                const animationDelay = index * delayPerWord;
+                // Animasyon yok - direkt göster
                 return (
                   <span
                     key={index}
                     className="inline"
-                    style={{
-                      animation: 'fadeInWord 1.4s ease-out forwards',
-                      opacity: 0,
-                      animationDelay: `${animationDelay}ms`
-                    }}
                   >
                     {word.isEmphasized ? (
                       <span className="text-blue-600 font-semibold">{word.text}</span>

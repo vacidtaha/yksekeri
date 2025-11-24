@@ -2,7 +2,7 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import { X, Play, Maximize2 } from "lucide-react";
-import { YouTubeVideo, youtubeService } from "@/lib/youtube-api";
+import { YouTubeVideo } from "@/lib/youtube-api";
 import Image from "next/image";
 
 // CSS animasyonları için style tag ekle
@@ -198,278 +198,96 @@ interface VideoCardProps {
   video: YouTubeVideo;
   onClick: () => void;
   isLoading?: boolean;
-  currentQuery?: string;
-  onChannelVideoClick?: (video: YouTubeVideo) => void;
 }
 
-export function VideoCard({ video, onClick, isLoading = false, currentQuery, onChannelVideoClick }: VideoCardProps) {
+// Basit VideoCard - Diğer videolar özelliği yok
+export function VideoCard({ video, onClick, isLoading = false }: VideoCardProps) {
   const [imageLoaded, setImageLoaded] = useState(false);
-  const [showMoreVideos, setShowMoreVideos] = useState(false);
-  const [channelVideos, setChannelVideos] = useState<YouTubeVideo[]>([]);
-  const [loadingMore, setLoadingMore] = useState(false);
-
-  const handleShowMoreVideos = async (e: React.MouseEvent) => {
-    e.stopPropagation(); // Ana kart tıklamasını engelle
-    
-    if (!showMoreVideos && currentQuery) {
-      setLoadingMore(true);
-      try {
-        // Aynı kanaldan aynı konuda daha fazla video ara
-        const searchQuery = `${currentQuery} ${video.channelTitle}`;
-        const moreVideos = await youtubeService.searchVideos({
-          query: searchQuery,
-          maxResults: 6,
-          order: 'relevance'
-        });
-        
-        // Mevcut videoyu çıkar ve sadece farklı videoları göster
-        const filteredVideos = moreVideos.filter((v: YouTubeVideo) => v.id !== video.id).slice(0, 4);
-        setChannelVideos(filteredVideos);
-      } catch (error) {
-        console.error('Kanal videoları yüklenirken hata:', error);
-      } finally {
-        setLoadingMore(false);
-      }
-    }
-    
-    setShowMoreVideos(!showMoreVideos);
-  };
 
   return (
     <div 
-      className={`rounded-xl lg:rounded-2xl border border-white/10 hover:border-white/15 transition-all duration-300 group ${
+      className={`rounded-xl lg:rounded-2xl border border-white/10 hover:border-white/15 transition-all duration-300 group p-3 lg:p-5 ${
         isLoading ? 'opacity-50' : 'hover:bg-white/5 hover:-translate-y-1 cursor-pointer'
-      } ${showMoreVideos ? 'pb-1 lg:pb-2' : 'p-3 lg:p-5'}`}
+      }`}
       style={{
         backgroundColor: 'rgba(255,255,255,0.05)',
         backdropFilter: 'blur(20px)'
       }}
-      onClick={!isLoading ? (e) => {
-        // Eğitici tur açıkken tıklamayı engelle
-        const tourOverlay = document.querySelector('[style*="z-index: 9998"]');
-        if (tourOverlay) {
-          e.preventDefault();
-          e.stopPropagation();
-          // Tooltip içinde mesaj göster
-          const event = new CustomEvent('showVideoMessage');
-          window.dispatchEvent(event);
-          return;
-        }
-        onClick();
-      } : undefined}
+      onClick={!isLoading ? onClick : undefined}
     >
-      {/* Ana Video Kartı */}
-      <div className={`${showMoreVideos ? 'p-3 lg:p-5 border-b border-white/10' : 'p-3 lg:p-5'} relative`}>
-        {/* Mobile Diğer Button - Top Right */}
-        <button 
-          onClick={(e) => {
-            e.stopPropagation();
-            // Eğitici tur açıkken tıklamayı engelle
-            const tourOverlay = document.querySelector('[style*="z-index: 9998"]');
-            if (tourOverlay) {
-              e.preventDefault();
-              // Tooltip içinde mesaj göster
-              const event = new CustomEvent('showVideoMessage');
-              window.dispatchEvent(event);
-              return;
-            }
-            handleShowMoreVideos(e);
-          }}
-          disabled={isLoading}
-          className="lg:hidden absolute top-2 right-2 px-2 py-1 rounded-md transition-all duration-200 text-xs font-medium border border-gray-600 hover:border-red-400 hover:bg-red-400/10 disabled:opacity-50 z-10"
-          style={{
-            backgroundColor: 'rgba(255,255,255,0.05)',
-            color: 'white',
-            fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif"
-          }}
-        >
-          {loadingMore ? '...' : showMoreVideos ? '−' : '+'}
-        </button>
-
-        <div className="flex items-start gap-3 lg:gap-5">
-          {/* Thumbnail */}
-          <div className="w-24 h-16 lg:w-40 lg:h-24 rounded-lg lg:rounded-xl overflow-hidden flex-shrink-0 relative group-hover:scale-105 transition-transform duration-300">
-            {!imageLoaded && (
-              <div className="absolute inset-0 bg-gray-700 animate-pulse" />
-            )}
-            <Image
-              src={video.thumbnails.medium || video.thumbnails.high || video.thumbnails.default}
-              alt={video.title}
-              width={160}
-              height={96}
-              className={`w-full h-full object-cover transition-opacity duration-300 ${
-                imageLoaded ? 'opacity-100' : 'opacity-0'
-              }`}
-              onLoad={() => setImageLoaded(true)}
-              onError={() => setImageLoaded(true)}
-            />
-            
-            {/* Play Icon Overlay */}
-            <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-colors duration-300">
-              <div className="w-8 h-8 lg:w-12 lg:h-12 rounded-full bg-red-600/80 backdrop-blur-sm flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
-                <Play className="w-4 h-4 lg:w-6 lg:h-6 text-white ml-0.5 lg:ml-1" />
-              </div>
-            </div>
-            
-            {/* Duration Badge */}
-            <div className="absolute bottom-1 right-1 lg:bottom-2 lg:right-2 bg-black/80 text-white text-xs px-1.5 lg:px-2 py-0.5 lg:py-1 rounded font-medium">
-              {video.duration}
+      <div className="flex items-start gap-3 lg:gap-5">
+        {/* Thumbnail */}
+        <div className="w-24 h-16 lg:w-40 lg:h-24 rounded-lg lg:rounded-xl overflow-hidden flex-shrink-0 relative group-hover:scale-105 transition-transform duration-300">
+          {!imageLoaded && (
+            <div className="absolute inset-0 bg-gray-700 animate-pulse" />
+          )}
+          <Image
+            src={video.thumbnails.medium || video.thumbnails.high || video.thumbnails.default}
+            alt={video.title}
+            width={160}
+            height={96}
+            className={`w-full h-full object-cover transition-opacity duration-300 ${
+              imageLoaded ? 'opacity-100' : 'opacity-0'
+            }`}
+            onLoad={() => setImageLoaded(true)}
+            onError={() => setImageLoaded(true)}
+          />
+          
+          {/* Play Icon Overlay */}
+          <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-colors duration-300">
+            <div className="w-8 h-8 lg:w-12 lg:h-12 rounded-full bg-red-600/80 backdrop-blur-sm flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
+              <Play className="w-4 h-4 lg:w-6 lg:h-6 text-white ml-0.5 lg:ml-1" />
             </div>
           </div>
           
-          {/* Video Info */}
-          <div className="flex-1 min-w-0 flex flex-col justify-between h-16 lg:h-24 pr-8 lg:pr-0">
-            <div>
-              <h3 className="font-semibold text-white mb-1 lg:mb-2 text-sm lg:text-base leading-tight line-clamp-2"
-                  style={{ fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif" }}>
-                {video.title}
-              </h3>
-              
-              {/* Channel Name - More Prominent */}
-              <div className="flex items-center gap-1.5 lg:gap-2 mb-2 lg:mb-3">
-                <span className="text-xs lg:text-sm font-medium text-red-400 truncate">{video.channelTitle}</span>
-                <span className="text-gray-600 hidden lg:inline">•</span>
-                <span className="text-xs text-gray-500 hidden lg:inline">{video.viewCount} görüntülenme</span>
-              </div>
-            </div>
-            
-            {/* Action Buttons */}
-            <div className="flex items-center gap-2 lg:justify-between">
-              <button 
-                onClick={(e) => { 
-                  e.stopPropagation();
-                  // Eğitici tur açıkken tıklamayı engelle
-                  const tourOverlay = document.querySelector('[style*="z-index: 9998"]');
-                  if (tourOverlay) {
-                    e.preventDefault();
-                    // Tooltip içinde mesaj göster
-                    const event = new CustomEvent('showVideoMessage');
-                    window.dispatchEvent(event);
-                    return;
-                  }
-                  onClick();
-                }}
-                disabled={isLoading}
-                className="hidden lg:flex items-center gap-1 px-2 lg:px-3 py-1 lg:py-1.5 rounded-md lg:rounded-lg transition-all duration-200 text-xs font-medium disabled:opacity-50 disabled:cursor-not-allowed"
-                style={{
-                  backgroundColor: '#EF4444',
-                  color: 'white',
-                  fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif"
-                }}
-                onMouseEnter={(e) => {
-                  if (!isLoading) {
-                    e.currentTarget.style.backgroundColor = '#DC2626';
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  if (!isLoading) {
-                    e.currentTarget.style.backgroundColor = '#EF4444';
-                  }
-                }}
-              >
-                <Play className="w-3 h-3" />
-                İzle
-              </button>
-              
-              {/* Desktop Diğer Button */}
-              <button 
-                onClick={(e) => {
-                  e.stopPropagation();
-                  // Eğitici tur açıkken tıklamayı engelle
-                  const tourOverlay = document.querySelector('[style*="z-index: 9998"]');
-                  if (tourOverlay) {
-                    e.preventDefault();
-                    // Tooltip içinde mesaj göster
-                    const event = new CustomEvent('showVideoMessage');
-                    window.dispatchEvent(event);
-                    return;
-                  }
-                  handleShowMoreVideos(e);
-                }}
-                disabled={isLoading}
-                className="hidden lg:block px-2 lg:px-3 py-1 lg:py-1.5 rounded-md lg:rounded-lg transition-all duration-200 text-xs font-medium border border-gray-600 hover:border-red-400 hover:bg-red-400/10 disabled:opacity-50"
-                style={{
-                  backgroundColor: 'rgba(255,255,255,0.05)',
-                  color: 'white',
-                  fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif"
-                }}
-                onMouseEnter={(e) => {
-                  if (!isLoading && window.innerWidth >= 1024) {
-                    e.currentTarget.style.color = '#EF4444';
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  if (!isLoading) {
-                    e.currentTarget.style.color = 'white';
-                  }
-                }}
-              >
-                {loadingMore ? 'Yükleniyor...' : showMoreVideos ? 'Daha Az' : 'Diğer Videoları'}
-              </button>
-            </div>
+          {/* Duration Badge */}
+          <div className="absolute bottom-1 right-1 lg:bottom-2 lg:right-2 bg-black/80 text-white text-xs px-1.5 lg:px-2 py-0.5 lg:py-1 rounded font-medium">
+            {video.duration}
           </div>
         </div>
-      </div>
-
-      {/* Expanded Channel Videos */}
-      {showMoreVideos && (
-        <div className="px-3 lg:px-5 pb-2 lg:pb-3">
-          {loadingMore ? (
-            <div className="flex justify-center py-2 lg:py-4">
-              <div className="w-4 h-4 lg:w-6 lg:h-6 border-2 border-red-500 border-t-transparent rounded-full animate-spin"></div>
-            </div>
-                     ) : channelVideos.length > 0 ? (
-             <div className="space-y-1.5 lg:space-y-2">
-               {channelVideos.map((channelVideo) => (
-                                 <div 
-                   key={channelVideo.id} 
-                   className="flex items-center gap-2 lg:gap-3 p-1.5 lg:p-2 rounded-md lg:rounded-lg hover:bg-white/5 transition-colors duration-200 cursor-pointer"
-                   onClick={(e) => { 
-                     e.stopPropagation();
-                     // Eğitici tur açıkken tıklamayı engelle
-                     const tourOverlay = document.querySelector('[style*="z-index: 9998"]');
-                     if (tourOverlay) {
-                       e.preventDefault();
-                       // Tooltip içinde mesaj göster
-                       const event = new CustomEvent('showVideoMessage');
-                       window.dispatchEvent(event);
-                       return;
-                     }
-                     if (onChannelVideoClick) {
-                       onChannelVideoClick(channelVideo);
-                     } else {
-                       // Fallback: Open in new tab
-                       window.open(`https://www.youtube.com/watch?v=${channelVideo.id}`, '_blank');
-                     }
-                   }}
-                 >
-                  <Image
-                    src={channelVideo.thumbnails.default}
-                    alt={channelVideo.title}
-                    width={64}
-                    height={48}
-                    className="w-12 h-9 lg:w-16 lg:h-12 rounded object-cover flex-shrink-0"
-                  />
-                  <div className="flex-1 min-w-0">
-                    <h4 className="text-xs lg:text-sm text-white font-medium line-clamp-1 mb-0.5 lg:mb-1">
-                      {channelVideo.title}
-                    </h4>
-                    <div className="flex items-center gap-1.5 lg:gap-2 text-xs text-gray-500">
-                      <span>{channelVideo.duration}</span>
-                      <span className="hidden lg:inline">•</span>
-                      <span className="hidden lg:inline">{channelVideo.viewCount} görüntülenme</span>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <p className="text-xs text-gray-500 py-2 lg:py-3 text-center">
-              Bu kanaldan bu konu hakkında başka video bulunamadı.
-            </p>
-          )}
+        
+        {/* Video Info */}
+        <div className="flex-1 min-w-0">
+          <h3 className="font-semibold text-white mb-1 lg:mb-2 text-sm lg:text-base leading-tight line-clamp-2"
+              style={{ fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif" }}>
+            {video.title}
+          </h3>
+          
+          <div className="flex items-center gap-1.5 lg:gap-2 mb-2 lg:mb-3">
+            <span className="text-xs lg:text-sm font-medium text-red-400 truncate">{video.channelTitle}</span>
+            <span className="text-gray-600 hidden lg:inline">•</span>
+            <span className="text-xs text-gray-500 hidden lg:inline">{video.viewCount} görüntülenme</span>
+          </div>
+          
+          <button 
+            onClick={(e) => { 
+              e.stopPropagation();
+              onClick();
+            }}
+            disabled={isLoading}
+            className="hidden lg:flex items-center gap-1 px-2 lg:px-3 py-1 lg:py-1.5 rounded-md lg:rounded-lg transition-all duration-200 text-xs font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+            style={{
+              backgroundColor: '#EF4444',
+              color: 'white',
+              fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif"
+            }}
+            onMouseEnter={(e) => {
+              if (!isLoading) {
+                e.currentTarget.style.backgroundColor = '#DC2626';
+              }
+            }}
+            onMouseLeave={(e) => {
+              if (!isLoading) {
+                e.currentTarget.style.backgroundColor = '#EF4444';
+              }
+            }}
+          >
+            <Play className="w-3 h-3" />
+            İzle
+          </button>
         </div>
-      )}
+      </div>
     </div>
   );
-} 
+}
+

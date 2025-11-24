@@ -11,6 +11,7 @@ import { YouTubePlayer, VideoCard } from "@/components/ui/youtube-player";
 import { OnboardingTour } from "@/components/ui/onboarding-tour";
 import Image from "next/image";
 import * as gtag from "@/lib/gtag";
+import { getCachedVideos } from "@/lib/video-cache";
 
 interface SubTopic {
   id: string;
@@ -174,7 +175,8 @@ export default function AytTarihPage() {
        const fetchedVideos = await youtubeService.searchVideos({
          query: searchQuery,
          maxResults: 20,
-         order: 'relevance'
+         order: 'relevance',
+         subject: 'ayt-tarih' // Her ders için ayrı API key
        });
        setVideos(fetchedVideos);
      } catch (error) {
@@ -510,8 +512,6 @@ export default function AytTarihPage() {
                             key={video.id}
                             video={video}
                             onClick={() => playVideo(video)}
-                            currentQuery={currentSearchQuery}
-                            onChannelVideoClick={(channelVideo) => playVideo(channelVideo)}
                           />
                         ))
                       ) : (

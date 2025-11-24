@@ -1,3 +1,5 @@
+import { getApiKeyForSubject, type SubjectType } from './youtube-api-keys';
+
 export interface YouTubeVideo {
   id: string;
   title: string;
@@ -17,14 +19,19 @@ export interface YouTubeSearchParams {
   query: string;
   maxResults?: number;
   order?: 'relevance' | 'viewCount' | 'date' | 'rating';
+  subject: SubjectType; // Her ders için farklı API key kullanmak için
 }
 
 class YouTubeService {
-  private apiKey: string;
   private baseUrl = 'https://www.googleapis.com/youtube/v3';
 
   constructor() {
-    this.apiKey = process.env.NEXT_PUBLIC_YOUTUBE_API_KEY || '';
+    // API key'ler artık subject bazlı dinamik olarak yükleniyor
+  }
+
+  // Subject'e göre API key al
+  private getApiKey(subject: SubjectType): string {
+    return getApiKeyForSubject(subject);
   }
 
   // Video süresini formatla (PT4M13S -> 4:13)
@@ -56,8 +63,10 @@ class YouTubeService {
 
   // TYT Matematik konularına özel video arama
   async searchVideos(params: YouTubeSearchParams): Promise<YouTubeVideo[]> {
-    if (!this.apiKey) {
-      console.warn('🔑 YouTube API key bulunamadı! Mock data kullanılıyor.');
+    const apiKey = this.getApiKey(params.subject);
+    
+    if (!apiKey) {
+      console.warn(`🔑 ${params.subject} için YouTube API key bulunamadı! Mock data kullanılıyor.`);
       console.info('📋 Gerçek YouTube videoları için YOUTUBE_API_SETUP.md dosyasını kontrol edin.');
       return this.getMockVideos(params.query);
     }
@@ -66,12 +75,12 @@ class YouTubeService {
       // Basit ve etkili arama sorgusu - YouTube'da ne arıyorsan o çıksın
       const searchQuery = params.query;
       
-      console.log(`🔍 YouTube'da aranan: "${searchQuery}"`);
+      console.log(`🔍 YouTube'da aranan: "${searchQuery}" (${params.subject})`);
       
       // İlk arama isteği - video listesi
       const searchResponse = await fetch(
         `${this.baseUrl}/search?` +
-        `key=${this.apiKey}&` +
+        `key=${apiKey}&` +
         `q=${encodeURIComponent(searchQuery)}&` +
         `part=snippet&` +
         `type=video&` +
@@ -93,7 +102,7 @@ class YouTubeService {
       // İkinci istek - video detayları (süre, görüntülenme sayısı)
       const detailsResponse = await fetch(
         `${this.baseUrl}/videos?` +
-        `key=${this.apiKey}&` +
+        `key=${apiKey}&` +
         `id=${videoIds}&` +
         `part=contentDetails,statistics,snippet`
       );

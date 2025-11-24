@@ -11,6 +11,7 @@ import { YouTubeVideo, youtubeService } from "@/lib/youtube-api";
 import { YouTubePlayer, VideoCard } from "@/components/ui/youtube-player";
 import { OnboardingTour } from "@/components/ui/onboarding-tour";
 import * as gtag from "@/lib/gtag";
+import { getCachedVideos } from "@/lib/video-cache";
 
 interface SubTopic {
   id: string;
@@ -184,15 +185,27 @@ export default function TytMatematikPage() {
       try {
         // Konuya özel optimize edilmiş sorgu
         const searchQuery = getOptimizedSearchQuery(topicId);
-        setCurrentSearchQuery(searchQuery); // Arama sorgusunu sakla
-        console.log(`🔍 Aranan konu: "${searchQuery}"`);
+        setCurrentSearchQuery(searchQuery);
         
-        const searchResults = await youtubeService.searchVideos({
-          query: searchQuery,
-          maxResults: 32, // 4 sayfa x 8 video = 32 video
-          order: 'relevance'
-        });
-        setVideos(searchResults);
+        // 🔥 ÖNCELİKLE CACHE'E BAK
+        console.log(`📦 Cache kontrol ediliyor: tyt-matematik - ${topicId}`);
+        const cachedVideos = await getCachedVideos('tyt-matematik', topicId);
+        
+        if (cachedVideos && cachedVideos.length > 0) {
+          // ✅ CACHE'DEN GELDİ - API'YE GİTMEDİK!
+          console.log(`✅ ${cachedVideos.length} video cache'den yüklendi (API kullanılmadı)`);
+          setVideos(cachedVideos);
+        } else {
+          // ❌ CACHE YOK - API'YE GİT
+          console.log(`🔍 Cache bulunamadı, YouTube API'ye gidiliyor: "${searchQuery}"`);
+          const searchResults = await youtubeService.searchVideos({
+            query: searchQuery,
+            maxResults: 32,
+            order: 'relevance',
+            subject: 'tyt-matematik'
+          });
+          setVideos(searchResults);
+        }
       } catch (error) {
         console.error('Video arama hatası:', error);
       } finally {
@@ -536,8 +549,6 @@ export default function TytMatematikPage() {
                             key={video.id}
                             video={video}
                             onClick={() => playVideo(video)}
-                            currentQuery={currentSearchQuery}
-                            onChannelVideoClick={(channelVideo) => playVideo(channelVideo)}
                           />
                         ))
                       ) : (
