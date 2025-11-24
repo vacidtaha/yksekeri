@@ -106,6 +106,13 @@ export default function GizlilikPage() {
                 Sitemizde deneyiminizi iyileştirmek için çerezler ve tarayıcı yerel depolaması kullanılmaktadır.
               </p>
 
+              <div className="p-4 rounded-xl mb-6" style={{backgroundColor: 'rgba(52,199,89,0.1)', border: '1px solid rgba(52,199,89,0.2)'}}>
+                <p className="text-sm" style={{color: '#8ee4af'}}>
+                  ✅ <strong>Önemli:</strong> Puan Hesaplama sayfasında girdiğiniz sınav sonuçları (netler) ve hesaplanan puanlar 
+                  <strong> SUNUCUMUZA GÖNDERİLMEZ</strong>. Tüm hesaplamalar tarayıcınızda yapılır ve hiçbir yere kaydedilmez.
+                </p>
+              </div>
+
               <div className="space-y-4">
                 {/* Gerekli Çerezler */}
                 <div className="p-4 rounded-xl" style={{backgroundColor: 'rgba(255,255,255,0.05)'}}>
@@ -245,7 +252,8 @@ export default function GizlilikPage() {
               <div className="mt-6 p-4 rounded-xl" style={{backgroundColor: 'rgba(255,59,48,0.1)', border: '1px solid rgba(255,59,48,0.2)'}}>
                 <p className="text-sm" style={{color: '#ff9f92'}}>
                   <strong>Toplamadığımız bilgiler:</strong> Ad-soyad (form dışında), TC kimlik no, telefon (zorunlu değil), 
-                  kesin konum (GPS), ödeme bilgileri, sosyal medya profilleri, üçüncü taraf hesap bilgileri.
+                  kesin konum (GPS), ödeme bilgileri, sosyal medya profilleri, üçüncü taraf hesap bilgileri, 
+                  <strong> sınav sonuçları/netler (Puan Hesaplama sayfasında girilen veriler sunucuya gönderilmez)</strong>.
                 </p>
               </div>
             </div>
@@ -706,6 +714,10 @@ export default function GizlilikPage() {
                   </div>
                   <div className="flex items-center">
                     <div className="w-2 h-2 rounded-full mr-3" style={{backgroundColor: '#30d158'}}></div>
+                    <span style={{color: '#8ee4af'}}>Puan hesaplama verileriniz sunucuya gönderilmez, sadece tarayıcıda hesaplanır.</span>
+                  </div>
+                  <div className="flex items-center">
+                    <div className="w-2 h-2 rounded-full mr-3" style={{backgroundColor: '#30d158'}}></div>
                     <span style={{color: '#8ee4af'}}>Analytics sadece onay verirseniz çalışır.</span>
                   </div>
                   <div className="flex items-center">
@@ -739,7 +751,7 @@ export default function GizlilikPage() {
                   YKS Şekeri'de başarıya giden yolunuzda yalnızca bilgi iz bırakır; kişisel verileriniz değil! 🍬
                 </p>
                 <p className="text-sm mt-3" style={{color: '#8ee4af'}}>
-                  Çalışma takibi ve kronometro kayıtlarınız da sadece sizin tarayıcınızda saklanır, asla sunucumuza gönderilmez.
+                  Çalışma takibi, kronometro kayıtları ve puan hesaplama verileriniz sadece sizin tarayıcınızda saklanır, asla sunucumuza gönderilmez.
                 </p>
               </div>
             </div>

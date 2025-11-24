@@ -93,6 +93,8 @@ export function Footer() {
             </h4>
             <ul className="space-y-1 lg:space-y-2">
               {[
+                { name: 'Odaklan', href: '/odaklan?auto=true' },
+                { name: 'Hesapla', href: '/hesapla' },
                 { name: 'Kaynaklar', href: '/kaynaklar' },
                 { name: 'İletişim', href: '/iletisim' },
                 { name: 'Gizlilik Politikası', href: '/gizlilik' }
