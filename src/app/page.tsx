@@ -1198,6 +1198,56 @@ Haddimize değil, inanın umurumuzda da değil — ama şunu unutmayın: **Sına
         </div>
       </div>
 
+      {/* Puan Hesaplama Bölümü */}
+      <div 
+        className="py-28 lg:py-40 px-4 lg:px-6"
+        style={{
+          backgroundColor: '#f97316',
+        }}
+      >
+        <div className="max-w-7xl mx-auto">
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            
+            {/* Sol - Metin */}
+            <div>
+              <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 text-white" 
+                  style={{ fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif" }}>
+                Puan ve Sıralama Hesaplama
+              </h2>
+              
+              <p className="text-lg lg:text-xl text-white/80 font-normal leading-relaxed"
+                 style={{ fontFamily: "'Neue Haas Display', -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif" }}>
+                TYT ve AYT netlerini gir, puanlarını ve geçmiş yıl verilerine göre sıralama tahminini gör.
+              </p>
+            </div>
+
+            {/* Sağ - Buton */}
+            <div className="flex justify-center lg:justify-end">
+              <Link 
+                href="/hesapla"
+                className="inline-flex items-center gap-3 px-10 py-5 rounded-full font-semibold text-xl lg:text-2xl transition-all duration-200"
+                style={{
+                  backgroundColor: '#000000',
+                  color: '#ffffff',
+                  boxShadow: '0 12px 40px rgba(0, 0, 0, 0.3)'
+                }}
+                onClick={() => gtag.event({
+                  action: 'hesapla_click',
+                  category: 'Homepage',
+                  label: 'Puan Hesaplama',
+                })}
+              >
+                <span>Hesapla</span>
+                <ArrowRight className="w-6 h-6" />
+              </Link>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
       {/* Üniversite Bilgileri Bölümü - Modern Tasarım */}
       <div 
         className="pt-12 lg:pt-24 pb-0 px-4 lg:px-6 relative overflow-hidden"

@@ -734,7 +734,7 @@ function OdaklanContent() {
               alignItems: 'center',
               justifyContent: 'center',
               cursor: 'pointer',
-            }}
+        }}
             aria-label="Ayarlar"
             onMouseEnter={(e) => {
               e.currentTarget.style.transform = 'scale(1.08)';
